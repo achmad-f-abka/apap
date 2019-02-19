@@ -1,0 +1,4 @@
+NPM	: 1706107005
+Nama	: Sevira Karina Putri
+Jurusan	: Sistem Informasi
+Angkatan: 2017
