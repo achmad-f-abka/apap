@@ -1,0 +1,4 @@
+NPM	: 1606832214
+Nama	: Intan Wulandari
+Jurusan	: Sistem Informasi
+Angkatan: 2016
