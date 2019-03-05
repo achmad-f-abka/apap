@@ -1,2 +1,2 @@
-# apap
+# APAP Repository
 Untuk perkuliahan APAP.
