@@ -1,4 +1,0 @@
-NPM 	: 1606917954
-NAMA 	: Usamah Nashirul Haq
-Jurusan	: Sistem Informasi Reguler
-Angkatan: 2016
