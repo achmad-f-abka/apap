@@ -1,4 +1,0 @@
-NPM		: 1606918225
-Nama		: Albert Christian Bangun
-Jurusan		: Sistem Informasi
-Angkatan	: 2016
