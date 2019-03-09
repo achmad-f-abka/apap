@@ -42,6 +42,7 @@ public class PageController {
     @RequestMapping("/calculator")
     public String perkalian(@RequestParam(value = "x", required = false, defaultValue = "0") int x,
                             @RequestParam(value = "y", required = false, defaultValue = "0") int y, Model model) {
+                            //Anggit Baskoro
         model.addAttribute("x", x);
         model.addAttribute("y", y);
         model.addAttribute("result", x + y);
