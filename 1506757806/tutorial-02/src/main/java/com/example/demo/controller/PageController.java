@@ -31,4 +31,17 @@ public class PageController {
 		}
 		return "hello2";
 	}
+	
+	@RequestMapping("/calculator")
+	public String calculate(@RequestParam(value="firstNumber") Integer firstNumber, @RequestParam(value="secondNumber") Integer secondNumber, Model model) {
+		String[] number = {"one","two","three","four","five","six","seven","eight","nine",
+				"ten"};
+		
+		int sum = firstNumber + secondNumber;
+		String result = firstNumber + " + " + secondNumber + " = " + sum + " (" + number[sum-1] + ")";
+		model.addAttribute("result", result);
+		return "calculator";
+	}
+	
+	
 }
