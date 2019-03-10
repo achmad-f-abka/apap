@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PageController {
-	@RequestMapping("/hello")
+	@RequestMapping("/aloha")
 	public String index() {
 		return "hello";
 	}
@@ -22,6 +22,7 @@ public class PageController {
 		return "hello2";
 		
 	}
+
 	
 	@RequestMapping(value= {"/hello2","/hello2/{name}"})
 	public String helloPath(@PathVariable Optional<String> name, Model model) {
@@ -34,33 +35,26 @@ public class PageController {
 	}
 	
 
-	@RequestMapping(value = "/kalkulator", method = RequestMethod.GET)
-    public String greeting(@RequestParam(value= "num1")  String num1,
-                           @RequestParam(value = "num2") String num2,
-                           @RequestParam(value = "operasi") String operasi,
-                           Model model) {
-        if (num1 != null && num2 != null && operasi != null) {
-            switch (operasi) {
-                case "pluss" :
-                    model.addAttribute("result", Double.parseDouble(num1) + Double.parseDouble(num2));
-                    break;
-                case "minus" :
-                    model.addAttribute("result", Double.parseDouble(num1) - Double.parseDouble(num2));
-                    break;
-                case "product" :
-                    model.addAttribute("result", Double.parseDouble(num1) * Double.parseDouble(num2));
-                    break;
-                case "divide" :
-                    model.addAttribute("result", Double.parseDouble(num1) / Double.parseDouble(num2));
-                    break;
-                default:
-                    break;
+	@RequestMapping("/hitung/{angka}")
+	public String tambah(@PathVariable("angka") String angka, Model model) {
+		String a = angka.substring(0,1);
+		String b = angka.substring(1);
 
-            }
-        }
-        return "kalkulator";
-    }
-	
-	
+		String [] angkaHuruf = {"Nol","Satu","Dua","Tiga","Empat","Lima","Enam","Tujuh","Delapan","Sembilan","Sepuluh",
+				"Sebelas", "Dua belas", "Tiga belas", "Empat belas", "Lima belas","Enam belas", 
+				"Tujuh belas", "Delapan belas", "Sembilan belas", "Dua puluh"};
+		
+		int angka1 = Integer.parseInt(a);
+		int angka2= Integer.parseInt(b);
+		
+		int hasil = angka1 + angka2;
 
+		angka = a + "+" + b + "=" + Integer.toString(hasil) + "(" + angkaHuruf[hasil] + ")";
+
+		model.addAttribute("angka", angka);
+		
+		return "tambah";
+	}
+	
 }
+	
