@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Calculator Convert</title>
+	</head>
+	<body>
+		<h2>Kalkulator Penjumlahan 2 Angka</h2>
+		<p th:text="'Angka Pertama : ' + ${firstNum}"></p>
+		<p th:text="'Angka Kedua : ' + ${secondNum}"></p>
+		<p th:text="'Total Penjumlahan : ' + ${firstNum} + ' + ' + ${secondNum} + ' = ' + ${totalSum}"></p>
+		<p th:text="'Dibaca : ' + '`' + ${dibaca} + '`'"></p>
+	</body>
+
+</html>
