@@ -30,15 +30,39 @@ public class PageController {
 	}
 	
 		@RequestMapping("/numberCalculator")
-		public String calculate(@RequestParam(value="angka1") String angka1 , @RequestParam(value="angka2")String angka2,Model model){
-			String[] angka= {"satu","dua","tiga","empat","lima"
-							,"enam","tujuh","delapan","sembilan","sepuluh"};
-			int num1=Integer.parseInt(angka1);
-			int num2=Integer.parseInt(angka2);
-			int jum=num1+num2;
-			
-			String hasil=angka1+" + "+angka2+" = "+jum+" ("+angka[jum-1]+")";
-			model.addAttribute("hasil", hasil);
-			return "numberCalculator";
-		}
+	
+	    public String perkalian(@RequestParam(value = "x", required = false, defaultValue = "0") int x,
+	                            @RequestParam(value = "y", required = false, defaultValue = "0") int y, Model model) {
+	                           
+	        model.addAttribute("x", x);
+	        model.addAttribute("y", y);
+	        model.addAttribute("hasil", x + y);
+
+	        String[] ribuan = { "", " Seribu", " Dua Ribu", " Tiga Ribu", " Empat Ribu", " Lima Ribu", " Enam Ribu",
+	                          " Tujuh Ribu", " Delapan Ribu", " Sembilan Ribu" };
+	        String[] ratusan= { "", " Seratus", " Dua Ratus", " Tiga Ratus", " Empat Ratus", " Lima Ratus", " Enam Ratus",
+	                           " Tujuh Ratus", " Delapan Ratus", " Sembilan Ratus" };
+	        String[] belasan = { "", " Belas", " Dua Puluh", " Tiga Puluh", " Empat Puluh", " Lima Puluh", " Enam Puluh",
+	                           " Tujuh Puluh", " Delapan Puluh", " Sembilan Puluh" };
+	        String[] satuan = { "", " Satu", " Dua", " Tiga", " Empat", " Lima", " Enam", " Tujuh", " Delapan", " Sembilan", " Sepuluh" };
+
+	        int hasil = x + y;
+	        if (hasil < 9999 && hasil > 0) {
+	            int ribu, ratus, belas, satu;
+	            ribu= hasil / 1000;
+	            ratus= (hasil % 1000) / 100;
+	            belas= (hasil % 100) / 10;
+	            satu= hasil % 10;
+	            if (belas== 1) {
+	                if (satu== 1) {
+	                    model.addAttribute("words", ribuan[ribu] + ratusan[ratus] + " Se" + belasan[belas]);
+	                } else {
+	                    model.addAttribute("words", ribuan[ribu] + ratusan[ratus] + satuan[satu] + belasan[belas]);
+	                } 
+	            } else {
+	                model.addAttribute("words", ribuan[ribu] + ratusan[ratus] + belasan[belas] + satuan[satu]);
+	            }
+	        } 
+	        return "numberCalculator";
+	    }
 }

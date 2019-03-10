@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>
-	 Calculator
-	</title>
+    <title>Calcu Convert</title>
 </head>
 <body>
-	<p th:text="${hasil}"></p>
+    <h1>Penjumlahan</h1>
+    <p 
+    th:text="${x}+' + '+${y}+' = '+${hasil} +' ('+${words}+')'">Result
+    </p>
 </body>
 </html>
