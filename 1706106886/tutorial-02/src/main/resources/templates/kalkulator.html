@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Kalkulator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        #wrapper {
+            width:400px;
+            background-color: gray;
+            padding: 10px;
+            margin: 0 auto 0 auto;
+            border-radius: 5px;
+        }
+    </style>
+	</head>
+	
+	<body>
+	<body>
+	<div id ="wrapper">
+		<h3><center>Welcome</center></h3>
+        <Form>
+             <table>
+                <tr>
+ 					<td>Bilangan 1</td>
+ 					<td><input type="text" name="num1" required/></td>
+ 				</tr>
+                <tr>
+ 					<td>Bilangan 2</td>
+ 					<td> <input type="text" name="num2" required/></td>
+ 				</tr>
+                <tr>
+                	<td>Operasi</td>
+                    <td>
+                        <select name="operasi">
+                            <option value="pluss">+</option>
+                            <option value="minus">-</option>
+                            <option value="product">*</option>
+                            <option value="divide">/</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit"/></td>
+                </tr>
+            </table>
+            
+        </Form>	
+        
+        <div th:if="${result} != null">
+           <p th:text= "'Hasil : ' + ${result}"/>
+        </div>
+                
+        
+        
+        </div>	
+	</body>
+	
+</html>
