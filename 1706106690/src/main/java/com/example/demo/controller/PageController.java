@@ -30,15 +30,11 @@ public class PageController {
 		return "hello2";
 	}
 	
-	@RequestMapping(value="/calcuConvert/{num}")
-		public String count(@RequestParam(value = "num") String num, Model model) {
+	@RequestMapping(value="/calcuConvert")
+		public String count(@RequestParam(value = "num1", required = false, defaultValue = "0") int num1, 
+							@RequestParam(value = "num2", required = false, defaultValue = "0") int num2, Model model) {
 			
-			String a = num.substring(0,1);
-			String b = num.substring(1);
-		
-			int num1 = Integer.parseInt(a);
-			int num2= Integer.parseInt(b);
-		
+					
 			String [] mentionNum = {"Nol","Satu","Dua","Tiga","Empat","Lima",
 					"Enam","Tujuh","Delapan","Sembilan","Sepuluh",
 					"Sebelas", "Dua belas", "Tiga belas", "Empat belas", "Lima belas",
@@ -46,11 +42,13 @@ public class PageController {
 		
 			int result = num1 + num2;
 			
-			num = a + "+" + b + "=" + Integer.toString(result) + "(" + mentionNum[result] + ")";
+			String cetak = Integer.toString(num1) + "+" + Integer.toString(num2) + "=" + Integer.toString(result) + "(" + mentionNum[result] + ")";
 			
-			model.addAttribute("num", num);
+			model.addAttribute("cetak", cetak);
 			return "calcuConvert";
 			
 	}
-	//diakses ke alamat http://localhost:3000/calcuConvert/12 -----> maksudnya 1 + 2
+	
+	
+	//diakses ke alamat http://localhost:3000/calcuConvert?num1=2&num2=3 -----> maksudnya 2 + 3
 }
