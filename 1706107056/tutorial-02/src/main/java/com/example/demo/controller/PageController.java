@@ -30,28 +30,26 @@ public class PageController {
 		return "hello2";
 	}
 	
-	//LATIHAN CALCULATOR
-	@RequestMapping("/calculator")
-	public String coba(@RequestParam(value= "angka") String angka, Model model) {
-		//men-convert dan memecah
-		int a = Integer.parseInt(angka.substring(0,1));
-		int b = Integer.parseInt(angka.substring(1));
-		//hitung
-		int hasil = a + b;
+//LATIHAN CALCULATOR
+	@RequestMapping("/calculator/{angka1}/{angka2}")
+	//method merequest parameter angka1 dan angka2 dan mengubahnya ke bentuk integer
+	public String variabel(@PathVariable int angka1, @PathVariable int angka2, Model model) {
 		
-		String[] kata = {"Nol","Satu","Dua","Tiga","Empat","Lima",
-				"Enam","Tujuh","Delapan","Sembilan","Sepuluh", 
-				"Sebelas","Dua Belas","Tiga Belas","Empat Belas","Lima Belas",
-				"Enam Belas","Tujuh Belas","Delapan Belas", "Sembilan Belas", "Dua puluh"};
+		//perhitungan
+		int hasil = angka1+angka2;
 		
-		angka = a + "+" + b + "=" + hasil + " (" + kata[hasil] +")";
-		model.addAttribute("angka", angka);
+		//deklarasi array untuk mengubah bilangan menjadi kata
+		String[] kata = {"Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", 
+				"Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", 
+				"Sebelas", "Dua belas", "Tiga belas", "Empat belas", "Lima belas",
+				"Enam belas", "Tujuh belas", "Delapan belas", "Sembilan belas", "Dua puluh"};
+		
+		//bentuk untuk ditampilkan ke view
+		String angka = angka1 + "+" + angka2 + "=" + hasil + " (" + kata[hasil] +")";
+		
+		model.addAttribute("angka",angka);
 		return "calculator";
 	}
-	
-	
-	
-	//Akses : http://localhost:8080/calculator?num=23
 	
 }
 
