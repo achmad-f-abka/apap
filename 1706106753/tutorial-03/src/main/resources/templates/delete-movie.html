@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Delete Movie</title>
+	</head>
+	<body>
+		<div th:if="${isExist}">
+			<h2>All Movies</h2>
+			<div th:each="movie : ${movies}">
+				<h2 th:text="${movie.id}"></h2>
+				<h2 th:text="${movie.title}"></h2>
+				<h2 th:text="${movie.genre}"></h2>
+				<h2 th:text="${movie.budget}"></h2>
+				<h2 th:text="${movie.duration}"></h2>
+			</div>
+		</div>
+		<h2 th:unless="${isExist}"> Id kosong atau tidak ditemukan, proses delete dibatalkan</h2>
+	</body>
+</html>
