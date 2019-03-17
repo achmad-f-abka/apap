@@ -15,7 +15,7 @@ import com.apap.tu03.model.MovieModel;
 import com.apap.tu03.service.MovieService;
 
 @Controller
-public class MovieController {
+public class 	MovieController {
 	@Autowired
 	private MovieService movieService;
 	
@@ -55,10 +55,8 @@ public class MovieController {
 					model.addAttribute("movie", archive);
 					return "view-movie";
 				}
-				else {
-					return "error";
-				}
 			}
+			return "error";
 		}
 		else if (!id.isPresent()) {
 			return "error";
@@ -80,10 +78,8 @@ public class MovieController {
 					model.addAttribute("newMovieDuration", newMovieDuration);
 					return "edit-duration";
 				}
-				else {
-					return "error";
-				}
 			}
+			return "error";
 		}
 		else if (!id.isPresent()) {
 			return "error";
@@ -106,10 +102,8 @@ public class MovieController {
 					model.addAttribute("id", id.get());
 					return "delete";
 				}
-				else {
-					return "error";
-				}
 			}
+			return "error";
 		}
 		else if (!id.isPresent()) {
 			return "error";
