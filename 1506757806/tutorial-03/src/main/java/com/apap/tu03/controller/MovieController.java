@@ -71,6 +71,8 @@ public class MovieController {
 		if (id.isPresent()) {
 			MovieModel modelMovie = movieService.getMovieDetail(id.get());
 			if(modelMovie == null) {
+				String expectation = "ID Not Found, Failed to Update";		
+				model.addAttribute("output", expectation);
 				return "output";
 			} else {
 				String expectation = "Berhasil";
@@ -88,7 +90,7 @@ public class MovieController {
 	public String delete(@PathVariable String id, Model model) {
 		
 		if (movieService.getMovieDetail(id) == null) {
-			String expectation = "Data Tidak Ditemukan";		
+			String expectation = "ID Not Found, Failed to Delete";		
 			model.addAttribute("output", expectation);
 			return "output";
 		} 
