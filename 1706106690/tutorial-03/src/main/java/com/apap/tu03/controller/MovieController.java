@@ -48,7 +48,7 @@ public class MovieController {
 			return "view-movie";
 		}
 		else {
-			return "ID tidak ditemukan ";
+			return "idnotfound";
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class MovieController {
 			return "update-movie";
 		}
 		else {
-			return "id tidak ditemukan dan proses update dibatalkan ";
+			return "idnotfound";
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class MovieController {
 			return "delete-movie";
 		}
 		else {
-			return " id tidak ditemukan dan proses delete dibatalkan.";
+			return "idnotfound";
 		}
 	}
 }
