@@ -7,11 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.apap.tu03.model.MovieModel;
 
-
 @Service
 public class InMemoryMovieService implements MovieService{
-	
-	
 	private List<MovieModel> archiveMovie;
 	
 	public InMemoryMovieService() {
@@ -23,23 +20,33 @@ public class InMemoryMovieService implements MovieService{
 		archiveMovie.add(movie);
 	}
 	
-	@Override
-	public List<MovieModel> getMovieList() {
+	public List<MovieModel> getMovieList(){
 		return archiveMovie;
-	}
-
-	@Override
-	public MovieModel getMovieDetail(String id) {
-		for(int i=0; i<archiveMovie.size(); i++) {	
-			if(archiveMovie.get(i).getId().equals(id)) {
-				return archiveMovie.get(i);
-			}
-		}
-		return null;
 	}
 	
 	@Override
-	public void deleteMovieDetail(String id) {
-		archiveMovie.removeIf(movie -> movie.getId().equals(id));
+	public MovieModel getMovieDetail(String id) {
+		for(int i=0;i<archiveMovie.size();i++) {
+			if(archiveMovie.get(i).getId().equals(id)) {
+				return archiveMovie.get(i);
+				
+			}
+		}
+		return null;
+	} 
+	
+	@Override
+	public void updateMovie(String id, Integer duration) {
+		for(int i=0;i<archiveMovie.size();i++) {
+			if(archiveMovie.get(i).getId().equals(id)) {
+				archiveMovie.get(i).setDuration(duration);
+				archiveMovie.set(i,archiveMovie.get(i));
+			}
+		}
+	}
+	
+	@Override
+	public void deleteMovie(MovieModel movie) {
+		archiveMovie.remove(movie);
 	}
 }
