@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Detail</title>
+	</head>
+	<body>
+	<form>
+		<h2>Data</h2>
+	<h3 th:if="${PageError}" class="error">Data Tidak Ditemukan!</h3>
+	<h3 th:if="${UpdateBerhasil}" class="baseclass">Data Berhasil Diperbaharui</h3>
+	<h3 th:if="${UpdateGagal}" class="baseclass">Data Gagal Diperbaharui!</h3>
+	<h3 th:if="${DeleteBerhasil}" class="baseclass">Data Berhasil Dihapus</h3>
+	<h3 th:if="${DeleteGagal}" class="baseclass">Data Gagal Dihapus!</h3>
+		<h3 th:text="${movie.id}"></h3>
+		<h3 th:text="${movie.title}"></h3>
+		<h3 th:text="${movie.genre}"></h3>
+		<h3 th:text="${movie.budget}"></h3>
+		<h3 th:text="${movie.duration}"></h3>
+		</form>
+	</body>
+</html>

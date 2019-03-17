@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.Iterator;
 
 @Controller
-public class MovieController {
+public class 	MovieController {
 	@Autowired
 	private MovieService movieService;
 	
@@ -51,10 +51,14 @@ public class MovieController {
 					model.addAttribute("movie", archive);
 					return "view-movie";
 				}
+<<<<<<< HEAD:1606917954/tutorial-03/src/main/java/com/apap/tu03/controller/MovieController.java
+=======
 				else {
 					return "errorHandling";
 				}
+>>>>>>> 9f965cac8a534815bb61e4b20a02642f94f06359:1606918225/tutorial-03/src/main/java/com/apap/tu03/controller/MovieController.java
 			}
+			return "error";
 		}
 		else if(!id.isPresent()) {
 			return "errorHandling";
@@ -76,10 +80,14 @@ public class MovieController {
 					model.addAttribute("newDuration", newDuration);
 					return "updateDuration";
 				}
+<<<<<<< HEAD:1606917954/tutorial-03/src/main/java/com/apap/tu03/controller/MovieController.java
+=======
 				else {
 					return "errorHandling";
 				}
+>>>>>>> 9f965cac8a534815bb61e4b20a02642f94f06359:1606918225/tutorial-03/src/main/java/com/apap/tu03/controller/MovieController.java
 			}
+			return "error";
 		}
 		else if (!id.isPresent()) {
 			return "errorHandling";
@@ -102,10 +110,14 @@ public class MovieController {
 					model.addAttribute("id", id.get());
 					return "deleteMovie";
 				}
+<<<<<<< HEAD:1606917954/tutorial-03/src/main/java/com/apap/tu03/controller/MovieController.java
+=======
 				else {
 					return "errorHandling";
 				}
+>>>>>>> 9f965cac8a534815bb61e4b20a02642f94f06359:1606918225/tutorial-03/src/main/java/com/apap/tu03/controller/MovieController.java
 			}
+			return "error";
 		}
 		else if(!id.isPresent()) {
 			return "errorHandling";
