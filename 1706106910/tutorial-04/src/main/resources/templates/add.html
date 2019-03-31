@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Add</title>
+</head>
+<body>
+	<h2>Data Berhasil Ditambahkan!</h2>
+	<form th:action="@{/flight/view}" method="POST">
+		<h2 th:style="${'color: green;'}">
+			
+		</h2>
+		<table>
+			<thead>
+				<tr>
+					<th><button type="button" th:attr="onClick=|window.location.href='/'|">Home</button></th>
+					<th><button type="button" th:attr="onClick=|window.location.href='/pilot/add'|">Input Again</button></th>
+				</tr>
+			</thead>
+		</table>
+	</form>
+</body>
+</html>
