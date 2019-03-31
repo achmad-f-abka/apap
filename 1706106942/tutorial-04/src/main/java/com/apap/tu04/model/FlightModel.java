@@ -30,7 +30,7 @@ public class FlightModel implements Serializable {
 	
 	@NotNull
 	@Size(max = 50)
-	@Column(name = "flight_number", nullable = false)
+	@Column(name = "flightNumber", nullable = false)
 	private String flightNumber;
 	
 	@NotNull

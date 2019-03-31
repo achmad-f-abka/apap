@@ -21,6 +21,13 @@ import javax.validation.constraints.Size;
 @Table(name = "pilot")
 
 public class PilotModel implements Serializable {
+//	public PilotModel(String licenseNumber, String name, int flyHour, FlightModel... flights) {
+//		this.name = name;
+//		this.licenseNumber = licenseNumber;
+//		this.flyHour = flyHour;
+//        this.pilotFlight = Stream.of(pilotFlight).collect(Collectors.toSet());
+//        this.books.forEach(x -> x.setBookCategory(this));
+//	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,16 +35,16 @@ public class PilotModel implements Serializable {
 	
 	@NotNull
 	@Size(max = 50)
-	@Column(name = "license_number", nullable = false, unique = true)
-	private String licenseNumber;
-	
-	@NotNull
-	@Size(max = 50)
 	@Column(name = "name", nullable = false)
 	private String name;
 	
 	@NotNull
-	@Column(name = "fly_hour", nullable = false)
+	@Size(max = 50)
+	@Column(name = "licenseNumber", nullable = false, unique = true)
+	private String licenseNumber;
+	
+	@NotNull
+	@Column(name = "flyHour", nullable = false)
 	private int flyHour;
 	
 	@OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

@@ -8,7 +8,9 @@
 	<h2>Welcome!</h2>
 
 	<h3>Tambah Pilot</h3>
-	<td><a th:href="@{/pilot/add}">Tambah</a></td>
+	<td>
+	<button type="button" th:attr="onClick=|window.location.href='/pilot/add'|">Add Pilot</button>
+	</td>
 
 	<h3>Cari Pilot</h3>
 	<form th:action="@{/pilot/view}" method="GET">

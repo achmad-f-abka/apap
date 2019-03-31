@@ -5,11 +5,30 @@
 <title>Add</title>
 </head>
 <body>
-	<h2>Data Berhasil Ditambahkan!</h2>
-	<form th:action="@{/flight/view}" method="POST">
+	<form th:action="@{/pilot/view}" method="POST">
 		<h2 th:style="${'color: green;'}">
-			
-		</h2>
+		Data Berhasil Ditambahkan!
+	</h2>
+		<table>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="'Pilot License Number'"></td>
+				<td>:</td>
+				<td th:text="${lNumb}"></td>
+				<td rowspan="3">
+					<th><button type="button" th:attr="onClick=|window.location.href='/pilot/updates/${lNumb}'|">Edit This</button></th>
+				</td>
+			</tr>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="Name"></td>
+				<td>:</td>
+				<td th:text="${name}"></td>
+			</tr>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="'Fly Hour'"></td>
+				<td>:</td>
+				<td th:text="${fHour}"></td>
+			</tr>
+		</table>
 		<table>
 			<thead>
 				<tr>

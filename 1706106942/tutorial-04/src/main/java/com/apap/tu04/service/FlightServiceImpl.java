@@ -23,8 +23,8 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public List<FlightModel> getFlightListByPilot(PilotModel pilotmdl) {
-		List<FlightModel> fList = flightDb.findByPilot(pilotmdl);
+	public List<FlightModel> getFlightListByPilot(PilotModel plt) {
+		List<FlightModel> fList = flightDb.findByPilot(plt);
 		return fList;
 	}
 
