@@ -10,5 +10,7 @@ public interface FlightService {
 	void addFlight(FlightModel flight);
 
 	List<FlightModel> getFlightListByPilot(PilotModel pilot);
+	
+	
 
 }
