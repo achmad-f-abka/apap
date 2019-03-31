@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Update Pilot</title>
+</head>
+<body>
+<button type="button" th:attr="onClick=|window.location.href='/pilot/view?licenseNumber=${license_number}'|">Back</button>
+
+	<h3>Update Pilot</h3>
+	<form th:action="@{/pilot/update/}" method="POST">
+	<input type="hidden" name="licenseNumber" th:value="${licenseNumber}"/>
+		Name: <br>
+		<input type="text" name="name" th:value="${name}"/><br>
+		License Number: <br>
+		<input type="text" name="licenseNumber" th:value="${licenseNumber}" disabled="disabled"/><br>
+		Fly Hour: <br>
+		<input type="text" name="fly_hour" th:value="${flyHour}"/><br>
+		<button type="submit">Submit</button>
+	</form>
+
+</body>
+</html>
