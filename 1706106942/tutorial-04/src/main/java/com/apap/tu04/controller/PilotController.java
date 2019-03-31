@@ -73,12 +73,9 @@ public class PilotController {
 	public String updatePilotSubmit(@RequestParam("licenseNumber") String licenseNumber,
 			@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "fly_hour", required = true) int fly_hour, Model model) {
-		// System.out.println("OKET "+name);
 		plt = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		if (plt != null) {
-			// System.out.println("OKET "+fly_hour);
 			plt.setName(name);
-			// System.out.println("OKET "+plt.getName().toString());
 			plt.setFlyHour(fly_hour);
 			pilotService.updatePilot(plt);
 
