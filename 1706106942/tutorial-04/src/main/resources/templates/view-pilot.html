@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>View Pilot</title>
+<style>
+table {
+	width: absolute;
+	height: 50%;
+}
+
+table td, table th {
+	border: 1px solid grey;
+}
+
+table th {
+	background: #eee;
+}
+
+.pagination-div {
+	user-select: none;
+}
+
+.pagination-div span {
+	border-radius: 3px;
+	border: 1px solid #999;
+	padding: 5px;
+	margin: 10px 0px 0px 10px;
+	display: inline-block
+}
+
+span.selected {
+	background: #ccf;
+}
+</style>
+</head>
+<body>
+<button type="button" th:attr="onClick=|window.location.href='/'|">Back</button>
+	<h2 th:if="${found}" class="error" th:style="${'color: blue;'}">
+		<i>Data Pilot!</i>
+	</h2>
+	<h2 th:if="${notFound}" class="error" th:style="${'color: red;'}">
+		<i>Data Tidak Ditemukan!</i>
+	</h2>
+	<form th:action="@{/pilot/view}" method="POST">
+		<table>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="'Pilot License Number'"></td>
+				<td>:</td>
+				<td th:text="${license_number}"></td>
+				<td rowspan="3"><a th:href="@{'/pilot/delete/' + ${license_number}}">Delete Pilot</a>||
+				<a th:href="@{'/pilot/update/' + ${license_number}}">Update Pilot</a>
+<!-- 					<form th:action = "@{/pilot/delete/${license_number}}" method="GET"> -->
+<!-- 					 <input type="hidden" th:value="${license_number}" /> -->
+<!-- 						<button type="submit">GO TO LIST</button> -->
+<!-- 					</form></td> -->
+			</tr>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="Name"></td>
+				<td>:</td>
+				<td th:text="${name}"></td>
+			</tr>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="'Fly Hour'"></td>
+				<td>:</td>
+				<td th:text="${fly_hour}"></td>
+			</tr>
+		</table>
+		<br /> <a th:href="@{'/flight/add/' + ${license_number}}">Add
+			Flight</a>
+		<h2 th:style="${'color: green;'}">
+			<p th:text="'Data Penerbangan Pilot ' + ${name} + ':'"></p>
+		</h2>
+		<table>
+			<thead>
+				<tr>
+					<th style="text-align: center">No.</th>
+					<th style="text-align: center">Flight Number</th>
+					<th style="text-align: center">Origin</th>
+					<th style="text-align: center">Destination</th>
+					<th style="text-align: center">Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="fl, i : ${fList}">
+					<td th:text="${i.count}"></td>
+					<td th:text="${fl.flightNumber}"></td>
+					<td th:text="${fl.origin}"></td>
+					<td th:text="${fl.destination}"></td>
+					<td th:text="${fl.time}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</form><br/>
+<a th:href="@{/flight/view/}">Lihat Daftar Penerbangan Lain</a>
+</body>
+</html>
