@@ -1,13 +1,19 @@
 package com.apap.tu04.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.apap.tu04.model.PilotModel;
 
+/**
+ * 
+ * PilotDb
+ *
+ */
 @Repository
-public interface PilotDb extends CrudRepository<PilotModel, Long>{
 
-	PilotModel findByLicenseNumber(String licenseNumber);
+public interface PilotDb extends JpaRepository<PilotModel, Long> {
+	PilotModel findByLicenseNumber (String licenseNumber);
 	
+
 }

@@ -1,7 +1,6 @@
 package com.apap.tu04.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,57 +15,61 @@ import com.apap.tu04.model.PilotModel;
 import com.apap.tu04.service.FlightService;
 import com.apap.tu04.service.PilotService;
 
+/**
+ * 
+ * FlightController
+ *
+ */
+
 @Controller
 public class FlightController {
 	@Autowired
 	private FlightService flightService;
-
+	
 	@Autowired
 	private PilotService pilotService;
-
-	@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
-	private String add(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+	
+	@RequestMapping(value="/flight/add/{licenseNumber}", method = RequestMethod.GET)
+	private String add (@PathVariable(value = "licenseNumber") String licenseNumber,Model model) {
 		FlightModel flight = new FlightModel();
-		PilotModel pilot = pilotService.getPilotByLicenseNumber(licenseNumber);
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		
 		flight.setPilot(pilot);
 		model.addAttribute("flight", flight);
 		return "addFlight";
 	}
 
-	@RequestMapping(value = "/flight/add", method = RequestMethod.POST)
-	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
+	@RequestMapping (value="/flight/add", method = RequestMethod.POST)
+	private String addFlightSubmit (@ModelAttribute  FlightModel flight) {
 		flightService.addFlight(flight);
 		return "add";
 	}
-
-	@RequestMapping(value = "/flight/delete/{id}", method = RequestMethod.GET)
-	private String deleteFlight(@PathVariable(value = "id") Long id) {
-		flightService.delete(id);
-		return "deleteData";
+	@RequestMapping(value = "/flight/delete/{id}", method = RequestMethod.POST)
+	private String deleteFlight(@PathVariable(value="id") Long id, Model model) {
+		flightService.deleteFlight(id);
+		return"delete";
 	}
-
-	@RequestMapping(value = "/flight/update/{id}", method = RequestMethod.GET)
-	private String update(@PathVariable(value = "id") Long id, Model model) {
-		FlightModel flight = flightService.getFlightById(id);
+	@RequestMapping(value= "/flight/viewall", method = RequestMethod.GET)
+	private String viewFlight(Model model) {
+		List<FlightModel> myFlight = flightService.viewAllFlight();
+		model.addAttribute("flight", myFlight);
+		return "allFlight";
+	}
+	@RequestMapping(value = "/flight/update/{id}", method = RequestMethod.POST)
+	private String updateFlight(@PathVariable(value="id") Long id,Model model) {
+		FlightModel flight =flightService.getFlightDetailById(id).get();
 		model.addAttribute("flight", flight);
 		return "updateFlight";
 	}
-
-	@RequestMapping(value = "/flight/update", method = RequestMethod.POST)
-	private String updateFlightSubmit(@ModelAttribute FlightModel flight) {
-		FlightModel updatedFlight = flightService.getFlightById(flight.getId());
-		updatedFlight.setDestination(flight.getDestination());
-		updatedFlight.setOrigin(flight.getOrigin());
-		updatedFlight.setTime(flight.getTime());
-		flightService.update(updatedFlight);
-		return "updateData";
+	@RequestMapping (value="/flight/update", method = RequestMethod.POST)
+	private String updateSubmit(@ModelAttribute FlightModel flight) {
+		FlightModel real = flightService.getFlightDetailById(flight.getId()).get();
+		real.setDestination(flight.getDestination());
+		real.setOrigin(flight.getOrigin());
+		real.setTime(flight.getTime());
+		real.setFlightNumber(flight.getFlightNumber());
+		flightService.addFlight(real);
+		return "update";
 	}
-
-	@RequestMapping(value = "/flight/all", method = RequestMethod.GET)
-	private String allFlight(Model model) {
-		List<FlightModel> allFlight = flightService.getAllFlight();
-		model.addAttribute("allFlight", allFlight);
-		return "allFlight";
-	}
-
+	
 }

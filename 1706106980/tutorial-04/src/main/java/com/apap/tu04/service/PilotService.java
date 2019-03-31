@@ -1,15 +1,22 @@
 package com.apap.tu04.service;
 
+import java.util.List;
+import java.util.Optional;
+
+
 import com.apap.tu04.model.PilotModel;
 
-public interface PilotService {
-	PilotModel getPilotByLicenseNumber(String licenseNumber);
-	
-	void addPilot(PilotModel pilot); 
-	
-	PilotModel getPilotById(Long id);
+/**
+ * 
+ * PilotService
+ *
+ */
 
-	void delete(Long id);
+
+public interface PilotService {
+	PilotModel getPilotDetailByLicenseNumber (String licenseNumber);
+	void addPilot (PilotModel pilot);
+	Optional<PilotModel> getPilotDetailById(Long id);
 	
-	void update(PilotModel flight);
+	void deletePilot(Long id);
 }

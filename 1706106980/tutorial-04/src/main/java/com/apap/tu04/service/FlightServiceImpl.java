@@ -8,46 +8,45 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.tu04.model.FlightModel;
+import com.apap.tu04.model.PilotModel;
 import com.apap.tu04.repository.FlightDb;
+
+
+/**
+ * FlightServiceImpl
+ */
 
 @Service
 @Transactional
 public class FlightServiceImpl implements FlightService{
 	@Autowired
-	private FlightDb flightdb;
-	
-	
-	@Override
-	public void addFlight(FlightModel flight) {
-		flightdb.save(flight);
-	}
-
-	@Override
-	public List<FlightModel> getPilotByLicenseNumber(String pilotLicenseNumber) {
-		return flightdb.findByPilotLicenseNumber(pilotLicenseNumber);
-	}
-
-	@Override
-	public void delete(Long id) {
-		flightdb.deleteById(id);
-		
-	}
-
-	@Override
-	public FlightModel getFlightById(Long id) {
-		return flightdb.findById(id).get();
-	}
-
-	@Override
-	public void update(FlightModel flight) {
-		flightdb.save(flight);
-		
-	}
+	private FlightDb flightDb;
 	
 	@Override
-	public List<FlightModel> getAllFlight(){
-		List<FlightModel> listFlight = (List<FlightModel>) flightdb.findAll();
+	public void addFlight (FlightModel flight) {
+		flightDb.save(flight);
+	}
+
+	@Override
+	public Optional<FlightModel> getFlightDetailById(Long id){
+		return flightDb.findById(id);
+	}
+	@Override
+	public List<FlightModel> viewAllFlight(){
+		List<FlightModel> list = flightDb.findAll();
+		return list;
+	}
+	@Override
+	public List<FlightModel> getFlightListByPilot(PilotModel pilot) {
+		List<FlightModel> listFlight = flightDb.findByPilot(pilot);
 		return listFlight;
 	}
+
+	@Override
+	public void deleteFlight(long id) {
+		flightDb.deleteById(id);
+		
+	}
+	
 	
 }
