@@ -21,7 +21,10 @@
 		
 		  -->
 		<form th:action="@{/pilot/delete/} + ${pilot.id}" method="POST">
-			<button type="submit">Delete</button> <button type="submit">Update</button>
+			<button type="submit">Delete</button> 
+		</form>
+		<form th:action="@{/pilot/update/} + ${pilot.licenseNumber}" method="POST">
+			<button type="submit">Update</button>
 		</form>
 	</body>
 </html>
