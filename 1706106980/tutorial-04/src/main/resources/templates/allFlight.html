@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Home</title>
+	</head>
+	<body>
+		<h1>Welcome!</h1>
+		
+		<h3>Tambah Pilot</h3>
+		<td><a th:href="@{/pilot/add}"> Tambah </a></td>
+		<br><br>
+		<h3>Cari Pilot</h3>
+		<form th:action="@{/pilot/view}" method = "GET">
+			License Number : <br>
+			<input type="text" name ="licenseNumber"/>
+			<button type="submit">Cari</button>
+		</form>
+		<br>
+		<h3>Penerbangan</h3>
+		<td><a th:href="@{/flight/all}"> Lihat Semua Penerbangan </a></td>
+	</body>
+</html>
