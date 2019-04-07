@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <title>Update Data Pilot</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <main role="main" class="px-4 mt-4">
+    <h2>Edit Data Pilot</h2>
+    <form th:action="@{/pilot/update/}" th:object="${update}" method="POST">
+        License Number:
+        <br>
+        <input type="text" name="licenseNumber" th:field="${update.licenseNumber}" readonly="readonly"><br>
+        Name:
+        <br>
+        <input type="text" name="name" th:field="${update.name}" required="true" /><br>
+        Fly Hour:
+        <br>
+        <input type="number" name="flyHour" th:field="${update.flyHour}" required="true" /><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
