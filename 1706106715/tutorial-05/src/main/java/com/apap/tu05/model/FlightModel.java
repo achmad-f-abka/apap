@@ -98,9 +98,6 @@ public class FlightModel implements Serializable {
 	}
 
 	public void setPilot(PilotModel pilot) {
-		this.pilot = pilot;
-		
+		this.pilot = pilot;	
 	}
-	
-	
 }
