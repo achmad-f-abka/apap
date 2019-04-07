@@ -55,7 +55,10 @@ public class FlightController {
 		model.addAttribute("flight", myFlight);
 		return "allFlight";
 	}
-	@RequestMapping(value = "/flight/update/{id}", method = RequestMethod.POST)
+	/**
+	 * tidak bisa mengupdate lewat flight karena merupakan relasi partial 
+	 */
+	/**@RequestMapping(value = "/flight/update/{id}", method = RequestMethod.POST)
 	private String updateFlight(@PathVariable(value="id") Long id,Model model) {
 		FlightModel flight =flightService.getFlightDetailById(id).get();
 		model.addAttribute("flight", flight);
@@ -71,5 +74,5 @@ public class FlightController {
 		flightService.addFlight(real);
 		return "update";
 	}
-	
+	*/
 }

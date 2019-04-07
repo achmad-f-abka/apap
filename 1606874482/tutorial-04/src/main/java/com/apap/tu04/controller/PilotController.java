@@ -70,5 +70,17 @@ public class PilotController {
 		return "delete";
 	}
 	
+	@RequestMapping (value="/pilot/update/{id}", method = RequestMethod.POST)
+	private String updatePilot (@PathVariable (value = "id") Long id, Model model) {
+		 PilotModel pilot = pilotService.getPilotDetailById(id).get();
+		 model.addAttribute("pilot", pilot);
+		 return "updateFlight";
+	}
+	
+	@RequestMapping (value = "/pilot/update" , method = RequestMethod.POST)
+	private String pilotSubmit (@ModelAttribute PilotModel pilot) {
+		pilotService.addPilot(pilot);
+		return "update";
+	}	
 }
 

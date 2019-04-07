@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th = "http://www.thymeLeaf.org">
+	<head>
+		<title>Data Pilot</title>
+		<head th:fragment="css">
+			<link rel= "stylesheet" th:href="@{/css/bootstrap.min.css}">
+		</head>
+		<head th:fragment="js">
+			<script th:src="@{/js/bootstrap.min.js}"></script>
+		</head>
+	</head>
+	<body>
+	<nav th:replace="fragments/fragment :: flightdetail"></nav>
+		
+		<h3 th:text="'Flight Number	: ' + ${flight.flightNumber}">Flight Number</h3>
+		<h3 th:text="'Origin	: ' + ${flight.origin}">Origin</h3>
+		<h3 th:text="'Destination: ' + ${flight.destination}">Destination</h3>
+		<h3 th:text="'Time: ' + ${flight.time}">Time</h3>
+		<h3 th:text="'Time: ' + ${flight.pilot.licenseNumber}">Time</h3>
+		<td>
+		<form th:action="@{'/flight/update/' + ${flight.flightNumber}}" method=GET>
+			<button type="submit">Update</button>
+		</form>
+		<form th:action="@{'/flight/delete/' + ${flight.flightNumber}}">
+			<button type="submit">Delete</button>
+		</form>
+					
+		</td>
+	</body>
+</html>

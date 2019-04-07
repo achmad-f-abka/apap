@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Add Flight</title>
+		<head th:fragment="css">
+			<link rel= "stylesheet" th:href="@{/css/bootstrap.min.css}">
+		</head>
+		<head th:fragment="js">
+			<script th:src="@{/js/bootstrap.min.js}"></script>
+		</head>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: addflight"></nav>
+		<h3>Silahkan isi form tambah flight</h3>
+		<br>
+		<form th:action="@{/flight/add}" th:object="${flight}" method="POST">
+			<input type="hidden" th:field="*{pilot}"/>
+			Flight Number: <br>
+			<input type="text" name="flightNumber"/> <br>
+			Origin: <br>
+			<input type="text" name="origin"/><br>
+			Destination: <br>
+			<input type="text" name="destination"/><br>
+			Time: <br>
+			<input type="date" name="time"/> <br><br>
+			<button type="submit">Submit</button>
+		</form>
+	</body>
+</html>
