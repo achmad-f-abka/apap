@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Add</title>
+</head>
+<body>
+<button type="button" th:attr="onClick=|window.location.href='/'|">Home</button>
+	<form th:action="@{/pilot/view}" method="POST">
+		<h2 th:style="${'color: green;'}">
+		Data Berhasil Ditambahkan!
+	</h2>
+	</form>
+</body>
+</html>

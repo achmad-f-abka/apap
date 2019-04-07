@@ -89,6 +89,10 @@ public class PilotModel implements Serializable{
 		this.pilotFlight = pilotFlight;
 	}
 	
+	public void deletePilot() {
+		
+	}
+	
 	
 
 }

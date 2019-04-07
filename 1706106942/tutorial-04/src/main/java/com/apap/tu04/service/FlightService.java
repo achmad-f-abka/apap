@@ -7,6 +7,6 @@ import com.apap.tu04.model.PilotModel;
 
 public interface FlightService {
 	void addFlight(FlightModel flight);
-	List<FlightModel> getFlightListByPilot(PilotModel pilotmdl);
+	List<FlightModel> getFlightListByPilot(PilotModel plt);
 	List<FlightModel> getAllFlight();
 }

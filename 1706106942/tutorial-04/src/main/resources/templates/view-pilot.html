@@ -48,12 +48,10 @@ span.selected {
 				<td th:text="'Pilot License Number'"></td>
 				<td>:</td>
 				<td th:text="${license_number}"></td>
-				<td rowspan="3"><a th:href="@{'/pilot/delete/' + ${license_number}}">Delete Pilot</a>||
-				<a th:href="@{'/pilot/update/' + ${license_number}}">Update Pilot</a>
-<!-- 					<form th:action = "@{/pilot/delete/${license_number}}" method="GET"> -->
-<!-- 					 <input type="hidden" th:value="${license_number}" /> -->
-<!-- 						<button type="submit">GO TO LIST</button> -->
-<!-- 					</form></td> -->
+				<td rowspan="3">
+					<button type="button" th:attr="onClick=|window.location.href='/pilot/delete/${license_number}'|">Delete Pilot</button>
+					<button type="button" th:attr="onClick=|window.location.href='/pilot/update/${license_number}'|">Update Pilot</button>
+				</td>
 			</tr>
 			<tr th:style="'font-weight: bold;'">
 				<td th:text="Name"></td>
@@ -66,8 +64,8 @@ span.selected {
 				<td th:text="${fly_hour}"></td>
 			</tr>
 		</table>
-		<br /> <a th:href="@{'/flight/add/' + ${license_number}}">Add
-			Flight</a>
+		<br />
+		<button type="button" th:attr="onClick=|window.location.href='/flight/add/${license_number}'|">Add Flight</button>
 		<h2 th:style="${'color: green;'}">
 			<p th:text="'Data Penerbangan Pilot ' + ${name} + ':'"></p>
 		</h2>
@@ -92,6 +90,6 @@ span.selected {
 			</tbody>
 		</table>
 	</form><br/>
-<a th:href="@{/flight/view/}">Lihat Daftar Penerbangan Lain</a>
+	<button type="button" th:attr="onClick=|window.location.href='/flight/view/'|">See Flight List</button>
 </body>
 </html>

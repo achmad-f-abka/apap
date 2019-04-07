@@ -40,6 +40,9 @@
 		<form th:action="@{/flight/add/} + ${pilot.licenseNumber}" method="GET"> 
 		<button type="submit">Add Flight</button> 
 		</form>
+		<form th:action="@{/pilot/update/} +${pilot.id}" method="POST">
+						<button type = "submit">Update Pilot</button>
+					</form>
 		<table>
 			<thead id="trHeader">
 				<th >id</th>
@@ -59,9 +62,6 @@
 					<td>
 					<form th:action="@{/flight/delete/} + ${flight.id}" method="POST">
 						<button type="submit">Delete</button>
-					</form>
-					<form th:action="@{/flight/update/} +${flight.id}" method="POST">
-						<button type = "submit">Update</button>
 					</form>
 				</tr>
 			</tbody>

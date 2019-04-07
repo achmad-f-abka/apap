@@ -35,6 +35,7 @@ public class FlightController {
 		FlightModel flight = new FlightModel();
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		flight.setPilot(pilot);
+		model.addAttribute("license_number", pilot.getLicenseNumber().toString());
 		model.addAttribute("flight", flight);
 		return "addFlight";
 	}
@@ -47,7 +48,6 @@ public class FlightController {
 	
 	@RequestMapping(value = "/flight/view/", method = RequestMethod.GET)
     public String viewAll(Model model) {
-		PilotModel pll = new PilotModel();
 		model.addAttribute("fList", flightService.getAllFlight());
         return "view-flight";
     }

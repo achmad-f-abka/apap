@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th = "http://www.thymeLeaf.org">
+	<head>
+		<title>Add Pilot</title>
+		<head th:fragment="css">
+			<link rel= "stylesheet" th:href="@{/css/bootstrap.min.css}">
+		</head>
+		<head th:fragment="js">
+			<script th:src="@{/js/bootstrap.min.js}"></script>
+		</head>
+	</head>
+	<body>
+	<nav th:replace="fragments/fragment :: addpilot"></nav>
+	<h3>Silahkan isi form tambah pilot</h3>
+	<br>
+	
+	<form th:action="@{/pilot/add}" th:objects="${pilot}"  method = "POST">
+		License Number : <br>
+		<input type="text" name="LicenseNumber"/> <br>
+		Name: <br>
+		<input type="text" name="name"/> <br>
+		Fly Hour: <br>
+		<input type="number" name="flyHour"/> <br><br>
+		<button type="submit">Submit</button>
+	</form>
+	</body>
+</html>
