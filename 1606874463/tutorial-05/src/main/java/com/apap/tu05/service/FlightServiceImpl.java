@@ -1,6 +1,7 @@
-package com.apap.tu04.service;
+package com.apap.tu05.service;
 
 import java.util.List;
+
 
 
 
@@ -8,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.apap.tu04.model.FlightModel;
-import com.apap.tu04.model.PilotModel;
-import com.apap.tu04.repository.FlightDb;
-import com.apap.tu04.repository.PilotDb;
+import com.apap.tu05.model.FlightModel;
+import com.apap.tu05.model.PilotModel;
+import com.apap.tu05.repository.FlightDb;
+import com.apap.tu05.repository.PilotDb;
 
 @Service
 @Transactional
@@ -27,7 +28,6 @@ public class FlightServiceImpl implements FlightService{
 	@Override
 	public List<FlightModel> getFlightListByPilot(PilotModel pilot) {
 		List<FlightModel> listFlight = flightDb.findByPilot(pilot);
-		System.out.println("heheh " + listFlight);
 		return listFlight;
 	}
 
