@@ -1,8 +1,6 @@
-package com.apap.tu04.model;
-
+package com.apap.tu05.model;
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,27 +14,27 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="pilot")
-public class PilotModel implements Serializable{
+@Table(name = "pilot")
+public class PilotModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotNull
-	@Size(max= 50)
+	@Size(max = 50)
 	@Column(name = "license_number", nullable = false, unique = true)
 	private String licenseNumber;
-
+	
 	@NotNull
-	@Size(max = 50)
-	@Column(name  = "name", nullable = false)
+	@Size(max=  50)
+	@Column(name = "name", nullable = false)
 	private String name;
 	
 	@NotNull
-	@Column(name= "fly_hour", nullable = false)
-	private int flyHour;
-
-	@OneToMany(mappedBy= "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@Column(name = "fly_hour", nullable = false)
+	private int fly_hour;
+	
+	@OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<FlightModel> pilotFlight;
 
 	public long getId() {
@@ -63,12 +61,12 @@ public class PilotModel implements Serializable{
 		this.name = name;
 	}
 
-	public int getFlyHour() {
-		return flyHour;
+	public int getFly_hour() {
+		return fly_hour;
 	}
 
-	public void setFlyHour(int flyHour) {
-		this.flyHour = flyHour;
+	public void setFly_hour(int fly_hour) {
+		this.fly_hour = fly_hour;
 	}
 
 	public List<FlightModel> getPilotFlight() {
@@ -77,5 +75,5 @@ public class PilotModel implements Serializable{
 
 	public void setPilotFlight(List<FlightModel> pilotFlight) {
 		this.pilotFlight = pilotFlight;
-	}
+	}	
 }
