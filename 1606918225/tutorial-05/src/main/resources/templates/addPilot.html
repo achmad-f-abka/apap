@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Add Pilot</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: add-pilot"></nav>
+	
+		<h2>Welcome!</h2>
+		<h3>Tambah Pilot</h3>
+		<form th:action="@{/pilot/add}" th:objects="${pilot}" method="POST">
+			License Number : <br>
+			<input type="number" name="licenseNumber" /><br>
+			Name: <br>
+			<input type="text" name="name" /> <br><br>
+			Fly Hour: <br> <input type="number" name="flyhour" /> <br><br>
+			<button type="submit">SUBMIT</button>
+		</form>
+	</body>
+</html>

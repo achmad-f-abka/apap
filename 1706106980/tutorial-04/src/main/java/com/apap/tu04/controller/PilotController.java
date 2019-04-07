@@ -49,13 +49,7 @@ public class PilotController {
 		pilotService.addPilot(pilot);
 		return "add";
 	}
-
-/**
- * 	@RequestMapping (value= "/pilot/view/", method = RequestMethod.GET)
- * @param model
- * @param licenseNumber
- * @return
- */
+	
 	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
 	private String viewPilot (Model model ,@RequestParam(value= "licenseNumber") String licenseNumber) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);

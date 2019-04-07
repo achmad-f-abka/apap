@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Flight Detail</title>
+		<style>
+			dialog {
+			  border: 5px solid black;
+			  width: 500px;
+			  margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<dialog open> 
+			<h2 th:text="'Flight Number : ' + ${pickFlight.flightNumber}"></h2>
+			<h2 th:text="'Origin : ' + ${pickFlight.origin}"></h2>
+			<h2 th:text="'Destination : ' + ${pickFlight.destination}"></h2>
+			<h2 th:text="'Time : ' + ${pickFlight.time}"></h2>
+		</dialog>
+	</body>
+</html>

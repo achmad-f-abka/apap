@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Pilot</title>
+		<style>
+			dialog {
+			  border: 5px solid black;
+			  width: 500px;
+			  margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<dialog open> 
+			<h2 th:text="'Pilot License Number : ' + ${pickPilot.licenseNumber}"></h2>
+			<h2 th:text="'Name : ' + ${pickPilot.name}"></h2>
+			<h2 th:text="'Fly Hour : ' + ${pickPilot.flyHour}"></h2>
+			<h3 th:if="${pickPilot.flyHour} >= 100">Status : Pilot Senior</h3>
+			<h3 th:unless="${pickPilot.flyHour} >= 100">Status : Pilot Junior</h3>
+			<form th:action="@{/pilot/update/} + ${pickPilot.licenseNumber}" method="POST">
+				<button type="submit">Update Pilot</button>
+			</form>
+			<form th:action="@{/pilot/delete/} + ${pickPilot.licenseNumber}" method="POST">
+				<button type="submit">Delete Pilot</button>
+			</form>
+			<a th:href="@{/flight/add/} + ${pickPilot.licenseNumber}">Add flight</a>	
+			<table border="I">
+				<br>
+				<thead>
+					<tr>
+						<th style="text-align: center">No.</th>
+						<th style="text-align: center">Flight Number</th>
+						<th style="text-align: center">Origin</th>
+						<th style="text-align: center">Destination</th>
+						<th style="text-align: center">Time</th>
+						<th style="text-align: center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="listFlight, iterationStatus : ${flightList}" th:style="${iterationStatus.even} ? 'display:none;'">
+						<td th:text="${iterationStatus.count}"></td>
+						<td th:text="${listFlight.flightNumber}"></td>
+						<td th:text="${listFlight.origin}"></td>
+						<td th:text="${listFlight.destination}"></td>
+						<td th:text="${listFlight.time}"></td>
+						<td > <a th:href="@{'/flight/view' + ${listFlight.flightNumber}}">See Flight Detail</a>
+						<td >
+							<form th:action="@{/flight/update/} + ${listFlight.id}" method="POST">
+								<button type="submit">Update Flight</button>
+							</form>
+          					<form th:action="@{/flight/delete/} + ${listFlight.id}" method="POST">
+								<button type="submit">Delete Flight</button>
+							</form>
+        				</td>
+					</tr>
+				</tbody>
+			</table>
+		</dialog>
+	</body>
+</html>

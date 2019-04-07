@@ -27,7 +27,13 @@ public class PilotController {
 	private FlightService flightService;
 	
 	@RequestMapping("/")
+<<<<<<< HEAD:1606874463/tutorial-04/src/main/java/com/apap/tu04/controller/PilotController.java
 	private String home() {
+=======
+	private String home(Model model) {
+		System.out.println("test");
+		model.addAttribute("title", "APAP");
+>>>>>>> 783840336dfa5a0b1dd9f46e09339c4bbc4a861f:1606874482/tutorial-04/src/main/java/com/apap/tu04/controller/PilotController.java
 		return "Home";
 	}
 	
@@ -59,6 +65,7 @@ public class PilotController {
 	}
 	
 	@RequestMapping (value="/pilot/update/{id}", method = RequestMethod.POST)
+<<<<<<< HEAD:1606874463/tutorial-04/src/main/java/com/apap/tu04/controller/PilotController.java
 	private String updatePilot (@PathVariable (value = "id") Long pilotid, Model model) {
 		 PilotModel pilot = pilotService.getPilotById(pilotid).get();
 		 model.addAttribute("pilot", pilot);
@@ -70,5 +77,19 @@ public class PilotController {
 		pilotService.addPilot(pilot);
 		return "update";
 	}	
+=======
+	private String updatePilot (@PathVariable (value = "id") Long id, Model model) {
+		 PilotModel pilot = pilotService.getPilotDetailById(id).get();
+		 model.addAttribute("pilot", pilot);
+		 return "updatePilot";
+	}
+	
+	@RequestMapping (value = "/pilot/update" , method = RequestMethod.POST)
+	private String pilotSubmit (@ModelAttribute PilotModel pilot) {
+		pilotService.addPilot(pilot);
+		return "update";
+	}	
+}
+>>>>>>> 783840336dfa5a0b1dd9f46e09339c4bbc4a861f:1606874482/tutorial-04/src/main/java/com/apap/tu04/controller/PilotController.java
 
 }

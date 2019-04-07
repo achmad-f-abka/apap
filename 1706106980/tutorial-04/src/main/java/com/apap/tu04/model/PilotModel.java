@@ -15,13 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * jadi ini tuh buat bikin model buat db nya 
- * tidak perlu create tabel Pilot lagi kayak basdat
- * sudah termasuk contraints, entity and relationship
- * @author macbook
- *
- */
 @Entity
 @Table(name="pilot")
 public class PilotModel implements Serializable{
@@ -29,7 +22,6 @@ public class PilotModel implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	//license number = primary key 
 	@NotNull
 	@Size(max= 50)
 	@Column(name = "license_number", nullable = false, unique = true)
@@ -43,9 +35,7 @@ public class PilotModel implements Serializable{
 	@NotNull
 	@Column(name= "fly_hour", nullable = false)
 	private int flyHour;
-	
-	//relationship
-	//cascade tuh apus disana yg disitu jg keapus
+
 	@OneToMany(mappedBy= "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<FlightModel> pilotFlight;
 
