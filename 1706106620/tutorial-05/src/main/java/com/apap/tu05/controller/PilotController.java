@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.apap.tu05.model.PilotModel;
 import com.apap.tu05.service.PilotService;
 import com.apap.tu05.model.FlightModel;
-import com.apap.tu05.model.PilotModel;
 import com.apap.tu05.service.FlightService;
 
 @Controller
@@ -60,10 +60,8 @@ public class PilotController {
 			m.addAttribute("flight", flight);
 			return "view-pilot.html";	
 		} else {
-			return "error-1.html";
+			return "error-1.html";}
 		}
-		
-	}
 	
 	@RequestMapping(value= "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
 	public String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
