@@ -3,51 +3,41 @@ package com.apap.tu04.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
-@Table(name="pilot")
-public class PilotModel implements Serializable{
+@Table(name = "pilot")
+public class PilotModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotNull
-	@Size(max = 50)
-	@Column(name = "license_number", nullable = false, unique = true)
+	@Size (max = 50)
+	@Column(name = "license_number" , nullable = false)
 	private String licenseNumber;
 	
 	@NotNull
-	@Size(max = 50)
-	@Column(name = "name", nullable = false)
-	private String name;
+	@Size (max = 50)
+	@Column(name = "name" , nullable = false)
+	private String name ;
 	
 	@NotNull
-	@Column(name = "fly_hour", nullable = false)
-	private String flyHour;
+	@Column (name = "fly_hour", nullable = false)
+	private int flyhour;
 	
-	@OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<FlightModel> pilotFlight;
-
-	public PilotModel() {
-		super();
-		this.id = id;
-		this.licenseNumber = licenseNumber;
-		this.name = name;
-		this.flyHour = flyHour;
-		this.pilotFlight = pilotFlight;
-	}
+	@OneToMany (mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List <FlightModel> pilotFlight;
 
 	public long getId() {
 		return id;
@@ -73,12 +63,12 @@ public class PilotModel implements Serializable{
 		this.name = name;
 	}
 
-	public String getFlyHour() {
-		return flyHour;
+	public int getFlyhour() {
+		return flyhour;
 	}
 
-	public void setFlyHour(String flyHour) {
-		this.flyHour = flyHour;
+	public void setFlyhour(int flyhour) {
+		this.flyhour = flyhour;
 	}
 
 	public List<FlightModel> getPilotFlight() {
@@ -88,11 +78,5 @@ public class PilotModel implements Serializable{
 	public void setPilotFlight(List<FlightModel> pilotFlight) {
 		this.pilotFlight = pilotFlight;
 	}
-	
-	public void deletePilot() {
-		
-	}
-	
-	
 
 }

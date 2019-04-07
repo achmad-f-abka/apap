@@ -1,19 +1,19 @@
-package com.apap.tu04.model;
+package com.apap.tu05.model;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistance.Entity;
-import javax.persistance.Table;
-import javax.persistance.Id;
-import javax.persistance.GeneratedValue;
-import javax.persistance.GenerationType;
-import javax.persistance.Column;
-import javax.persistance.OneToMany;
-import javax.persistance.FetchType;
-import javax.persistance.CascadeType;
-import javax.validation.constraint.NotNull;
-import javax.validation.constraint.Size;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -40,7 +40,7 @@ public class PilotModel implements Serializable{
 	@OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<FlightModel> pilotFlight;
 
-	public PilotModel(long id, String licenseNumber, String name, String flyHour, List<FlightModel> pilotFlight) {
+	public PilotModel() {
 		super();
 		this.id = id;
 		this.licenseNumber = licenseNumber;
@@ -87,6 +87,10 @@ public class PilotModel implements Serializable{
 
 	public void setPilotFlight(List<FlightModel> pilotFlight) {
 		this.pilotFlight = pilotFlight;
+	}
+	
+	public void deletePilot() {
+		
 	}
 	
 	

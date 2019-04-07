@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Pilot</title>
+	</head>
+	<table>
+	<tbody>
+		<tr th:each="flight, iterationStatus : ${listOfFlight}" th:style="${iterationStatus.even} ? 'display:none;'">
+			<td th:text="${iterationStatus.count}"></td>
+			<td th:text="${flight.flightNumber}"></td>
+			<td th:text="${flight.origin}"></td>
+			<td th:text="${flight.destination}"></td>
+			<td><a th:href="@{'/flight/view/' + ${flight.flightNumber}}">See Flight Detail</a></td>
+		</tr>
+	</tbody>
+	</table>
+</html>

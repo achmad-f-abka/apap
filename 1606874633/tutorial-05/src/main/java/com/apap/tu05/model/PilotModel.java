@@ -1,5 +1,4 @@
-package com.apap.tu04.model;
-
+package com.apap.tu05.model;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,40 +14,14 @@ import javax.persistence.CascadeType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
-@Table(name="pilot")
-public class PilotModel implements Serializable{
+@Table (name="pilot")
+
+public class PilotModel implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
-	@Size(max = 50)
-	@Column(name = "license_number", nullable = false, unique = true)
-	private String licenseNumber;
-	
-	@NotNull
-	@Size(max = 50)
-	@Column(name = "name", nullable = false)
-	private String name;
-	
-	@NotNull
-	@Column(name = "fly_hour", nullable = false)
-	private String flyHour;
-	
-	@OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<FlightModel> pilotFlight;
-
-	public PilotModel() {
-		super();
-		this.id = id;
-		this.licenseNumber = licenseNumber;
-		this.name = name;
-		this.flyHour = flyHour;
-		this.pilotFlight = pilotFlight;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -73,12 +46,12 @@ public class PilotModel implements Serializable{
 		this.name = name;
 	}
 
-	public String getFlyHour() {
-		return flyHour;
+	public int getFlyhour() {
+		return flyhour;
 	}
 
-	public void setFlyHour(String flyHour) {
-		this.flyHour = flyHour;
+	public void setFlyhour(int flyhour) {
+		this.flyhour = flyhour;
 	}
 
 	public List<FlightModel> getPilotFlight() {
@@ -88,11 +61,22 @@ public class PilotModel implements Serializable{
 	public void setPilotFlight(List<FlightModel> pilotFlight) {
 		this.pilotFlight = pilotFlight;
 	}
+
+	@NotNull
+	@Size (max = 50)
+	@Column(name = "license_number" , nullable = false)
+	private String licenseNumber;
 	
-	public void deletePilot() {
-		
-	}
+	@NotNull
+	@Size (max = 50)
+	@Column(name = "name" , nullable = false)
+	private String name ;
 	
+	@NotNull
+	@Column (name = "fly_hour", nullable = false)
+	private int flyhour;
 	
+	@OneToMany (mappedBy = "pilot", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List <FlightModel> pilotFlight;
 
 }
