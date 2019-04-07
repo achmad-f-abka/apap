@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Pilot Detail</title>
+		<object th:include="fragments/fragment::css" th:remove="tag"></object>
+		<object th:include="fragments/fragment::js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar">			
+		</nav>
+		<div class="container">
+				
+		<br>
+		<div class="card">
+		<h4 class="card-header">Daftar Semua Pilot</h4>
+		<div class="card-body">
+		<table class="table table-sm table-striped text-center">
+			<thead class="thead-dark">
+			<tr>
+				<th>No</th>
+				<th scope="col">License Number</th>
+				<th scope="col">Name</th>
+				<th scope="col">Fly Hour</th>
+				<th scope="col">Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="pilot, iterationStatus : ${pilot}">
+				<td th:text="${iterationStatus.count}"></td>
+				<td scope="row" th:text="${pilot.licenseNumber}"></td>
+				<td th:text="${pilot.name}"></td>
+				<td th:text="${pilot.fly_hour}"></td>
+				<td><a role="button" class="btn btn-info" th:href="@{'/pilot/view/' + ${pilot.licenseNumber}}">Detail</a>
+				<a role="button" class="btn btn-secondary" th:href="@{'/pilot/update/' + ${pilot.licenseNumber}}">Update</a>  
+				<a role="button" class="btn btn-danger" th:href="@{'/pilot/delete/' + ${pilot.licenseNumber}}">Delete</a></td>
+			</tr>
+			</tbody>
+		</table>
+		</div>
+		</div>
+		</div>
+	</body>
+
+</html>

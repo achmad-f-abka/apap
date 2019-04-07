@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>View Pilot</title>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<h2>Hello!</h2>
+	
+	<h2 th:text="'Pilot License Number:' + ${pilot.licenseNumber}">Pilot License Number</h2>
+	<h2 th:text="'Name:' + ${pilot.name}">Name</h2>
+	<h2 th:text="'Fly Hour:' + ${pilot.flyHour}">Fly Hour</h2>
+	<h3 th:text="${pilot.flyHour} >= 100 ? 'Status: Pilot Senior' : 'Status: Pilot Junior'"></h3>
+	
+	<td>
+	<a th:href="@{'/flight/add/' +${pilot.licenseNumber}}">Add Flight</a>
+	<a th:href="@{'/pilot/delete/' +${pilot.licenseNumber}}">Delete Pilot</a>
+	<a th:href="@{'/pilot/update/' +${pilot.licenseNumber}}">Update Pilot</a>
+	</td>
+	
+	<br></br>
+	
+	<h2>Daftar Flight</h2>
+    <table border="1">
+    	<tbody>
+    	<tr>
+            <th>Iterasi</th>
+            <th>Flight Number</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Time</th>
+            <th>Detail</th>
+        </tr>
+    		<tr th:each="flight, iterationStatus : ${listFlight}" th:style="${iterationStatus.even} ? 'display:none;'">
+    			<td th:text="${iterationStatus.count}"></td>
+    			<td th:text="${flight.flightNumber}"></td>
+    			<td th:text="${flight.origin}"></td>
+    			<td th:text="${flight.destination}"></td>
+    			<td th:text="${flight.time}"></td>
+    			<td><a th:href="@{'/flight/view/' + ${flight.flightNumber}}">See Flight Detail</a></td>
+    	</tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeLeaf.org" >
+	<head> 
+		<object th:include="fragments/fragment :: title" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+		
+	<style type="text/css">
+		table{
+		margin: 5px;
+       	width: 290px;
+		}
+		th {
+       padding: 3px;
+   	   }
+   	   td {
+       padding-left: 8px;
+       padding-right: 8px;
+       border: 1px solid #990000;
+       background-color: #ffffcc;
+    }
+    #trHeader {
+       text-decoration: underline;
+       color: #990000;
+    }
+    .centerCell {
+       text-align: center;
+    }
+    .button {
+  background-color: #4CAF50;
+  }
+
+    .button3 {background-color: #008CBA;
+    
+   }  
+   .button2 {background-color: #f44336;}
+   		</style>
+	</head>
+	
+	<body>
+		
+		<nav th:replace="fragments/fragment :: navbar">
+		</nav>
+		
+		<h2>Data Pilot</h2> 
+		<h3 th:text="'Pilot License Number :'+${pilot.licenseNumber}"></h3>	
+		<h3 th:text="'Name :'+${pilot.name}"></h3>
+		<h3 th:text="'Fly Hour: '+${pilot.flyHour}"></h3>
+		<h3 th:if="${pilot.flyHour} >= 100">Status: Pilot Senior</h3>
+		<h3 th:unless="${pilot.flyHour} >= 100">Status: Pilot Junior</h3>
+		<!-- h3 th:text="${pilot.flyHour} >= 100 ? 'Status: Pilot Senior' : 'Status: Pilot Junior'" </h3> -->
+		
+		<form th:action="@{/pilot/delete/} + ${pilot.id}" method="POST">
+		<button type="submit" class="button2" >Delete Pilot</button>
+	   </form>
+	   <form th:action="@{/pilot/update/} +${pilot.id}" method="POST">
+			<button type = "submit"  class="button3"  >Update Pilot</button>
+		</form>
+	 <!--  <form th:action="@{/pilot/update/} + ${pilot.id}" method="POST">
+		<button type="submit">Update Pilot</button>
+	</form> --> 
+		<form th:action="@{/flight/add/} + ${pilot.licenseNumber}" method="GET"> 
+		<button type="submit" class="button" >Add Flight</button> 
+		</form>
+		<table>
+			<thead id="trHeader">
+				<th >id</th>
+				<th>Flight Number</th>
+				<th>Origin</th>
+				<th>Destination</th>
+				<!-- <th>Time</th> -->
+			
+			</thead>
+			<tbody>
+				<tr th:each="flight, iterationStatus : ${allFlight}">
+					<td class="centerCell" th:text="${iterationStatus.count}"></td>
+					<td class="centerCell" th:text="${flight.flightNumber}"></td>
+					<td class="centerCell" th:text="${flight.origin}"></td>
+					<td class="centerCell" th:text="${flight.destination}"></td>
+					<!-- <td class="centerCell" th:text="${flight.time}"></td> -->
+					<td><a th:href="@{'/flight/view/' +${flight.flightNumber}}">See Flight Detail</a></td>
+					<td>
+					<form th:action="@{/flight/delete/} + ${flight.id}" method="POST">
+						<button type="submit" class="button2" >Delete</button>
+					</form>
+					
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

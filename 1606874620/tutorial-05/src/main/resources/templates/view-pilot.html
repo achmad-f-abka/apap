@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Pilot</title>
+	</head>
+	<h3 th:if="${pilot.flyhour} >= 100">Status: Pilot Senior</h3>
+	<h3 th:unless="${pilot.flyhour} >= 100">Status: Pilot Junior</h3>
+	<table>
+	<tbody>
+		<tr th:each="flight, iterationStatus : ${listOfFlight}" th:style="${iterationStatus.even} ? 'display:none;'">
+			<td th:text="${iterationStatus.count}"></td>
+			<td th:text="${flight.flightNumber}"></td>
+			<td th:text="${flight.origin}"></td>
+			<td th:text="${flight.destination}"></td>
+			<td><a th:href="@{'/flight/view/' + ${flight.flightNumber}}">See Flight Detail</a></td>
+		</tr>
+	</tbody>
+	</table>
+</html>
