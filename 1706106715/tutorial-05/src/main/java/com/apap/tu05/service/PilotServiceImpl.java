@@ -1,7 +1,5 @@
 package com.apap.tu05.service;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +37,5 @@ public class PilotServiceImpl implements PilotService {
 	@Override
 	public void deletePilot(PilotModel pilot) {
 		pilotDb.delete(pilot);
-	}
-	
+	}	
 }
