@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Pilot Detail</title>
+		<object th:include="fragments/fragment::css" th:remove="tag"></object>
+		<object th:include="fragments/fragment::js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar">			
+		</nav>
+		<div class="container">
+		<br>
+		<div class="card">
+		<h2 class="card-header">Pilot Data</h2>
+		<div class="card-body">
+		<dl class="row">
+		<dt class="col-sm-3">License Number<dt>
+		<dd class="col-sm-9" th:text="' : ' + ${pilot.licenseNumber}"></dd>
+		<dt class="col-sm-3">Name<dt>
+		<dd class="col-sm-9" th:text="' : ' + ${pilot.name}"></dd>
+		<dt class="col-sm-3">Fly Hour<dt>
+		<dd class="col-sm-9" th:text="' : ' + ${pilot.fly_hour}"></dd>
+		<dt class="col-sm-3">Status<dt>
+		<dd class="col-sm-9" th:text="${pilot.fly_hour} >= 100 ? ' : Pilot Senior' : ' : Pilot Junior'"></dd>
+		</dl>
+		<br>
+		<a role="button" class="btn btn-primary" th:href="@{'/flight/add/' + ${pilot.licenseNumber}}">Add Flight</a>
+		<br><br>
+		
+		<table class="table table-sm table-striped text-center">
+			<thead class="thead-dark">
+				<tr>
+				<th scope="col">No</th>
+				<th scope="col">Flight Number</th>
+				<th scope="col">Origin</th>
+				<th scope="col">Destination</th>
+				<th scope="col">Time</th>
+				<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="flight, iterationStatus : ${flight}">
+					<td scope="row" th:text="${iterationStatus.count}"></td>
+					<td th:text="${flight.flightNumber}"></td>
+					<td th:text="${flight.origin}"></td>
+					<td th:text="${flight.destination}"></td>
+					<td th:text="${flight.time}"></td>
+					<td><a role="button" class="btn btn-info" th:href="@{'/flight/view/' + ${pilot.licenseNumber} +'/'+ ${flight.flightNumber}}">Detail</a>
+					<a role="button" class="btn btn-secondary" th:href="@{'/flight/update/' + ${pilot.licenseNumber} +'/'+ ${flight.flightNumber}}">Update</a>  
+					<a role="button" class="btn btn-danger" th:href="@{'/flight/delete/' + ${pilot.licenseNumber} +'/'+ ${flight.flightNumber}}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		</div>
+	</div>
+	</body>
+
+</html>
