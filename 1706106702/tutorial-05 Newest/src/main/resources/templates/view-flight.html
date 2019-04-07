@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Flight</title>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<object th:include="fragments/fragment ::css" th:remove="tag"></object>
+	<object th:include="fragments/fragment ::js" th:remove="tag"></object>
+	</head>
+	<body>
+	<nav th:replace="fragments/fragment :: navbar('View All Flights')"></nav>
+		<h3>Daftar Flights</h3>
+		<div th:each="flights : ${flightList}">
+			<h3>===================================</h3>
+	<h3 th:text="'Flight Number : ' + ${flights.flightNumber}"></h3>
+	<h3 th:text="'Origin : ' + ${flights.origin}"></h3>
+			<h3 th:text="'Destination : ' + ${flights.destination}"></h3>
+			<td><a th:href="@{'/flight/view/' ${flight.flightNumber}}">See Flight Detail</a></td>
+			<h3 th:text="'Time : ' + ${flights.time}"></h3>
+			<h3 th:text="'Pilot yang bertugas : ' + ${flights.pilot.name}"></h3>
+			<h3 th:text="'Pilot License Number : ' + ${flights.pilot.licenseNumber}"></h3>
+			<a th:href="@{'/flight/delete/' + ${flights.id}}" class="btn btn-danger">Delete Flight</a>
+			<a th:href="@{'/flight/update/' + ${flights.flightNumber}}" class="btn btn-danger">Update Flight</a>
+		</div>
+		
+		<h2> FLIGHT</h2>
+	<form th:action="@{/flight/update}"  method="GET">
+		Id Number: <br>
+		<input type:"number" name="licenseNumber" />
+		<button type=>Update</button>
+	</form>
+		
+	</body>
+</html>
