@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Data Pilot dan Penerbangan Pilot</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: viewPilot"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<button type="button" class="btn btn-large btn-success"
+		style="width: 9%;" th:attr="onClick=|window.location.href='/'|">Back</button>
+	<center>
+		<h2 th:if="${found}" class="error" th:style="${'color: #21441e;'}">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data Ditemukan!</h2>
+		<h2 th:if="${notFound}" class="error" th:style="${'color: red;'}">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Data Tidak Ditemukan!</i>
+		</h2>
+	</center>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card" style="width: 375px;">
+					<div class="card-header">
+						<center>
+							<b>Data Pilot</b>
+						</center>
+					</div>
+					<form th:action="@{/pilot/view}" method="POST">
+						<h3 th:if="${fly_hour} >= 100" class="text-center">Status:
+							Pilot Senior</h3>
+						<h3 th:unless="${fly_hour} >= 100" class="text-center">Status:
+							Pilot Junior</h3>
+						<!-- h3 th:if="${fly_hour} >= 100 ? 'Status: Pilot Senior' : 'Status: Pilot Junior'"></h3> -->
+						<div class="card-body">
+							<table>
+								<tr th:style="'font-weight: bold;'">
+									<td><label class="text-left" for="licenseNumber">License
+											Number</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${license_number}"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold;'">
+									<td><label class="text-left" for="name">Name</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${name}"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold;'">
+									<td><label for="flyHour">Fly Hour</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${fly_hour}"></label></td>
+								</tr>
+							</table>
+							<center>
+								<table>
+									<thead>
+										<tr>
+											<td>
+												<button type="button" class="btn btn-large btn-success"
+													style="width: 100px;"
+													th:attr="onClick=|window.location.href='/flight/add/${license_number}'|">Add
+													Flight</button>
+											</td>
+											<td>
+												<form th:action="@{/pilot/updates/${lNumb}}" method="POST">
+													<button type="button" class="btn btn-large btn-success"
+														style="width: 110px;"
+														th:attr="onClick=|window.location.href='/pilot/delete/${license_number}'|">Delete
+														Pilot</button>
+												</form>
+											</td>
+											<td><button type="button"
+													class="btn btn-large btn-success" style="width: 115px;"
+													th:attr="onClick=|window.location.href='/pilot/update/${license_number}'|">Update
+													Pilot</button></td>
+										</tr>
+									</thead>
+								</table>
+							</center>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="row" style="padding-left: 15px;">
+					<div class="col-xs-4 col-lg-4">
+						<div class="card" style="width: 745px;">
+							<div class="card-header">
+								<b><center>
+										<lable th:text="'Data Penerbangan Pilot ' + ${name} + ':'"></lable>
+									</center></b>
+							</div>
+							<form th:action="@{/pilot/view/}" method="GET">
+							<input type="hidden" th:value="${license_number}" name="licenseNumber" />
+<!-- 							<input type="hidden" name="licenseNumber" th:value="${license_number}" /> -->
+								<div class="card-body">
+									<table>
+										<thead>
+											<tr>
+				<th style="width: 55px; text-align: center; background: #3dd635; border: 3px solid white;">No.</th>
+				<th style="width: 185px; text-align: center; background: #3dd635; border: 3px solid white;">Flight Number</th>
+				<th	style="width: 195px; text-align: center; background: #3dd635; border: 3px solid white;">Origin</th>
+				<th style="width: 195px; text-align: center; background: #3dd635; border: 3px solid white;">Destination</th>
+				<th style="width: 135px; text-align: center; background: #3dd635; border: 3px solid white;">Time</th>
+				<th style="width: 125px; text-align: center; background: #3dd635; border: 3px solid white;">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="fl, i : ${fList}"
+												th:style="${i.even} ? 'background: #c6f7c3;' : 'background:#dff7de'">
+												<td style="border: 3px solid white;" th:text="${i.count}"></td>
+												<td style="border: 3px solid white;"
+													th:text="${fl.flightNumber}"></td>
+												<td style="border: 3px solid white;" th:text="${fl.origin}"></td>
+												<td style="border: 3px solid white;"
+													th:text="${fl.destination}"></td>
+												<td style="border: 3px solid white;" th:text="${fl.time}"></td>
+												<td>
+													<center>
+								<button type="button" class="btn btn-large btn-success"
+									style="width: 105px;"
+									th:attr="onClick=|window.location.href='/flight/view/${fl.flightNumber}'|">Detail</button>
+													</center>
+											</tr>
+										</tbody>
+									</table>
+									<br>
+									<center>
+										<table>
+											<thead>
+												<tr>
+													<td>
+														<button type="button" class="btn btn-large btn-success"
+															th:attr="onClick=|window.location.href='/flight/view/'|">See
+															Another Flight List</button>
+													</td>
+												</tr>
+											</thead>
+										</table>
+									</center>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
