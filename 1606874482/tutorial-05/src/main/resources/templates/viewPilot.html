@@ -53,6 +53,9 @@
 		<form th:action="@{/pilot/delete/} + ${pilot.id}" method="POST">
 		<button type="submit" class="button2" >Delete Pilot</button>
 	   </form>
+	   <form th:action="@{/pilot/update/} +${pilot.id}" method="POST">
+			<button type = "submit"  class="button3"  >Update Pilot</button>
+		</form>
 	 <!--  <form th:action="@{/pilot/update/} + ${pilot.id}" method="POST">
 		<button type="submit">Update Pilot</button>
 	</form> --> 
@@ -80,9 +83,7 @@
 					<form th:action="@{/flight/delete/} + ${flight.id}" method="POST">
 						<button type="submit" class="button2" >Delete</button>
 					</form>
-					<form th:action="@{/pilot/update/} +${pilot.id}" method="POST">
-						<button type = "submit"  class="button3"  >Update</button>
-					</form>
+					
 				</tr>
 			</tbody>
 		</table>

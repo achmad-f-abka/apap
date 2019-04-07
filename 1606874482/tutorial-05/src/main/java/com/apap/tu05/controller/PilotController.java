@@ -79,7 +79,7 @@ public class PilotController {
 		 PilotModel pilot = pilotService.getPilotDetailById(id).get();
 		 model.addAttribute("pilot", pilot);
 		 model.addAttribute("title", "Update Pilot");
-		 return "updateFlight";
+		 return "updatePilot";
 	}
 	
 	@RequestMapping (value = "/pilot/update" , method = RequestMethod.POST)
