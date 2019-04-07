@@ -15,7 +15,7 @@
 <body>
 	<nav th:replace="fragments/fragment :: navbar">
 		</nav>
-	<h2>Update Flight</h2>
+	<h2>Update Pilot</h2>
 
 		<form th:action="@{/pilot/update}" th:objects="${pilot}" method="POST">
 		<input th:value="${pilot.id}" hidden="true" name="id" >

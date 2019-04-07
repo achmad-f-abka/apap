@@ -36,6 +36,7 @@ public class FlightController {
 		
 		flight.setPilot(pilot);
 		model.addAttribute("flight", flight);
+		model.addAttribute("title", "Add Flight");
 		return "addFlight";
 	}
 
@@ -47,12 +48,14 @@ public class FlightController {
 	@RequestMapping(value = "/flight/delete/{id}", method = RequestMethod.POST)
 	private String deleteFlight(@PathVariable(value="id") Long id, Model model) {
 		flightService.deleteFlight(id);
+		model.addAttribute("title","Delete Flight");
 		return"delete";
 	}
 	@RequestMapping(value= "/flight/viewall", method = RequestMethod.GET)
 	private String viewFlight(Model model) {
 		List<FlightModel> myFlight = flightService.viewAllFlight();
 		model.addAttribute("flight", myFlight);
+		model.addAttribute("title", "All Flight");
 		return "allFlight";
 	}
 	/**

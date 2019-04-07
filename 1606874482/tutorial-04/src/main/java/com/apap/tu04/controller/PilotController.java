@@ -33,9 +33,10 @@ public class PilotController {
 	private FlightService flightService;
 	
 	@RequestMapping("/")
-	private String home() {
+	private String home(Model model) {
 		System.out.println("test");
-		return "home";
+		model.addAttribute("title", "APAP");
+		return "Home";
 	}
 	
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
@@ -74,7 +75,7 @@ public class PilotController {
 	private String updatePilot (@PathVariable (value = "id") Long id, Model model) {
 		 PilotModel pilot = pilotService.getPilotDetailById(id).get();
 		 model.addAttribute("pilot", pilot);
-		 return "updateFlight";
+		 return "updatePilot";
 	}
 	
 	@RequestMapping (value = "/pilot/update" , method = RequestMethod.POST)
