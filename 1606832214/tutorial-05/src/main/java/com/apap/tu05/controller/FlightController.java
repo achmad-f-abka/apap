@@ -30,6 +30,7 @@ public class FlightController {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		flight.setPilot(pilot);
 		model.addAttribute("flight", flight);
+		model.addAttribute("title", "Add Flight");
 		return "addFlight";
 	}
 	
@@ -56,6 +57,7 @@ public class FlightController {
 	private String allFlight ( Model model) {
 		List <FlightModel> list = flightService.getAllFlightList();
 		model.addAttribute ("all", list );
+		model.addAttribute("title", "View All Flight");
 		return "all-flight";
 	}
 }

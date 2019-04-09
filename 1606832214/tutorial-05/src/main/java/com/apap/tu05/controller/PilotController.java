@@ -29,13 +29,14 @@ public class PilotController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/pilot/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
 	private String add(Model model) {
 		model.addAttribute("pilot", new PilotModel());
+		model.addAttribute("title", "Add Pilot");
 		return "addPilot";
 	}
 	
-	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/pilot/add", method = RequestMethod.POST)
 	private String addPilotSubmit(@ModelAttribute PilotModel pilot) {
 		pilotService.addPilot(pilot);
 		return "add";
@@ -47,6 +48,7 @@ public class PilotController {
 		List<FlightModel> listFlight = flightService.getFlightListByPilot(pickPilot);
 		model.addAttribute("flightList", listFlight);
 		model.addAttribute("pickPilot", pickPilot);
+		model.addAttribute("title", "View Pilot");
 		return "view-pilot";
 	}
 	
@@ -62,6 +64,7 @@ public class PilotController {
 	private String updatePilot(@PathVariable (value = "licenseNumber") String licenseNumber, Model model){
 		PilotModel pickPilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		model.addAttribute("pickPilot", pickPilot);
+		 model.addAttribute("title", "Update Pilot");
 		return "update-pilot";
 	}
 	
