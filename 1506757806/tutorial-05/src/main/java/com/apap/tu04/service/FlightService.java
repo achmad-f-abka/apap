@@ -15,4 +15,5 @@ public interface FlightService {
 	List<FlightModel> getFlightList();
 	FlightModel findById(long id);
 	FlightModel getFlight(long id);
+	void deleteFlightbyId(long id);
 }
