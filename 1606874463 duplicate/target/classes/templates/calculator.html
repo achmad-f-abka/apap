@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+ <head>
+  <title>Calculator</title>
+ </head>
+ <body>
+  <p th:text="${firstNumber} + ' ' + ${arith} + ' ' + ${secondNumber} + ' = '"></p>
+  <div th:switch="${arith}"> 
+    <h1 th:case="'plus'" th:text="${firstNumber + secondNumber}"></h1>
+    <h1 th:case="'minus'" th:text="${firstNumber - secondNumber}"></h1>
+    <h1 th:case="'multiply'" th:text="${firstNumber * secondNumber}"></h1>
+    <h1 th:case="'divide'" th:text="${firstNumber / secondNumber}"></h1>
+  </div>
+  <!-- <h1 th:text="${firstNumber + secondNumber}"></h1> -->
+ </body>
+</html>
