@@ -69,7 +69,7 @@ public class FlightController {
 		return "add";
 	}*/
 	
-	@RequestMapping(value="/flight/add/{licenseNumber}", params= {"save"}, method=RequestMethod.POST)
+	@RequestMapping(value="/flight/add/{licenseNumber}", params= {"submit"}, method=RequestMethod.POST)
 	public String addFlightSubmit(@ModelAttribute PilotModel pilot) {
 		PilotModel curr = pilotService.getPilotDetailByLicenseNumber(pilot.getLicenseNumber());
 		List<FlightModel> flights = pilot.getPilotFlight();
