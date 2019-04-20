@@ -62,10 +62,10 @@ public class PilotController {
 	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
 	private String viewPilot(Model model ,@RequestParam(value= "licenseNumber") String licenseNumber) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List<FlightModel> flight = flightService.getFlightListByPilot(pilot);
+		//List<FlightModel> flight = flightService.getFlightListByPilot(pilot);
 		model.addAttribute("pilot", pilot);
-		model.addAttribute("allFlight", flight);
-		model.addAttribute("title", "Pilot View");
+		//model.addAttribute("allFlight", flight);
+		model.addAttribute("title", "View Pilot");
 		return "viewPilot";
 	}
 	@RequestMapping(value="/pilot/delete/{id}", method = RequestMethod.POST)
@@ -74,6 +74,7 @@ public class PilotController {
 		model.addAttribute("title", "Deleted");
 		return "delete";
 	}
+	
 	@RequestMapping (value="/pilot/update/{id}", method = RequestMethod.POST)
 	private String updatePilot (@PathVariable (value = "id") Long id, Model model) {
 		 PilotModel pilot = pilotService.getPilotDetailById(id).get();
@@ -81,6 +82,7 @@ public class PilotController {
 		 model.addAttribute("title", "Update Pilot");
 		 return "updatePilot";
 	}
+	
 	
 	@RequestMapping (value = "/pilot/update" , method = RequestMethod.POST)
 	private String pilotSubmit (@ModelAttribute PilotModel pilot, Model model) {
