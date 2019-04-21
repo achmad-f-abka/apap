@@ -46,8 +46,8 @@ public class PilotController {
 	private String viewPilot(@RequestParam(value="licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		model.addAttribute("pilot",pilot);
-		model.addAttribute("flights",pilot.getPilotFlight());
-		return "view-pilot";
+//		model.addAttribute("flights",pilot.getPilotFlight());
+		return "view-pilot2";
 	}
 	
 	@RequestMapping(value = "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)

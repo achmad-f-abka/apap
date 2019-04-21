@@ -60,5 +60,11 @@ public class FlightServiceImpl implements FlightService {
 		String idnya = "" + id;
 		return flightDb.findByFlightNumber(idnya);
 	}
+	
+	@Override
+	public void deleteFlightbyId(long flightId) {
+		// TODO Auto-generated method stub
+		flightDb.deleteById(flightId);
+	}
 
 }

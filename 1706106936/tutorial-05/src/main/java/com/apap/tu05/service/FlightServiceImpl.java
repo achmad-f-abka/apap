@@ -48,4 +48,10 @@ public class FlightServiceImpl implements FlightService  {
 		flightDetail.setTime(flight.getTime());
         flightDb.save(flightDetail);
 	}
+	
+	@Override
+	public void deleteFlightById(long id) {
+		FlightModel flight = flightDb.findById(id);
+		flightDb.delete(flight);
+	}
 }
