@@ -1,10 +1,14 @@
 package com.apap.tu05.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +27,44 @@ public class FlightController {
 	private PilotService pilotService;
 	
 	@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
-	private String add(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
-		FlightModel flight = new FlightModel();
-		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
-		flight.setPilot(pilot);
-		model.addAttribute("flight", flight);
-		return "addFlight";
+	private String add(@PathVariable(value = "licenseNumber") String licenseNumber, @ModelAttribute PilotModel pilot, Model model) {
+		ArrayList<FlightModel> rowsFlight = new ArrayList<FlightModel>();
+		FlightModel fl = new FlightModel();
+		pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+		pilot.setPilotFlight(rowsFlight);
+		pilot.getPilotFlight().add(fl);
+		model.addAttribute("pilot", pilot);
+		return "addFlightDynamic";
 	}
+	
+	@RequestMapping(value="/flight/add/{licenseNumber}", params = {"addRow"})
+	public String addRow(@PathVariable(value = "licenseNumber") String licenseNumber, @ModelAttribute PilotModel pilot, Model model, final BindingResult bindingResult) {
+		pilot.getPilotFlight().add(new FlightModel());
+		model.addAttribute("pilot", pilot);
+	    return "addFlightDynamic";
+	}
+	
+	@RequestMapping(value = "/flight/add/{licenseNumber}", params = {"removeRow"})
+	public String removeRow(@PathVariable(value = "licenseNumber") String licenseNumber, @ModelAttribute PilotModel pilot, Model model, final BindingResult bindingResult, final HttpServletRequest req) {
+		final Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
+		pilot.getPilotFlight().remove(rowId.intValue());
+		model.addAttribute("pilot", pilot);
+		return "addFlightDynamic";
+	}
+	
+    @RequestMapping(value="/flight/add/{licenseNumber}", params = {"save"}, method=RequestMethod.POST)
+    public String saveFlight(@PathVariable(value = "licenseNumber") String licenseNumber, @ModelAttribute FlightModel flight, @ModelAttribute PilotModel pilot, Model model) {
+        PilotModel plt = new PilotModel();
+    	plt = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+        List<FlightModel> rowsFlight = pilot.getPilotFlight();
+        
+		for(int i= 0; i < rowsFlight.size(); i++) {
+			rowsFlight.get(i).setPilot(plt);
+			flightService.addFlight(rowsFlight.get(i));
+		}
+        model.addAttribute("pilot", pilot);
+        return "redirect:/pilot/view?licenseNumber={licenseNumber}";
+    }
 	
 	@RequestMapping(value = "/flight/add", method = RequestMethod.POST)
 	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
@@ -70,4 +105,13 @@ public class FlightController {
 		flightService.updateFlight(flight);
 		return "update-info.html";
 	}
+	
+	@RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
+    public String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
+		for(FlightModel flight : pilot.getPilotFlight()) {
+			flightService.deleteFlightById(flight.getId());
+		}
+        return "delete-info.html";
+    }
+	
 }
