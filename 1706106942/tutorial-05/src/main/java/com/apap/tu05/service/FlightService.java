@@ -11,4 +11,5 @@ public interface FlightService {
 	FlightModel getFlightByFlightNumber(String flightNumber);
 	void updateFlight(FlightModel flight);
 	List<FlightModel> getAllFlight();
+	void deleteFlightById(long id);
 }
