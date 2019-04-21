@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Uda Airways</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: viewFlight"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<button type="button" class="btn btn-large btn-success"
+		style="width: 9%; font-weight: bold;" th:attr="onClick=|window.location.href='/pilot/view?licenseNumber=${licenseNumber}'|">Back</button>
+	<br>
+	<br>
+	<center>
+		<h2 th:if="${notFound}" class="error" th:style="${'color: red;'}">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Tidak Ada Data Penerbangan!</i>
+		</h2>
+	</center>
+	<div class="container" style="padding-left: 15px;">
+		<div class="row">
+			<div class=" col-md-4">
+				<form th:action="@{/flight/view}" method="POST">
+					<div class="col-md-4">
+						<div class="row">
+							<div class="text-center col-xs-4 col-lg-4">
+								<div class="card" style="width: 1115px;">
+									<div class="card-header" th:style="'background: #c6f7c3;'">
+										<b><center>
+												<h3>
+													<lable th:text="'Data Penerbangan'"></lable>
+												</h3>
+											</center></b>
+									</div>
+									<form th:action="@{/pilot/view}" method="GET">
+										<div class="card-body" th:style="'background: #dff7de;'">
+											<table>
+												<thead>
+													<tr>
+														<th
+															style="width: 55px; text-align: center; background: #3dd635; border: 3px solid white;">No.</th>
+														<th
+															style="width: 185px; text-align: center; background: #3dd635; border: 3px solid white;">Flight
+															Number</th>
+														<th
+															style="width: 185px; text-align: center; background: #3dd635; border: 3px solid white;">Pilot
+															License Number</th>
+														<th
+															style="width: 195px; text-align: center; background: #3dd635; border: 3px solid white;">Origin</th>
+														<th
+															style="width: 195px; text-align: center; background: #3dd635; border: 3px solid white;">Destination</th>
+														<th
+															style="width: 135px; text-align: center; background: #3dd635; border: 3px solid white;">Time</th>
+														<th
+															style="width: 125px; text-align: center; background: #3dd635; border: 3px solid white;">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="fl, i : ${fList}"
+														th:style="${i.even} ? 'background: #c6f7c3;' : 'background:#dff7de'">
+														<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;" th:text="${i.count}"></td>
+														<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+															th:text="${fl.flightNumber}"></td>
+														<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+															th:text="*{fl.pilot.getLicenseNumber()}"></td>
+														<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+															th:text="${fl.origin}"></td>
+														<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+															th:text="${fl.destination}"></td>
+														<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+														th:text="${#dates.format(fl.time, 'dd-MM-yyyy')}"></td>
+														<td><center>
+																<button type="button" class="btn btn-large btn-success"
+																	style="width: 105px; font-weight: bold;"
+																	th:attr="onClick=|window.location.href='/flight/detail/${fl.flightNumber}/*{fl.pilot.getLicenseNumber()}'|">Detail</button>
+															</center></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<br />
+</body>
+</html>

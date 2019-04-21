@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Uda Airways</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: nullValue"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<center>
+		<div class="container" style="padding-left: 315px;">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card" style="width: 495px;">
+						<div class="card-header" th:style="'background: #c6f7c3;'">
+							<center>
+								<h2 style="color:#083805;">
+									<b>Data Tidak Ditemukan!</b>
+								</h2>
+							</center>
+						</div>
+						<form th:style="'background: #4ef442'">
+							<div class="card-body" th:style="'background: #dff7de;'">
+								<center>
+									<table>
+										<tr>
+										</tr>
+									</table>
+								</center>
+								<center>
+									<table>
+										<thead>
+											<tr>
+												<td>
+
+													<button type="button" class="btn btn-large btn-success"
+														style="width: 170px; font-weight: bold;"
+														th:attr="onClick=|window.location.href='/pilot/view?licenseNumber=${lNumb}'|">Go to Pilot View</button>
+												</td>
+											</tr>
+										</thead>
+									</table>
+								</center>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</center>
+</body>
+</html>
