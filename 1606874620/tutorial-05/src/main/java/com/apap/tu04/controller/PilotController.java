@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tu04.model.PilotModel;
 import com.apap.tu04.service.PilotService;
@@ -29,9 +30,17 @@ public class PilotController {
 		return "addPilot";
 	}
 	
-	@RequestMapping(value ="/pilot/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/pilot/add", method = RequestMethod.POST)
 	private String addPilotSubmit(@ModelAttribute PilotModel pilot) {
 		pilotService.addPilot(pilot);
 		return "add";
 	}
+	
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	private String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		model.addAttribute("pilot", pilot);
+		return "view-pilot";
+	}
+	
 }
