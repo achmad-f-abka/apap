@@ -51,6 +51,14 @@ public class FlightServiceImpl implements FlightService {
 		// TODO Auto-generated method stub
 		return flightDb.getOne(id);
 	}
+
+	@Override
+	public void deleteFlightById(Long id) {
+		flightDb.deleteById(id);
+		
+	}
+	
+	
 	
 	
 	

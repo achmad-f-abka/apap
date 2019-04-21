@@ -14,4 +14,5 @@ public interface FlightService {
 	FlightModel getFlight(PilotModel pilot, String flightNumber);
 	void updateFlight(FlightModel flight);
 	FlightModel getFlight(Long id);
+	void deleteFlightById(Long id);
 }
