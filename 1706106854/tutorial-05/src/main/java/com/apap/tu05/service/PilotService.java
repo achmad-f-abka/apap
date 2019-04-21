@@ -6,7 +6,7 @@ import com.apap.tu05.model.FlightModel;
 import com.apap.tu05.model.PilotModel;
 
 public interface PilotService {
-	PilotModel getPilotDetailByLicenseumber(String licenseNumber);
+	PilotModel getPilotDetailByLicenseNumber(String licenseNumber);
 	void addPilot(PilotModel pilot);
 	List<PilotModel> getAllPilot();
 	void deletePilot(PilotModel pilot);
