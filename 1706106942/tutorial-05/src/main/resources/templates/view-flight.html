@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Data Penerbangan</title>
+<title>View Flight</title>
 <object th:include="fragments/fragment :: css" th:remove="tag"></object>
 <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
@@ -30,8 +30,7 @@
 												<h3>
 													<lable th:text="'Data Penerbangan'"></lable>
 												</h3>
-											</center>
-										</b>
+											</center></b>
 									</div>
 									<form th:action="@{/pilot/view}" method="GET">
 										<div class="card-body">
@@ -39,26 +38,26 @@
 												<thead>
 													<tr>
 														<th
-															style="width: 55px; text-align: center; background: #7fffd4; border: 3px solid white;">No.</th>
+															style="width: 55px; text-align: center; background: #3dd635; border: 3px solid white;">No.</th>
 														<th
-															style="width: 185px; text-align: center; background: #7fffd4; border: 3px solid white;">Flight
+															style="width: 185px; text-align: center; background: #3dd635; border: 3px solid white;">Flight
 															Number</th>
 														<th
-															style="width: 185px; text-align: center; background: #7fffd4; border: 3px solid white;">Pilot
+															style="width: 185px; text-align: center; background: #3dd635; border: 3px solid white;">Pilot
 															License Number</th>
 														<th
-															style="width: 195px; text-align: center; background: #7fffd4; border: 3px solid white;">Origin</th>
+															style="width: 195px; text-align: center; background: #3dd635; border: 3px solid white;">Origin</th>
 														<th
-															style="width: 195px; text-align: center; background: #7fffd4; border: 3px solid white;">Destination</th>
+															style="width: 195px; text-align: center; background: #3dd635; border: 3px solid white;">Destination</th>
 														<th
-															style="width: 135px; text-align: center; background: #7fffd4; border: 3px solid white;">Time</th>
+															style="width: 135px; text-align: center; background: #3dd635; border: 3px solid white;">Time</th>
 														<th
-															style="width: 125px; text-align: center; background: #7fffd4; border: 3px solid white;">Action</th>
+															style="width: 125px; text-align: center; background: #3dd635; border: 3px solid white;">Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr th:each="fl, i : ${fList}"
-														th:style="${i.even} ? 'background: #20b2aa;' : 'background: #008b8b'">
+														th:style="${i.even} ? 'background: #c6f7c3;' : 'background:#dff7de'">
 														<td style="border: 3px solid white;" th:text="${i.count}"></td>
 														<td style="border: 3px solid white;"
 															th:text="${fl.flightNumber}"></td>
@@ -73,8 +72,7 @@
 																<button type="button" class="btn btn-large btn-primary"
 																	style="width: 105px;"
 																	th:attr="onClick=|window.location.href='/flight/detail/${fl.flightNumber}/*{fl.pilot.getLicenseNumber()}'|">Detail</button>
-															</center>
-														</td>
+															</center></td>
 													</tr>
 												</tbody>
 											</table>

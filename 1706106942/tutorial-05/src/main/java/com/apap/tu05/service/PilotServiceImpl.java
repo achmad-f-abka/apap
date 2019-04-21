@@ -30,5 +30,6 @@ public class PilotServiceImpl implements PilotService {
 	@Override
 	public void updatePilot(PilotModel pilot) {
 		pilotDb.save(pilot);
-	}	
+	}
+	
 }
