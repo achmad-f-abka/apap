@@ -42,9 +42,9 @@ public class PilotController {
     @RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
     private String viewPilot(Model model, @RequestParam(value = "licenseNumber") String licenseNumber) {
         PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-        List<FlightModel> listFlight = flightService.getFlightListByPilot(pilot);
+//        List<FlightModel> listFlight = flightService.getFlightListByPilot(pilot);
         model.addAttribute("pilot", pilot);
-        model.addAttribute("flightlist", listFlight);
+//        model.addAttribute("flightlist", listFlight);
         model.addAttribute("title", "View Pilot");
         return "view-pilot";
 
