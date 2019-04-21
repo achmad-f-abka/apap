@@ -11,5 +11,6 @@ public interface FlightDb extends JpaRepository<FlightModel, Long>{
 
 	FlightModel findByFlightNumber(String flightNumber);
 	List<FlightModel> findByPilotLicenseNumber(String PilotLicenseNumber);
+	FlightModel findById(long id);
 
 }

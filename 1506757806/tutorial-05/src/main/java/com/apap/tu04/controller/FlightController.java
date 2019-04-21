@@ -33,10 +33,72 @@ public class FlightController {
 		FlightModel flight = new FlightModel();
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		flight.setPilot(pilot);
+
+		model.addAttribute("pilot", pilot);
 		model.addAttribute("flight", flight);
-		return "addFlight";
+		return "addFlight2";
 	}
 	
+	@RequestMapping(value="/flight/add/{licenseNumber}", params={"addRow"}, method = RequestMethod.POST)
+	public String addRow(@PathVariable(value = "licenseNumber") String licenseNumber,
+			@ModelAttribute PilotModel pilot, Model model) {
+	    
+		pilot.getPilotFlight().add(new FlightModel());
+	    model.addAttribute("pilot", pilot);
+	    return "addFlight2";
+	}	
+	
+	
+	/*
+	@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
+	private String add(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+	
+		List<FlightModel> flightList = new ArrayList<>();
+		flightList.add(new FlightModel());
+		pilot.setPilotFlight(flightList);
+		model.addAttribute("pilot", pilot);
+		model.addAttribute("title", "Add flights");
+		return "addFlight";
+	}
+	*/
+	/*@RequestMapping(value = "/flight/add", method = RequestMethod.POST)
+	private String addFlightSubmit(@ModelAttribute FlightModel flight, Model model) {
+		flightService.addFlight(flight);
+		model.addAttribute("title", "Add flights");
+		return "add";
+	}*/
+	
+	@RequestMapping(value="/flight/add/{licenseNumber}", params= {"submit"}, method=RequestMethod.POST)
+	public String addFlightSubmit(@ModelAttribute PilotModel pilot) {
+		PilotModel curr = pilotService.getPilotDetailByLicenseNumber(pilot.getLicenseNumber());
+		List<FlightModel> flights = pilot.getPilotFlight();
+		for(int i= 0; i < flights.size(); i++) {
+			flights.get(i).setPilot(curr);
+			flightService.addFlight(flights.get(i));
+		}
+		
+		return "add";
+	}
+	
+	/*
+	 * @RequestMapping(value="/flight/add/{licenseNumber}", params= {"addRow"},
+	 * method=RequestMethod.POST) private String addRow(@ModelAttribute PilotModel
+	 * pilot, Model model) { pilot.getPilotFlight().add(new FlightModel());
+	 * model.addAttribute("pilot", pilot); return "addFlight"; }
+	 */
+	/*
+	@RequestMapping(value="/flight/add/{licenseNumber}",method=RequestMethod.POST, params={"addRow"})
+	private String addRow(@PathVariable(value="licenseNumber") String licenseNumber, @ModelAttribute PilotModel pilotTemp, Model model) {
+		model.addAttribute("navTitle", "Add Flight");
+		
+		FlightModel flight = new FlightModel();
+		pilotTemp.getPilotFlight().add(flight);
+		
+		model.addAttribute("licenseNumber", licenseNumber);
+		model.addAttribute("pilotTemp", pilotTemp);
+		return "addFlight";
+	}*/	
 	@RequestMapping(value = "/flight/add", method = RequestMethod.POST)
 	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
 		System.out.println(flight.getFlightNumber()+ " " + flight.getPilot().getLicenseNumber());
@@ -58,11 +120,21 @@ public class FlightController {
 		return "view-flight";
 	}
 	
-	@RequestMapping(value="/flight/delete/{id}")
-	private String deleteFlight(@PathVariable(value = "id") long id) {
-		flightService.deleteFlight(id);
-		return "delete-flight";
+//	@RequestMapping(value="/flight/delete/{id}")
+//	private String deleteFlight(@PathVariable(value = "id") long id) {
+//		flightService.deleteFlight(id);
+//		return "delete-flight";
+//	}
+	
+	@RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
+	private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
+		for(FlightModel flight : pilot.getPilotFlight()) {
+			flightService.deleteFlightbyId(flight.getId());
+		}
+		return "delete";
 	}
+
+
 	
 //	@RequestMapping(value = "/flight/update", method = RequestMethod.GET)
 //	private String updateFlight(@RequestParam long id, Model model) {

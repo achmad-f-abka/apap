@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Pilot Detail</title>
+		<object th:include="fragments/fragment::css" th:remove="tag"></object>
+		<object th:include="fragments/fragment::js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar">			
+		</nav>
+		<div class="container">
+		<br>
+		<form th:action="@{/pilot/view}" method="GET">
+		<input type="hidden" th:field="*{pilot.licenseNumber}"/>
+		<div class="row justify-content-md-center">
+		<div class="card">
+		<h2 class="card-header">Flight Data</h2>
+		<div class="card-body">
+		<dl class="row">
+		<dt class="col-sm-3">Flight Number<dt>
+		<dd class="col-sm-9" th:text="' : ' + ${flight.flightNumber}"></dd>
+		<dt class="col-sm-3">Origin<dt>
+		<dd class="col-sm-9" th:text="' : ' + ${flight.origin}"></dd>
+		<dt class="col-sm-3">Destination<dt>
+		<dd class="col-sm-9" th:text="' : ' + ${flight.destination}"></dd>
+		<dt class="col-sm-3">Time<dt>
+		<dd class="col-sm-9" th:text="' : ' + ${flight.time}"></dd>
+		</dl>
+		<button class="btn btn-secondary" type="submit">Back</button>
+		<br>
+		
+		</div>
+		</div>
+		</div>
+		</form>
+	</div>
+	</body>
+
+</html>

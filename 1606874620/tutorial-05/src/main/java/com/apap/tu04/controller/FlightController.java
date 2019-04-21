@@ -38,13 +38,5 @@ public class FlightController {
 		flightService.addFlight(flight);
 		return "add";
 	}
-	
-	@RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
-	private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
-		for(FlightModel flight : pilot.getPilotFlight()) {
-			flightService.deleteFlightById(flight.getId());
-		}
-		return "delete";
-	}
 
 }
