@@ -43,13 +43,13 @@
 				<th>Pilot Name</th>
 			</thead>
 			<tbody>
-				<tr th:each="flight, iterationStatus : ${flight}">
-					<td class="centerCell" th:text="${flight.flightNumber}"></td>
-					<td class="centerCell" th:text="${flight.origin}"></td>
-					<td class="centerCell" th:text="${flight.destination}"></td>
-					<td class="centerCell" th:text="${flight.time}"></td>
-					<td class="centerCell" th:text="${flight.pilot.licenseNumber}"></td>
-					<td class="centerCell" th:text="${flight.Pilot.name}"></td> 
+				<tr th:each="flight, status : ${pilotFlight}">
+					<td class="centerCell" th:text="${pilotFlight[__${status.index}__].flightNumber}"></td>
+					<td class="centerCell" th:text="${pilotFlight[__${status.index}__].origin}"></td>
+					<td class="centerCell" th:text="${pilotFlight[__${status.index}__].destination}"></td>
+					<td class="centerCell" th:text="${pilotFlight[__${status.index}__].time}"></td>
+					<td class="centerCell" th:text="${pilotFlight[__${status.index}__].licenseNumber}"></td>
+					<td class="centerCell" th:text="${pilotFlight[__${status.index}__].name}"></td> 
 					</tr>	
 			</tbody>
 		</table>
