@@ -70,5 +70,9 @@ public class PilotModel implements Serializable {
 	public List<FlightModel> getPilotFlight() {
 		return this.pilotFlight;
 	}
+	
+	public void addFlight(FlightModel flight) {
+		this.pilotFlight.add(flight);
+	}
 
 }
