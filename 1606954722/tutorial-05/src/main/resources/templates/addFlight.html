@@ -10,7 +10,7 @@
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 
 	<h3>Tambah Penerbangan</h3>
-	<form th:action="@{/flight/add}" th:objects="${flight}" method="POST">
+	<!-- <form th:action="@{/flight/add}" th:objects="${flight}" method="POST">
 		<input type="hidden" th:field="${flight.pilot}" />
 		Flight Number : <br>
 		<input type="text" name="flightNumber" /><br>
@@ -22,6 +22,30 @@
 		<input type="date" name="time" /> <br>
 		<br>
 		<button type="submit">SUBMIT</button>
+	</form> -->
+	<form th:action="@{/flight/add/} + ${pilot.licenseNumber}" th:object="${pilot}" method="POST">
+	<input type="hidden" th:field="*{licenseNumber}"/>
+		<table>
+			<thead>
+				<tr>
+					<th style="text-align: center">Flight Number</th>
+					<th style="text-align: center">Origin</th>
+					<th style="text-align: center">Destination</th>
+					<th style="text-align: center">Time</th>
+					<th><button type="submit" name="addRow" class="btn btn-primary">Add row</button></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="flight, iterationStatus : *{pilotFlight}">
+					<td><input type="text" th:field="*{pilotFlight[__${iterationStatus.index}__].flightNumber}" /></td>
+					<td><input type="text" th:field="*{pilotFlight[__${iterationStatus.index}__].origin}" /></td>
+					<td><input type="text" th:field="*{pilotFlight[__${iterationStatus.index}__].destination}" /></td>
+					<td><input type="date" th:field="*{pilotFlight[__${iterationStatus.index}__].time}" /></td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<button type="submit" name="submit" class="btn btn-primary">Submit</button>
 	</form>
 </body>
 </html>
