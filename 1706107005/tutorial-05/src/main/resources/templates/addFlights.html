@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Add Flight</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+			<div class="container-fluid">
+		<div class="center">
+		<div class="row">
+			<div class="col-mid-6">
+				<div class="card">
+					<div class="card-header">Tambah Penerbangan</div>
+						<div class="card-body">
+						
+						
+							<form th:action="@{'/flight/add/' + ${licenseNumber}}" th:object="${pilot}" method="POST">
+								<input type="hidden" th:field="*{licenseNumber}" />
+							
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th
+											style="width: 40px; text-align: center; vertical-align: middle; background: #87CEFA; border: 3px solid white;">No.</th>
+										<th
+											style="width: 100px; text-align: center; vertical-align: middle; background: #87CEFA; border: 3px solid white;">Flight
+											Number</th>
+										<th
+											style="width: 100px; text-align: center; vertical-align: middle; background: #87CEFA; border: 3px solid white;">Origin</th>
+										<th
+											style="width: 100px; text-align: center; vertical-align: middle; background: #87CEFA; border: 3px solid white;">Destination</th>
+										<th
+											style="width: 100px; text-align: center; vertical-align: middle; background: #87CEFA; border: 3px solid white;">Time</th>
+										<th
+											style="width: 100px; text-align: center; background: #87CEFA; border: 3px solid white;">
+											<button type="submit" class="btn btn-large btn-success" style="color:white; background: #4169E1; border:#99b5ac; font-weight: bold;" th:name="addRow" >Add row</button>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="success" th:each="flight,i : *{pilotFlight}"
+										th:style="${i.even} ? 'background: #ADD8E6' : 'background:#87CEFA'">
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle; font-weight: bold;" th:text="${i.count}">1</td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+										<input class="form-control" th:field="*{pilotFlight[__${i.index}__].flightNumber}" style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;" type="text"
+											th:name="flightNumber" /></td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+										<input class="form-control" th:field="*{pilotFlight[__${i.index}__].origin}" style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;" type="text"
+											th:name="origin" /></td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+										<input class="form-control" th:field="*{pilotFlight[__${i.index}__].destination}" style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;" type="text"
+											th:name="destination" /></td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+										<input class="form-control" th:field="*{pilotFlight[__${i.index}__].time}" style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;" type="date"
+											th:name="time" /></td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+											<button type="submit" class="btn btn-large btn-success" style="font-weight: bold; background: #4169E1; border:#99b5ac; width: 135px;" name="removeRow" th:value="${i.index}">Remove Row</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<button type="submit" class="btn btn-large btn-success" style="font-weight: bold; background: #4169E1; border:#99b5ac" name="save">Submit</button>
+					</form>
+					
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+</body>
+</html>
