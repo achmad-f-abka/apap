@@ -44,6 +44,12 @@ public class FlightServiceImpl implements FlightService {
 		flightDb.save(flight);
 		
 	}
+
+	@Override
+	public void deleteFlightById(long id) {
+		// TODO Auto-generated method stub
+		flightDb.deleteById(id);
+	}
 	
 	
 

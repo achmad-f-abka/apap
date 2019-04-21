@@ -1,6 +1,9 @@
-package com.apap.tu04.controller;
+package com.apap.tu05.controller;
+
 
 import java.util.List;
+
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,61 +14,102 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.apap.tu04.model.FlightModel;
-import com.apap.tu04.model.PilotModel;
-import com.apap.tu04.service.FlightService;
-import com.apap.tu04.service.PilotService;
+import com.apap.tu05.model.PilotModel;
+import com.apap.tu05.service.PilotService;
+import com.apap.tu05.model.FlightModel;
+import com.apap.tu05.service.FlightService;
 
 @Controller
 public class PilotController {
+	
 	@Autowired
 	private PilotService pilotService;
-	
-	@Autowired
 	private FlightService flightService;
 	
-	@RequestMapping("/home")
-	private String home() {
+	@RequestMapping("/")
+	private String home(Model model) {
+		model.addAttribute("page", "APAP");
 		return "home";
 	}
 	
-	@RequestMapping(value="/pilot/add", method=RequestMethod.GET)
-	private String add(Model model) {
-		model.addAttribute("pilot", new PilotModel());
-		return "addPilot";	
+	@RequestMapping("/jet")
+	private String viewFlight(Model model) {
+		model.addAttribute("page", "404");
+		return "404";
 	}
 	
-	@RequestMapping(value="/pilot/add", method=RequestMethod.POST)
-	private String addPilotSubmit(@ModelAttribute PilotModel pilot) {
+	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
+	private String add(Model model) {
+		model.addAttribute("pilot", new PilotModel());
+		model.addAttribute("page", "Add Pilot");
+		return "addPilot";
+	}
+	
+	
+	@RequestMapping(value = "/pilot/add", method = RequestMethod.POST)
+	private String addPilotSubmit(@ModelAttribute PilotModel pilot, Model model) {
 		pilotService.addPilot(pilot);
+		model.addAttribute("page", "Add Pilot");
 		return "add";
 	}
 	
-	@RequestMapping(value="/pilot/view", method=RequestMethod.GET)
-	private String viewPilot(@RequestParam(value="licenseNumber") Model model, String licenseNumber) {
-		PilotModel pilot =pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List<FlightModel> listFlight= flightService.getFlightListByPilot(pilot);
+	@RequestMapping(value= "/pilot/viewAll")
+	public String viewAllPilot(Model model) {
+		List<PilotModel> pilot = pilotService.getAllPilot();
 		model.addAttribute("pilot", pilot);
-		model.addAttribute("flightlist",listFlight);
-		return "view-pilot";
+		model.addAttribute("page", "View Pilots");
+		return "view-all-pilot.html";	
+	}
+
+
+//	@RequestMapping(value= "/pilot/view", method = RequestMethod.GET)
+//	public String viewPilotId(@RequestParam(value = "licenseNumber", required = true) String licenseNumber, Model model) {
+//		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+//		if (pilot != null) {
+//			List<FlightModel> flight = pilot.getPilotFlight();
+//			model.addAttribute("pilot", pilot);
+//			model.addAttribute("flight", flight);
+//			model.addAttribute("page", "View Pilot");
+//			return "view-pilot";	
+//		} else {
+//			model.addAttribute("page", "Error");
+//			return "error-1";
+//		}
+//		
+//	}
+
+	@RequestMapping(value= "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
+	public String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+			try {
+			PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+			pilotService.deletePilot(pilot);
+			model.addAttribute("page", "Delete Pilot");
+			return "delete-info.html";	
+			} catch (Exception e) {
+				model.addAttribute("page", "Error");
+				return "error-messsage.html";
+			}
 	}
 	
-	@RequestMapping(value="/pilot/delete/{id}", method=RequestMethod.POST)
-	private String deletePilot(@PathVariable (value="id") Long pilotid,Model model) {
-		pilotService.deletePilot(pilotid);
-		return "delete";
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam(value="licenseNumber") String licenseNumber, Model model) {
+			PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+			model.addAttribute("pilot", pilot);
+			return "view-pilot";
 	}
 	
-	@RequestMapping(value="/pilot/update/{id}", method=RequestMethod.POST)
-	private String updatePilot(@PathVariable(value="id") Long pilotid, Model model) {
-		PilotModel pilot=pilotService.getPilotById(pilotid).get();
+	@RequestMapping(value= "/pilot/update/{licenseNumber}", method = RequestMethod.GET)
+	public String updatePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
 		model.addAttribute("pilot", pilot);
-		return "update-pilot";
+		model.addAttribute("page", "Update Pilot");
+		return "update-pilot.html";	
 	}
 	
-	@RequestMapping(value="/pilot/update", method=RequestMethod.POST)
-	private String updatePilotSubmit(@ModelAttribute PilotModel pilot) {
+	@RequestMapping(value = "/pilot/update", method = RequestMethod.POST)
+	private String updateFlightSubmit(@ModelAttribute PilotModel pilot, Long id, Model model) {
 		pilotService.addPilot(pilot);
-		return "update";
+		model.addAttribute("page", "Update Flight");
+		return "update-info.html";
 	}
 }
