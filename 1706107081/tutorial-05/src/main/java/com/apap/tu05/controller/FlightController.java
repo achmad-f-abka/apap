@@ -49,10 +49,19 @@ public class FlightController {
 	}
 	
 	@RequestMapping(value= "/flight/delete/{licenseNumber}/{flightNumber}", method = RequestMethod.GET)
-	public String deleteFlight(@PathVariable(value = "licenseNumber") String licenseNumber,
+	public String deleteFlight1(@PathVariable(value = "licenseNumber") String licenseNumber,
 							@PathVariable(value = "flightNumber") String flightNumber, Model model) {
 			PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
 			flightService.deleteFlight(pilot, flightNumber);
+			return "delete-info.html";
+			
+	}
+	
+	@RequestMapping(value= "/flight/delete", method = RequestMethod.POST)
+	private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
+			for (FlightModel flight : pilot.getPilotFlight()) {
+				flightService.deleteFlightById(flight.getId());
+			}
 			return "delete-info.html";
 			
 	}
