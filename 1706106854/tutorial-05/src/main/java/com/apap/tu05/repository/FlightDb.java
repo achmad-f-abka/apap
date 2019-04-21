@@ -12,4 +12,5 @@ import com.apap.tu05.model.PilotModel;
 public interface FlightDb extends JpaRepository<FlightModel, Long> {
 	void deleteByPilotAndFlightNumber(PilotModel pilot, String flightNumber);
 	FlightModel findByPilotAndFlightNumber(PilotModel pilot, String flightNUmber);
+	void deleteFlightById(long id);
 }

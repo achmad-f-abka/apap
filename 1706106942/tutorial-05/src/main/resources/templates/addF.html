@@ -12,7 +12,7 @@
 		class="btn btn-large btn-primary"
 		th:attr="onClick=|window.location.href='/pilot/view?licenseNumber=${lNumb}'|">Back</button>
 	<br>
-	<h2 th:style="${'color: #87cefa;'}" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data
+	<h2 th:style="${'color: green;'}" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data
 		Berhasil Ditambahkan!</h2>
 	<br>
 	<div class="container-fluid" style="width: 130%;">
@@ -59,15 +59,13 @@
 												<button type="button" class="btn btn-large btn-primary"
 													style="width: 105px;"
 													th:attr="onClick=|window.location.href='/flight/updates/${fNumb}'|">Edit
-													This
-												</button>
+													This</button>
 											</form>
 										</td>
 										<td><button type="button"
 												class="btn btn-large btn-primary"
-												th:attr="onClick=|window.location.href='/flight/add/${lNumb}'|">Input Again
-											</button>
-										</td>
+												th:attr="onClick=|window.location.href='/flight/add/${lNumb}'|">Input
+												Again</button></td>
 									</tr>
 								</thead>
 							</table>

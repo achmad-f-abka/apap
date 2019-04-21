@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,10 +45,11 @@ public class PilotController implements Serializable{
 	
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.POST)
 	private String addPilotSubmit (@ModelAttribute PilotModel pilot, Model model) {
-		pilotService.addPilot(pilot);
+//		pilotService.addPilot(pilot);
 		model.addAttribute("titile", "Pilot berhasil ditambahkan");
 		return "add";
 	}
+	
 	
 	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
 	private String viewPilot (@RequestParam("licenseNumber") String licenseNumber, Model model) {

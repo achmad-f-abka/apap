@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+/*
+This script is identical to the above JavaScript function.
+*/
+var ct = 1;
+function new_link()
+{
+	ct++;
+	var div1 = document.createElement('div');
+	div1.id = ct;
+	// link to delete extended form elements
+	var delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ ct +')">Del</a></div>';
+	div1.innerHTML = document.getElementById('newlink').innerHTML + delLink;
+	document.getElementById('newlink').appendChild(div1);
+}
+// function to delete the newly added set of elements
+function delIt(eleId)
+{
+	d = document;
+	var ele = d.getElementById(eleId);
+	var parentEle = d.getElementById('newlink');
+	parentEle.removeChild(ele);
+}
+</script>
+<head>
+</head>
+<body>
+
+ <style>
+   #newlink {width:600px}
+</style>
+<form method="post" action="">
+<div id="newlink">
+<div>
+<table border=0>
+	<tr>
+		<td> Link URL: </td>
+		<td> <input type="text" name="linkurl[]" value="http://www.satya-weblog.com"> </td>
+	</tr>
+	<tr>
+		<td> Link Description: </td>
+		<td>  <textarea name="linkdesc[]" cols="50" rows="5" ></textarea> </td>
+	</tr>
+</table>
+</div>
+</div>
+	<p>
+		<br>
+		<input type="submit" name="submit1">
+		<input type="reset" name="reset1">
+	</p>
+<p id="addnew">
+	<a href="javascript:new_link()">Add New </a>
+</p>
+</form>
+<!-- Template -->
+<div id="newlinktpl" style="display:none">
+<div>
+<table border=0>
+	<tr>
+		<td> Link URL: </td>
+		<td> <input type="text" name="linkurl[]" value=""> </td>
+	</tr>
+	<tr>
+		<td> Link Description: </td>
+		<td> <textarea name="linkdesc[]" cols="50" rows="5" ></textarea> </td>
+	</tr>
+</table>
+</div>
+</div>
+
+</body>
+
+</html>

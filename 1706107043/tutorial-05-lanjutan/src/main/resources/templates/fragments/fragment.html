@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<head th:fragment="css">
+<link rel="stylesheet" , th:href="@{/css/bootstrap.min.css}">
+</head>
+<head th:fragment="js">
+<script type="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<nav th:fragment="error" class="navbar navbar-expand-lg navba-dark bg-dark" >
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043 ||</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Error</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="home" class="navbar navbar-expand-lg navba-dark bg-dark" >
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043 ||</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Home</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="addPilot" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Add Pilot</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="addFlight" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Add Flight</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="updatePilot" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Update Pilot</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="viewPilot" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<nav th:fragment="viewPilotLeft" class="navbar navbar-expand-lg navba-dark bg-dark">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Data Pilot dan Penerbangan</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="viewFlight" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Flight List</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="updateFlight" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Update Flight</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="addSuccess" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Home</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="flightDetail" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Flight Detail</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="flightDelete" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Delete Flight</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<nav th:fragment="nullValue" class="navbar navbar-expand-lg navba-dark bg-dark">
+		<a class="navbar-brand" th:style="${'color: #10e809;'}" href="#">APAP Tirta 1706107043</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+				<a class="nav-link" th:style="${'color: #10e809;'}" href="#">Nilai Kosong</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</body>
+</html>

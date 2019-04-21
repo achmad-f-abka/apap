@@ -60,27 +60,36 @@ public class PilotController {
 		model.addAttribute("page", "View Pilots");
 		return "view-all-pilot.html";	
 	}
+
+
+//	@RequestMapping(value= "/pilot/view", method = RequestMethod.GET)
+//	public String viewPilotId(@RequestParam(value = "licenseNumber", required = true) String licenseNumber, Model model) {
+//		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+//		if (pilot != null) {
+//			List<FlightModel> flight = pilot.getPilotFlight();
+//			model.addAttribute("pilot", pilot);
+//			model.addAttribute("flight", flight);
+//			model.addAttribute("page", "View Pilot");
+//			return "view-pilot";	
+//		} else {
+//			model.addAttribute("page", "Error");
+//			return "error-1";
+//		}
+//		
+//	}
 	
-	@RequestMapping(value= "/pilot/view", method = RequestMethod.GET)
-	public String viewPilotId(@RequestParam(value = "licenseNumber", required = true) String licenseNumber, Model model) {
-		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
-		if (pilot != null) {
-			List<FlightModel> flight = pilot.getPilotFlight();
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+			PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 			model.addAttribute("pilot", pilot);
-			model.addAttribute("flight", flight);
-			model.addAttribute("page", "View Pilot");
-			return "view-pilot.html";	
-		} else {
-			model.addAttribute("page", "Error");
-			return "error-1.html";
-		}
-		
+			model.addAttribute("page", "Detail Pilot");
+			return "view-pilot";
 	}
 	
 	@RequestMapping(value= "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
 	public String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 			try {
-			PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+			PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 			pilotService.deletePilot(pilot);
 			model.addAttribute("page", "Delete Pilot");
 			return "delete-info.html";	
@@ -92,7 +101,7 @@ public class PilotController {
 	
 	@RequestMapping(value= "/pilot/update/{licenseNumber}", method = RequestMethod.GET)
 	public String updatePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
-		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		model.addAttribute("pilot", pilot);
 		model.addAttribute("page", "Update Pilot");
 		return "update-pilot.html";	
