@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Pilot Detail</title>
-		<object th:include="fragments/fragment :: css" th:remove ="tag"></object>
-		<object th:include="fragments/fragment :: js" th:remove ="tag"></object>
+		<title>View Flight</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>	
 	</head>
 	<body>
-		<nav th:replace="fragments/fragment :: viewFlight"></nav>
-	
-		<div class="container-fluid">
+	<nav th:replace="fragments/fragment :: viewFlight"></nav>
 		<h4>All Flight Data</h4>
 		<table border="1" style="width:relative;">
 			<tr>
