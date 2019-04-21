@@ -7,8 +7,10 @@
 </head>
 <body>
 	<div th:replace="fragments/fragment :: updateFlight"></div>
+	<br>&nbsp;&nbsp;&nbsp;
 	<br>
-	<h2 th:style="${'color: Blue;'}" class="text-center col-xs-4 col-lg-4">Data Berhasil Diperbaharui!</h2>
+	<h2 th:style="${'color: green;'}" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data
+		Berhasil Diperbaharui!</h2>
 	<br>
 	<div class="container-fluid" style="width: 130%;">
 		<div class="row">
@@ -50,16 +52,16 @@
 									<tr>
 										<td>
 											<form th:action="@{/pilot/updates/${lNumb}}" method="POST">
-												<button type="button" class="btn btn-large btn-warning"
+												<button type="button" class="btn btn-large btn-success"
 													style="width: 105px;"
 													th:attr="onClick=|window.location.href='/flight/updates/${fNumb}'|">Edit
-												</button>
+													This</button>
 											</form>
 										</td>
 										<td><button type="button"
-												class="btn btn-large btn-primary"
-												th:attr="onClick=|window.location.href='/flight/add/${lNumber}'|">InputAgain
-												</button></td>
+												class="btn btn-large btn-success"
+												th:attr="onClick=|window.location.href='/flight/add/${lNumber}'|">Input
+												Again</button></td>
 									</tr>
 								</thead>
 							</table>
