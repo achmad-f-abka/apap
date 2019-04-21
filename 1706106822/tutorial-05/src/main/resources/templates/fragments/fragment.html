@@ -1,98 +1,99 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<title>Home</title>
-	<head th:fragment="css">
-		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!DOCTYPE HTML>
+<html xmlns:th = "http://www.thymeLeaf.org">
+	<head>
+		<title>HOME</title>
+		<head th:fragment="css">
+			<link rel= "stylesheet" th:href="@{/css/bootstrap.min.css}">
+		</head>
+		<head th:fragment="js">
+			<script th:src="@{/js/bootstrap.min.js}"></script>
+		</head>
 	</head>
-	<head th:fragment="js">
-		<script th:src="@{/js/bootstrap.min.js}"><</script>
-	</head>
-</head>
-
-<body>
-	<nav th:fragment="home" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">APAP</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="addPilot" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Tambah Pilot</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="addFlight" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Tambah Penerbangan</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="UpdatePilot" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Update Pilot</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="UpdateFlight" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Update Penerbangan</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="penerbanganPilot" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Penerbangan Pilot</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="delete" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">SUCCESS!</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="daftarPenerbangan" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Daftar Penerbangan</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
 	
-	<nav th:fragment="detailFlight" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Detail Penerbangan</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
-			</ul>
-		</div> 
-	</nav>
-</body>
+	<body>
+		<nav th:fragment="navbar" class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">APAP</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			<!-- Navbar View Pilot -->
+			<nav th:fragment="pilot" class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">View Pilot</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			<!-- Navbar update Pilot -->
+			<nav th:fragment="updatepilot" class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Update Pilot</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			<!-- Navbar update flight -->
+			<nav th:fragment="updateflight" class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Update Flight</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			<!-- Navbar add flight -->
+			<nav th:fragment="addflight" class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Tambah Flight</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			<!-- Navbar add pilot -->
+			<nav th:fragment="addpilot" class ="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Tambah Pilot</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			<!-- Navbar flight detail -->
+			<nav th:fragment="flightdetail" class ="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="#">Detail Flight</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			
+			
+	</body>
 </html>
