@@ -79,4 +79,8 @@ public class PilotModel implements Serializable {
 	public void setPilotFlight(List<FlightModel> pilotFlight) {
 		this.pilotFlight = pilotFlight;
 	}
+	
+	public void addFlight(FlightModel flight) {
+		this.pilotFlight.add(flight);
+	}
 }

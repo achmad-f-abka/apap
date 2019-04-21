@@ -1,6 +1,7 @@
 package com.apap.tu05.controller;
 
 import java.util.List;
+import org.springframework.validation.BindingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,12 +47,22 @@ public class PilotController {
 		return "add";
 	}
 
-	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
+	/**@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
 	private String viewPilot (Model model , @RequestParam (value = "licenseNumber") String licenseNumber) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List <FlightModel> listFlight = flightService.getFlightListByPilot(pilot);
+	//	List <FlightModel> listFlight = flightService.getFlightListByPilot(pilot);
 		model.addAttribute("pilot", pilot);
-		model.addAttribute("flightlist", listFlight);
+	//	model.addAttribute("flightlist", listFlight);
+		return "view-pilot";
+	}*/
+	
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam(value="licenseNumber") String LicenseNumber, Model model) {
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(LicenseNumber);
+		List<FlightModel> pilotFlight = pilot.getPilotFlight();
+		model.addAttribute("pilot", pilot);
+		model.addAttribute("flights", pilot.getPilotFlight());
+		model.addAttribute("pilotFlight", pilotFlight);
 		return "view-pilot";
 	}
 	
