@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
-		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
-		<title>Add Flight</title>
-	</head>
-	<body>
-		<nav th:replace="fragments/fragment :: addflight"></nav>
-		<center>
-		<br>
-		<h3>Tambah Penerbangan</h3>
-		<br>
-		<form th:action="@{/flight/add}" th:object="${flight}" method = "POST">
-			<input type="hidden" th:field="*{pilot}"/>
-			
-			Flight Number : <br>
-			<input type="text" name = "flightNumber"/><br>
-			
-			Origin : <br>
-			<input type="text" name = "origin"/><br>
-			
-			Destination: <br>
-			<input type="text" name = "destination"/><br>
-			
-			Time: <br>
-			<input type="date" name = "time"/><br>
-			<br>
-			<button type="submit">Submit</button>
-		</form>
-		</center>
-	</body>
+<head>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+<title>Add Flight</title>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: addflight"></nav>
+	<center>
+	<br>
+	<h3>Tambah Penerbangan</h3>
+	<br>
+	<form th:action="@{/flight/add/} + ${pilotFlight.licenseNumber}"
+		th:object="${pilotFlight}" method="POST">
+		<input type="hidden" th:field="*{licenseNumber}" />
+
+		<table>
+			<thead>
+				<tr>
+					<th>Flight Number</th>
+					<th>Origin</th>
+					<th>Destination</th>
+					<th>Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="flight,i : *{pilotFlight}">
+					<td><input type="text"
+						th:field="*{pilotFlight[__${i.index}__].flightNumber}">
+					</td>
+					<td><input type="text"
+						th:field="*{pilotFlight[__${i.index}__].origin}">
+					</td>
+					<td><input type="text"
+						th:field="*{pilotFlight[__${i.index}__].destination}">
+					</td>
+					<td><input type="date" 
+						th:name="pilotFlight[__${i.index}__].time">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<tr>
+				<td><button type="submit" name="submit" class="btn btn-primary">Submit</button></td>
+				<td><button type="submit" name="add" class="btn btn-primary">Add More Flight</button></td>
+			</tr>
+		</table>
+		
+	</form>
+	</center>
+</body>
 </html>

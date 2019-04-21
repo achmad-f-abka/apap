@@ -43,13 +43,11 @@ public class PilotController {
 	
 	@RequestMapping(value="/pilot/view", method = RequestMethod.GET)
 	private String viewPilot(Model model, @RequestParam("licenseNumber") String licenseNumber) {
-		System.out.println("hasil :"+licenseNumber);
-		model.addAttribute("detailPilot", pilotService.getPilotByLicenseNumber(licenseNumber));
-		System.out.println("hasil"+ flightService.getPilotByLicenseNumber(licenseNumber));
 		
-		model.addAttribute("listFlights", flightService.getPilotByLicenseNumber(licenseNumber));
+		model.addAttribute("pilot", pilotService.getPilotByLicenseNumber(licenseNumber));
+		//model.addAttribute("listFlights", flightService.getPilotByLicenseNumber(licenseNumber));
 		return "view-pilot";
-		//return "add";
+		
 	}
 	
 	@RequestMapping(value="/pilot/delete/{id}", method = RequestMethod.GET)

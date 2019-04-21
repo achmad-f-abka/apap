@@ -8,18 +8,19 @@
 </head>
 <body>
 	<div th:replace="fragments/fragment :: viewPilot"></div>
-	<h4 th:if="${detailPilot == null}">License Number kosong atau
+	
+	<h4 th:if="${pilot == null}">License Number kosong atau
 		tidak ditemukan</h4>
 	<br>
-	<div th:unless="${detailPilot == null}">
+	<div th:unless="${pilot == null}">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card" style="width: 375px;">
 						<div class="card-header">
-							<h3 th:if="${detailPilot.flyHour} >= 100" class="text-center">Status:
+							<h3 th:if="${pilot.flyHour} >= 100" class="text-center">Status:
 								Pilot Senior</h3>
-							<h3 th:unless="${detailPilot.flyHour} >= 100" class="text-center">Status:
+							<h3 th:unless="${pilot.flyHour} >= 100" class="text-center">Status:
 								Pilot Junior</h3>
 							<div class="card-body">
 								<table>
@@ -27,32 +28,32 @@
 										<td><label class="text-left" for="licenseNumber">License
 												Number</label></td>
 										<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
-										<td><label th:text="${detailPilot.licenseNumber}"></label></td>
+										<td><label th:text="${pilot.licenseNumber}"></label></td>
 									</tr>
 									<tr th:style="'font-weight: bold;'">
 										<td><label class="text-left" for="name">Name</label></td>
 										<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
-										<td><label th:text="${detailPilot.name}"></label></td>
+										<td><label th:text="${pilot.name}"></label></td>
 									</tr>
 									<tr th:style="'font-weight: bold;'">
 										<td><label for="flyHour">Fly Hour</label></td>
 										<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
-										<td><label th:text="${detailPilot.flyHour}"></label></td>
+										<td><label th:text="${pilot.flyHour}"></label></td>
 									</tr>
 								</table>
 								<br>
 								<table align="center">
 									<tr>
-										<td><form th:action="@{/pilot/delete/}+${detailPilot.id}"
+										<td><form th:action="@{/pilot/delete/}+${pilot.id}"
 												method="GET">
 												<button type="submit">delete</button>
 											</form></td>
-										<td><form th:action="@{/pilot/update/}+${detailPilot.id}"
+										<td><form th:action="@{/pilot/update/}+${pilot.id}"
 												method="GET">
 												<button type="submit">update</button>
 											</form></td>
 										<td><form
-												th:action="@{/flight/add/}+${detailPilot.licenseNumber}"
+												th:action="@{/flight/add/}+${pilot.licenseNumber}"
 												method="GET">
 												<button type="submit">add flight</button>
 											</form></td>
@@ -69,6 +70,7 @@
 
 	<br>
 
+	<form th:action="@{/flight/delete}" th:object="${pilot}" method="POST">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
@@ -86,37 +88,36 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="listFlight, iteration : ${listFlights}">
+								<tr th:each="flight, iteration : *{pilotFlight}">
 									<td th:text="${iteration.count}"></td>
-									<td th:text="${listFlight.flightNumber}"></td>
-									<td th:text="${listFlight.origin}"></td>
-									<td th:text="${listFlight.destination}"></td>
-
-									<td>
-									<table>
-										<tr>
-											<td><form
+									<td th:text="${flight.flightNumber}"></td>
+									<td th:text="${flight.origin}"></td>
+									<td th:text="${flight.destination}"></td>
+											<!--  <td><form
 														th:action="@{/flight/delete/}+${listFlight.id}"
 														method="GET">
 											<button type="submit">delete</button>
 										</form></td>
-											<td><form
+											 <td><form
 														th:action="@{/flight/update/}+${listFlight.id}"
 														method="GET">
 											<button type="submit">update</button>
-										</form></td>
-										</tr>
-									</table>
-									</td>
+										</form></td>-->
+										<td>
+											<input type="checkbox" th:field="*{pilotFlight}" th:value="${flight.id}" />
+											<label th:for="${#ids.prev('pilotFlight')}">Hapus</label>
+										</td>
 								</tr>
 							</tbody>
 						</table>
-
+						<br>
+						<button type="submit">Delete Selected Flight</button>
 					</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
+	</form>
 </body>
 </html>
