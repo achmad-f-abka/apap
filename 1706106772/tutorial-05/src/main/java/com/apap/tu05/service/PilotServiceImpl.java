@@ -9,10 +9,10 @@ import com.apap.tu05.repository.PilotDb;
 
 @Service
 @Transactional
-public class PilotServiceImpl implements PilotService{
+public class PilotServiceImpl implements PilotService {
 	@Autowired
 	private PilotDb pilotDb;
-
+	
 	@Override
 	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
 		return pilotDb.findByLicenseNumber(licenseNumber);
@@ -31,7 +31,5 @@ public class PilotServiceImpl implements PilotService{
 	public void updatePilot(PilotModel pilot) {
 		pilotDb.save(pilot);
 	}
-
 	
-
 }

@@ -22,8 +22,7 @@
 							<b><h3>Tambah Penerbangan</h3></b>
 						</center>
 					</div>
-					<form th:action="@{/flight/add}" th:object="${flight}"
-						method="POST">
+					<form th:action="@{/flight/add}" th:object="${flight}" method="POST">
 						<div class="card-body">
 							<input type="hidden" th:field="*{pilot}" />
 							<input type="hidden" name="licenseNumber"
