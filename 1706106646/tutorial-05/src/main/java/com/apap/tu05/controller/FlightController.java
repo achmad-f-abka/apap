@@ -26,23 +26,41 @@ public class FlightController {
     @Autowired
     private PilotService pilotService;
 
-    @RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
+        // Latihan 2, Tutorial 5 Part 2
+    @RequestMapping(value = "/flight/add/{licenseNumber}", method=RequestMethod.GET)
     private String add(@PathVariable(value="licenseNumber") String licenseNumber, Model model){
-        FlightModel flight = new FlightModel();
         PilotModel pilot = pilotService.getPilotDetailBylicenseNumber(licenseNumber);
-        flight.setPilot(pilot);
-        model.addAttribute("flight", flight);
+        ArrayList<FlightModel> list = new ArrayList<FlightModel>();
+        list.add(new FlightModel());
+        pilot.setPilotFlight(list);
+        model.addAttribute("pilot", pilot);
         model.addAttribute("title", "Add Flight");
         return "addFlight";
     }
 
-    @RequestMapping(value="/flight/add", method=RequestMethod.POST)
-    private String addFlightSubmit(Model model, @ModelAttribute FlightModel flight) {
-        flightService.addFlight(flight);
-        model.addAttribute("title", "Flight Added");
+    @RequestMapping(value="/flight/add/{licenseNumber}", params={"save"}, method=RequestMethod.POST)
+    private String addFlightSubmit(Model model, @ModelAttribute PilotModel pilot, @ModelAttribute FlightModel flight) {
+        PilotModel jumper = pilotService.getPilotDetailBylicenseNumber(pilot.getLicenseNumber());
+        for (FlightModel iterate : pilot.getPilotFlight()) {
+            iterate.setPilot(jumper);
+            flightService.addFlight(iterate);
+            model.addAttribute("title", "Flight Added");
+        }
         return "add";
     }
-    
+
+    @RequestMapping(value = "/flight/add/{licenseNumber}", params= {"addRow"})
+	public String addRow(@ModelAttribute PilotModel pilot, BindingResult bindingResult ,Model model) {
+		if(pilot.getPilotFlight() ==null) {
+			pilot.setPilotFlight(new ArrayList<FlightModel>());
+		}
+		FlightModel newFlight = new FlightModel();
+		pilot.getPilotFlight().add(newFlight);
+		model.addAttribute("pilot",pilot);
+        model.addAttribute("title", "Add Flight");
+		return "addFlight";
+	}
+
     // Latihan 3
     // Delete Sebuah Penerbangan
     @RequestMapping(value = "/flight/delete/{id}", method = RequestMethod.GET)
