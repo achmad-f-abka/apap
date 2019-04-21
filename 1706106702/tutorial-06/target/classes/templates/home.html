@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Home</title>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+	<nav th:replace="fragments/fragment :: navbar ('APAP')"></nav>
+		
+		<div class="container-fluid"></div>
+		<h2>Welcome!</h2>
+		<div class="row">
+			<div class="col-mid-6">
+				<div class="card">
+					<div class="card-header">Tambah Pilot</div>
+					<div class="card-body">
+						<p class="card-text">Fitur untuk menambah pilot</p>
+						<a class="btn btn-primary" th:href="@{/pilot/add}">Tambah</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h3>Tambah Pilot</h3>
+		<td><a th:href="@{/pilot/add}">Tambah Pilot</a></td>
+		
+		<h3>Lihat Penerbangan</h3>
+		<form th:action="@{/flight/view}" method="GET">
+			<button type="submit">Lihat Semua</button>
+		</form>
+		<h3>Cari Pilot</h3>
+		<div class="row">
+			<div class="col-mid-6">
+				<div class="card">
+					<div class="card-header">Cari Pilot</div>
+					<form th:action="@{/pilot/view}" method="GET">
+						<div class="card-body">
+							<label for="licenseNumber">License Number: </label>
+							<input type="text" name="licenseNumber" class="form-control"/>
+							<p></p>
+							<button type="submit" class="btn btn-primary">Cari</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<form th:action="@{/pilot/view}" method="GET">
+			License Number: <br>
+			<input type="text" name="licenseNumber"/>
+			<button type="submit">Cari</button>
+		</form>
+		
+	</body>
+</html>

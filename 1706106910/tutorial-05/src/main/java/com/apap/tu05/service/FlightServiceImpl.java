@@ -1,6 +1,7 @@
 package com.apap.tu05.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,10 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public void updateFlight(FlightModel flight) {
 		flightDb.save(flight);
+	}
+
+	@Override
+	public void deleteFlightById(long id) {
+		flightDb.deleteById(id);
 	}
 }

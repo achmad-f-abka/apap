@@ -20,17 +20,20 @@ import com.apap.tu05.repository.FlightDb;
 public class FlightServiceImpl implements FlightService{
 	@Autowired
 	private FlightDb flightDb;
-	private PilotService pilotService;
+	
 	
 	@Override
 	public void addFlight(FlightModel flight) {
 		flightDb.save(flight);
 	}
-	
+
 	@Override
-	public void deleteFlight(FlightModel flight) {
-		flightDb.delete(flight);
+	public void deleteFlightbyId(long id) {
+		flightDb.deleteById(id);
+		
 	}
+	
+	
 
 	
 	

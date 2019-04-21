@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Delete Pilot</title>
+		<object th:include="fragments/fragments :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragments :: js" th:remove="tag"></object>
+		<style>
+			dialog {
+			  border: 5px solid black;
+			  width: 500px;
+			  margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragments :: navbar"></nav>
+		<dialog open> 
+			<h3>Berhasil Menghapus Pilot dengan Informasi :</h3>
+			<h2 th:text="'Pilot License Number : ' + ${pickPilot.licenseNumber}"></h2>
+			<h2 th:text="'Name : ' + ${pickPilot.name}"></h2>
+			<h2 th:text="'Fly Hour : ' + ${pickPilot.flyHour}"></h2>
+		</dialog>
+</html>

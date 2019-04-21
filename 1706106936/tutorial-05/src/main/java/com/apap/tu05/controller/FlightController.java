@@ -1,6 +1,9 @@
 package com.apap.tu05.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,7 @@ public class FlightController {
 		@Autowired
 		private PilotService pilotService;
 		
+		/*
 		@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
 		private String add (@PathVariable(value = "licenseNumber")String licenseNumber, Model model) {
 			FlightModel flight = new FlightModel();
@@ -37,6 +41,41 @@ public class FlightController {
 			flightService.addFlight(flight);
 			return "add";	
 		}
+		*/
+		
+		@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
+		private String add (@PathVariable(value = "licenseNumber")String licenseNumber, Model model) {
+			PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+			List<FlightModel> listFlight = new ArrayList<FlightModel>();
+			FlightModel flight = new FlightModel();
+			listFlight.add(flight);
+			pilot.setPilotFlight(listFlight);
+			model.addAttribute("pilot", pilot);
+			return "addFlight";
+		}
+		
+		
+		
+		@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.POST, params={"addFlight"})
+		private String addRow(@ModelAttribute PilotModel pilot, Model model) {
+		pilot.getPilotFlight().add(new FlightModel());
+		model.addAttribute("pilot", pilot);
+			return "addFlight";
+		}
+  
+
+		@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.POST)
+		private String addFlightSubmit(@ModelAttribute PilotModel pilot, Model model) {
+		PilotModel pilotget = pilotService.getPilotDetailByLicenseNumber(pilot.getLicenseNumber());
+		for (FlightModel flight : pilot.getPilotFlight()) {
+			if(flight != null) {
+				flight.setPilot(pilotget);
+					flightService.addFlight(flight);
+				}
+			}
+			return "add";	
+		}
+		    
 		@RequestMapping("/flight/view")
 		public String viewAll(Model model) {
 			List<FlightModel> flightList = flightService.getFlightList();
@@ -69,6 +108,14 @@ public class FlightController {
 		private String updateFlightSubmit(@ModelAttribute FlightModel flight) {
 			flightService.updateFlight(flight, flight.getFlightNumber());
 			return "update-success";
+		}
+		
+		@RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
+		private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
+			for(FlightModel flight : pilot.getPilotFlight()) {
+				flightService.deleteFlightById(flight.getId());
+			}
+			return "delete-success";
 		}
 
 }

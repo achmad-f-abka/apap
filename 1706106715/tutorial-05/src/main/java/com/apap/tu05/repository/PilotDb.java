@@ -11,5 +11,4 @@ import com.apap.tu05.model.FlightModel;
 @Repository
 public interface PilotDb extends JpaRepository<PilotModel, Long> {
 	PilotModel findByLicenseNumber(String licenseNumber);
-
 }

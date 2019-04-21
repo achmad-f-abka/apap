@@ -9,6 +9,6 @@ import com.apap.tu05.model.PilotModel;
 
 public interface FlightService {
 	void addFlight(FlightModel flight);
-	void deleteFlight(FlightModel flight);
+	void deleteFlightbyId(long id);
 
 }

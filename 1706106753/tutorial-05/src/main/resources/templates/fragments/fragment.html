@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<head th:fragment="css">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<head th:fragment="js">
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+</head>
+
+<body>
+
+
+
+	<nav th:fragment="addPilot"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"> > </a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">Add
+						Pilot</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<nav th:fragment="viewPilot"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"> > </a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">Pilot</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<nav th:fragment="home"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<nav th:fragment="addflight"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"> > </a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">Add
+						Flight</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<nav th:fragment="allflight"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"> > </a></li>
+				<li class="nav-item active"><a class="nav-link" href="#">All
+						Flight</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<nav th:fragment="backtohome"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/"> <
+						Back to Home</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<nav th:fragment="updatePilot"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"> > </a></li>
+				<li class="nav-item active"><a class="nav-link" href="/">
+						Update Pilot</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<nav th:fragment="updateFlight"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">1706106753 - APAP</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"> > </a></li>
+				<li class="nav-item active"><a class="nav-link" href="/">
+						Update Flight</a></li>
+			</ul>
+		</div>
+	</nav>
+</body>
+</html>

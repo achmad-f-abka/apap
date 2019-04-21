@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>500 Error</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+		<div th:replace="fragments/fragment :: error"></div>
+		<br><br><br><br><br><br><br>
+<h1 class="text-center">Internal Error!</h1>
+</body>
+</html>

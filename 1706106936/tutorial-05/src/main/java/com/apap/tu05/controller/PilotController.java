@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,11 @@ public class PilotController {
 		return "Home";
 	}
 	
+	@RequestMapping("/test")
+	private String test() {
+		return "test";
+	}
+	
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
 	private String add(Model model) {
 		model.addAttribute("pilot", new PilotModel());
@@ -42,13 +48,14 @@ public class PilotController {
 		return "add";
 	}
 	
-	@RequestMapping(value = "/pilot/view")
-	private String viewPilot(@RequestParam(value="LicenseNumber") String LicenseNumber, Model model) {
+	
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam(value="LicenseNumber") String LicenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(LicenseNumber);
-		List<FlightModel> listOfFlight = flightService.getFlightDetailByPilotLicenseNumber(LicenseNumber);
+		List<FlightModel> pilotFlight = pilot.getPilotFlight();
 		model.addAttribute("pilot",pilot);
 		model.addAttribute("flights",pilot.getPilotFlight());
-		model.addAttribute("listOfFlight", listOfFlight);
+		model.addAttribute("pilotFlight", pilotFlight);
 		return "view-pilot";
 	}
 	
