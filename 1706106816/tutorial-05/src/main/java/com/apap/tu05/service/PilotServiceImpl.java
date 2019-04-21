@@ -20,7 +20,7 @@ public class PilotServiceImpl implements PilotService {
 	private PilotDb pilotDb;
 	private FlightDb flightDb;
 	@Override
-	public PilotModel getPilotDetailByLicenseumber(String licenseNumber) {
+	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
 		// TODO Auto-generated method stub
 		return pilotDb.findByLicenseNumber(licenseNumber);
 	}
