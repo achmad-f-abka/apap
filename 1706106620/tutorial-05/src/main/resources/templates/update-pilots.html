@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Uda Airways</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: updatePilot"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<button type="button" style="width: 9%;"
+	class="btn btn-large btn-success" th:attr="onClick=|window.location.href='/'|" th:style="'font-weight: bold;'">Home</button>
+	<br><br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="text-center col-xs-4 col-lg-4">
+				<div class="card">
+					<div class="card-header" th:style="'background: #c6f7c3;'">
+						<center>
+						<h2>
+						<b>Edit Data Pilot</b>
+						</h2>
+						</center>
+					</div>
+					<form th:action="@{/pilot/updates/}" method="POST">
+						<div class="card-body" th:style="'background: #dff7de;'">
+							<input type="hidden" name="licenseNumber"
+								th:value="${license_number}" />
+								<label th:style="'font-weight: bold; font-size: 19px;'" for="licenseNumber">License
+								Number: </label>
+								<input th:style="'font-weight: bold; font-size: 19px;'" type="text" name="licenseNumber"
+								th:value="${license_number}" disabled="disabled"
+								class="form-control" />
+								<label th:style="'font-weight: bold; font-size: 19px;'" for="name">Name: </label>
+								<input th:style="'font-weight: bold; font-size: 19px;'"
+								type="text" name="name" th:value="${name}" class="form-control" />
+							<label th:style="'font-weight: bold; font-size: 19px;'" for="flyHour">Fly Hour: </label>
+							<input th:style="'font-weight: bold; font-size: 19px;'" type="number"
+								name="flyHour" th:value="${fly_hour}" class="form-control" />
+							<p>
+							<p>
+								<button type="submit" class="btn btn-large btn-success" th:style="'font-weight: bold;'">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
