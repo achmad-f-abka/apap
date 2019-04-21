@@ -4,20 +4,50 @@
 		<title>Add Flight</title>
 	</head>
 	<body>
+		<div>
 		<h2>Welcome!</h2>
-		
 		<h3>Tambah Penerbangan</h3>
-		<form th:action="@{/flight/add}" th:object="${flight}" method="POST">
-			<input type="hidden" th:field="*{pilot}"/>
-			Flight Number : <br>
-			<input type="text" name="flightNumber"/> <br>
-			Origin : <br>
-			<input type="text" name="origin"/> <br>
-			Destination : <br>
-			<input type="text" name="destination"/> <br>
-			Time : <br>
-			<input type="date" name="time"/> <br><br>
-			<button type="submit">Submit</button>
-		</form>
+		</div>
+		
+		<div>
+		<form th:action="@{/flight/add/} + ${pilot.licenseNumber}" th:object="${pilot}" method="POST">
+                 <input type="hidden" th:field="*{licenseNumber}" />
+
+                 <table>
+                     <thead>
+                         <tr>
+                             <th>Flight Number</th>
+                             <th>Origin</th>
+                             <th>Destination</th>
+                             <th>Time</th>
+                             <th>
+                                 <button type="submit" name="addRow" class="btn btn-primary">Add</button>
+                             </th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr th:each="flight,iterationStatus : *{pilotFlight}">
+                             <td>
+                                 <input type="text" th:field="*{pilotFlight[__${iterationStatus.index}__].flightNumber}">
+                             </td>
+                             <td>
+                                 <input type="text" th:field="*{pilotFlight[__${iterationStatus.index}__].origin}">
+                             </td>
+                             <td>
+                                 <input type="text" th:field="*{pilotFlight[__${iterationStatus.index}__].destination}">
+                             </td>
+                             <td>
+                                 <input type="date" value="2019-01-01" th:name="pilotFlight[__${iterationStatus.index}__].time">
+                             </td>
+                             <td>
+                                 <button type="submit" name="removeRow" th:value="${iterationStatus.index}"
+                                     class="btn btn-primary">Delete</button>
+                             </td>
+                         </tr>
+                     </tbody>
+                 </table>
+                 <button type="submit" name="save" class="btn btn-primary">Submit</button>
+             </form>
+		</div>
 	</body>
 </html>

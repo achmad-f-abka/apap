@@ -41,12 +41,10 @@ public class PilotController {
 		return "add";
 	}
 	
-	@RequestMapping(value="/pilot/view")
-	private String viewPilot(String licenseNumber, Model model) {
-		PilotModel pilots = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List<FlightModel> flightData = pilots.getPilotFlight();
-		model.addAttribute("pilots", pilots);
-		model.addAttribute("flights", flightData);
+	@RequestMapping(value="/pilot/view", method = RequestMethod.GET)
+	private String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		model.addAttribute("pilot", pilot);
 		return "view-pilot";
 		
 	}
@@ -76,5 +74,9 @@ public class PilotController {
 		return "404";
 	
 		}
+	
+	
+	
+	
 
 }
