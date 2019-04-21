@@ -2,6 +2,7 @@ package com.apap.tu05.service;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.apap.tu05.model.FlightModel;
@@ -13,4 +14,5 @@ public interface FlightService {
 	void deleteFlight(PilotModel pilot, String flightNumber);
 	FlightModel getFlight(PilotModel pilot, String flightNumber);
 	void updateFlight(FlightModel flight);
+	void deleteFlightById(long id);
 }

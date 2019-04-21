@@ -51,24 +51,31 @@ public class PilotController {
 		return "view-all-pilot.html";	
 	}
 	
-	@RequestMapping(value= "/pilot/view", method = RequestMethod.GET)
-	public String viewPilotId(@RequestParam(value = "licenseNumber", required = true) String licenseNumber, Model m) {
-		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
-		if (pilot != null) {
-			List<FlightModel> flight = pilot.getPilotFlight();
-			m.addAttribute("pilot", pilot);
-			m.addAttribute("flight", flight);
-			return "view-pilot.html";	
-		} else {
-			return "error-1.html";
-		}
-		
+//	@RequestMapping(value= "/pilot/view", method = RequestMethod.GET)
+//	public String viewPilotId(@RequestParam(value = "licenseNumber", required = true) String licenseNumber, Model m) {
+//		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+//		if (pilot != null) {
+//			List<FlightModel> flight = pilot.getPilotFlight();
+//			m.addAttribute("pilot", pilot);
+//			m.addAttribute("flight", flight);
+//			return "view-pilot.html";	
+//		} else {
+//			return "error-1.html";
+//		}
+//		
+//	}
+	
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam(value="licenseNumber") String licenseNumber, Model model) {
+			PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+			model.addAttribute("pilot", pilot);
+			return "view-pilot";
 	}
 	
 	@RequestMapping(value= "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
 	public String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 			try {
-			PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+			PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 			pilotService.deletePilot(pilot);
 			return "delete-info.html";	
 			} catch (Exception e) {
@@ -79,7 +86,7 @@ public class PilotController {
 	
 	@RequestMapping(value= "/pilot/update/{licenseNumber}", method = RequestMethod.GET)
 	public String updatePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
-		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		model.addAttribute("pilot", pilot);
 		return "update-pilot.html";	
 	}
