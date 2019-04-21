@@ -24,6 +24,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "flight")
 public class FlightModel implements Serializable {
 	
+	public FlightModel(String fn, String or, String dest, Date tm, PilotModel p) {
+		this.flightNumber = fn;
+		this.origin = or;
+		this.destination = dest;
+		this.time = tm;
+		this.pilot = p;
+	}
+	
+	public FlightModel() {
+		super();
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
