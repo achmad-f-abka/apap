@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Uda Airways</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<object th:include="fragments/fragment ::css" th:remove="tag"></object>
+<object th:include="fragments/fragment ::js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: addFlight"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<button type="button" style="width: 9%;"
+		class="btn btn-large btn-success"
+		th:attr="onClick=|window.location.href='/pilot/view?licenseNumber=${license_number}'|">Back</button>
+	<br>
+	<br>
+	<div class="container" style="padding-left: 0px;">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card" style="width: 1185px;">
+					<div class="card-header" th:style="'background: #c6f7c3;'">
+						<center>
+							<h3>Tambah Penerbangan</h3>
+						</center>
+					</div>
+					<form th:action="@{'/flight/add/' + ${licenseNumber}}"
+						th:object="${pilot}" method="POST">
+						<input type="hidden" th:field="*{licenseNumber}" />
+						<div class="card-body" th:style="'background: #dff7de;'">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+								<th style="width: 55px; text-align: center; vertical-align: middle; background: #3dd635; border: 3px solid white;">No.</th>
+								<th style="width: 185px; text-align: center; vertical-align: middle; background: #3dd635; border: 3px solid white;">Flight Number</th>
+								<th style="width: 195px; text-align: center; vertical-align: middle; background: #3dd635; border: 3px solid white;">Origin</th>
+								<th style="width: 195px; text-align: center; vertical-align: middle; background: #3dd635; border: 3px solid white;">Destination</th>
+								<th style="width: 135px; text-align: center; vertical-align: middle; background: #3dd635; border: 3px solid white;">Time</th>
+								<th style="width: 125px; text-align: center; background: #3dd635; border: 3px solid white;">
+									<button type="submit" class="btn btn-large btn-success"
+												style="color: black; background: #d9ddd2; font-weight: bold;"
+												th:name="addRow">Add row</button>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="success" th:each="flight,i : *{pilotFlight}"
+										th:style="${i.even} ? 'background: #c6f7c3;' : 'background:#dff7de'">
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle; font-weight: bold;"
+											th:text="${i.count}">1</td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+											<input class="form-control"
+											th:field="*{pilotFlight[__${i.index}__].flightNumber}"
+											style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+											type="text" th:name="flightNumber" />
+										</td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+											<input class="form-control"
+											th:field="*{pilotFlight[__${i.index}__].origin}"
+											style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+											type="text" th:name="origin" />
+										</td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+											<input class="form-control"
+											th:field="*{pilotFlight[__${i.index}__].destination}"
+											style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+											type="text" th:name="destination" />
+										</td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+											<input class="form-control"
+											th:field="*{pilotFlight[__${i.index}__].time}"
+											style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+											type="date" th:name="time" />
+										</td>
+										<td style="border: 3px solid white; text-align: center; vertical-align: middle;">
+											<button type="submit" class="btn btn-large btn-success"
+												style="font-weight: bold; width: 135px;" name="removeRow"
+												th:value="${i.index}">Remove Row</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<button type="submit" class="btn btn-large btn-success"
+								style="font-weight: bold;" name="save">Submit</button>
+					</form>
+</body>
+</html>
