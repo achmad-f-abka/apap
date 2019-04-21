@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Add</title>
+</head>
+<body>
+	<form th:action="@{/pilot/view}" method="POST">
+		<h2 th:style="${'color: green;'}">
+		Data Berhasil Ditambahkan!
+	</h2>
+		<table>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="'Pilot License Number'"></td>
+				<td>:</td>
+				<td th:text="${lNumb}"></td>
+				<td rowspan="3">
+					<th><button type="button" th:attr="onClick=|window.location.href='/pilot/updates/${lNumb}'|">Edit This</button></th>
+				</td>
+			</tr>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="Name"></td>
+				<td>:</td>
+				<td th:text="${name}"></td>
+			</tr>
+			<tr th:style="'font-weight: bold;'">
+				<td th:text="'Fly Hour'"></td>
+				<td>:</td>
+				<td th:text="${fHour}"></td>
+			</tr>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th><button type="button" th:attr="onClick=|window.location.href='/'|">Home</button></th>
+					<th><button type="button" th:attr="onClick=|window.location.href='/pilot/add'|">Input Again</button></th>
+				</tr>
+			</thead>
+		</table>
+	</form>
+</body>
+</html>

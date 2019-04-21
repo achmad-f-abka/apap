@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View All Flight</title>
+	</head>
+	<body>
+		<table border="I">
+			<br>
+			<thead>
+				<tr>
+					<th style="text-align: center">No.</th>			
+					<th style="text-align: center">Flight Number</th>
+					<th style="text-align: center">Origin</th>
+					<th style="text-align: center">Destination</th>
+					<th style="text-align: center">Time</th>
+					<th style="text-align: center">Pilot</th>
+					<th style="text-align: center">License Number</th>		
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="flight, iterationStatus : ${all}">
+					<td th:text="${iterationStatus.count}"></td>
+					<td th:text="${flight.flightNumber}"></td>
+					<td th:text="${flight.origin}"></td>
+					<td th:text="${flight.destination}"></td>
+					<td th:text="${flight.time}"></td>
+					<td th:text="${flight.pilot.name}"></td>
+					<td th:text="${flight.pilot.licenseNumber}"></td>		
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

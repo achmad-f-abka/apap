@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>View Pilot</title>
+	</head>
+	<body>
+		<h2 th:text="'Pilot License Number: ' + ${pilot.licenseNumber}"></h2>
+		<h2 th:text="'Name: ' + ${pilot.name}"></h2>
+		<h2 th:text="'Fly Hour: ' + ${pilot.flyHour}"></h2>
+		
+		<a th:href="@{/flight/add/} + ${pilot.licenseNumber}" method="POST"> add flight </a>
+		
+		<h2 th:text="'Daftar flight dari pilot: '"></h2>
+		<ul>
+    		<li th:each="item : ${flightList}">
+       		 <span th:text="'Nomor penerbangan: ' + ${item.flightNumber} + ' === Rute: ' + ${item.origin} + ' - ' + ${item.destination}">Default</span>
+    		</li>
+		</ul>
+		
+		<!--
+		
+		  -->
+		<form th:action="@{/pilot/delete/} + ${pilot.id}" method="POST">
+			<button type="submit">Delete</button> 
+		</form>
+		<form th:action="@{/pilot/update/} + ${pilot.licenseNumber}" method="POST">
+			<button type="submit">Update</button>
+		</form>
+	</body>
+</html>

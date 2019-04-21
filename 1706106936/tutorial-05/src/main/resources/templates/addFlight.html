@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+	<head>
+		<title>Add Flight</title>
+		<head th:fragment="css">
+			<link rel= "stylesheet" th:href="@{/css/bootstrap.min.css}">
+		</head>
+		<head th:fragment="js">
+			<script th:src="@{/js/bootstrap.min.js}"></script>
+		</head>
+	</head>
+	<body>
+	
+	<nav th:replace="fragments/fragment :: addflight"></nav>
+		<div class="container-fluid">
+        <br>
+        <div class="row">
+            <div class="col-md-8">
+                
+                   
+                   
+                        <form th:action="@{/flight/add/} + ${pilot.licenseNumber}" th:object="${pilot}" method="POST">
+                            <input type="hidden" th:field="*{licenseNumber}" />
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center">Flight Number</th>
+                                        <th style="text-align: center">Origin</th>
+                                        <th style="text-align: center">Destination</th>
+                                        <th style="text-align: center">Time</th>
+                                        <th style="text-align: center">
+                                            <button type="submit" name="addFlight" >Add Flight</button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="flight,itemStat : *{pilotFlight}">
+                                        <td>
+                                            <input type="text" th:field="*{pilotFlight[__${itemStat.index}__].flightNumber}">
+                                        </td>
+                                        <td>
+                                            <input type="text" th:field="*{pilotFlight[__${itemStat.index}__].origin}">
+                                        </td>
+                                        <td>
+                                            <input type="text" th:field="*{pilotFlight[__${itemStat.index}__].destination}">
+                                        </td>
+                                        <td>
+                                            <input type="date" th:name="pilotFlight[__${itemStat.index}__].time">
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <button type="submit" name="save" >Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+      
+  
+	
+
+	
+	</body>
+</html>

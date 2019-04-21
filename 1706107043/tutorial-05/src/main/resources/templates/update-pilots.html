@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Edit Pilot</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: updatePilot"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<button type="button" style="width: 9%;"
+	class="btn btn-large btn-success" th:attr="onClick=|window.location.href='/'|">Back</button>
+	<br><br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="text-center col-xs-4 col-lg-4">
+				<div class="card">
+					<div class="card-header">
+						<b>Edit Data Pilot</b>
+					</div>
+					<form th:action="@{/pilot/updates/}" method="POST">
+						<div class="card-body">
+							<input type="hidden" name="licenseNumber"
+								th:value="${license_number}" /> <label for="licenseNumber">License
+								Number: </label> <input type="text" name="licenseNumber"
+								th:value="${license_number}" disabled="disabled"
+								class="form-control" /> <label for="name">Name: </label> <input
+								type="text" name="name" th:value="${name}" class="form-control" />
+							<label for="flyHour">Fly Hour: </label> <input type="number"
+								name="flyHour" th:value="${fly_hour}" class="form-control" />
+							<p>
+							<p>
+								<button type="submit" class="btn btn-large btn-success">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
