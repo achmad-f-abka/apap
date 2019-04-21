@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Add</title>
+	<title>Delete</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-	<h2>Data Berhasil Dihapus</h2>
-	<a href = "/"> go to home </a>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<h2>Semua Data Telah Berhasil Dihapus </h2>
+	<br>
+	<a href = "/"> Back To Home </a>
 </body>
 </html>
