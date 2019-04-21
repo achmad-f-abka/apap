@@ -1,7 +1,6 @@
-package com.apap.tu05.controller;
+package com.apap.tu04.controller;
 
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,10 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.apap.tu05.model.FlightModel;
-import com.apap.tu05.model.PilotModel;
-import com.apap.tu05.service.FlightService;
-import com.apap.tu05.service.PilotService;
+import com.apap.tu04.model.FlightModel;
+import com.apap.tu04.model.PilotModel;
+import com.apap.tu04.service.FlightService;
+import com.apap.tu04.service.PilotService;
 
 @Controller
 public class FlightController {
@@ -31,25 +30,19 @@ public class FlightController {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		flight.setPilot(pilot);
 		model.addAttribute("flight", flight);
-		model.addAttribute("title", "Add Flight");
 		return "addFlight";
 				
 	}
 	
 	@RequestMapping(value = "/flight/add", method = RequestMethod.POST)
-	private String addFlightSubmit(@ModelAttribute FlightModel flight, Model model) {
+	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
 		flightService.addFlight(flight);
-		model.addAttribute("title", "Flight berhasil ditambahkan");
 		return "add";
 	}
 	
-	@RequestMapping (value="/flight/delete", method = RequestMethod.POST)
-	private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
-		for(FlightModel flight : pilot.getPilotFlight()) {
-			flightService.deleteFlight(flight.getId());
-		}
-//		flightService.deleteFlight(flightid);
-//		model.addAttribute("title", "Delete Flight");
+	@RequestMapping (value="/flight/delete/{id}", method = RequestMethod.POST)
+	private String deleteFlight (@PathVariable (value = "id") Long flightid, Model model) {
+		flightService.deleteFlight(flightid);
 		return "delete";
 	}
 	
@@ -58,7 +51,6 @@ public class FlightController {
 		
 		List <FlightModel> list = flightService.getAllFlightList();
 				model.addAttribute ("all", list );
-		model.addAttribute("title", "All Flight");
 		
 		return "all-flight";
 	}
