@@ -9,4 +9,6 @@ import com.apap.tu05.model.FlightModel;
 public interface FlightDb extends JpaRepository<FlightModel, Long> {
 	FlightModel findByFlightNumber(String flightNumber);
 	
+	// tambahan
+	FlightModel findFlightById(long id);
 }

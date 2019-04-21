@@ -44,4 +44,29 @@ public class FlightServiceImpl implements FlightService {
 		flightLama.setDestination(newFlight.getDestination());
 		flightLama.setTime(newFlight.getTime());
 	}
+	
+	// tambahan
+	@Override
+	public FlightModel findById(long id) {
+		List<FlightModel> flights = flightDb.findAll();
+		FlightModel count = new FlightModel();
+		for(FlightModel flight:flights) {
+			if(flight.getId()==id) {
+				count = flight;
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public FlightModel getFlight(long id) {
+		String idnya = "" + id;
+		return flightDb.findByFlightNumber(idnya);
+	}
+	
+	@Override
+	public void deleteFlightById(long id) {
+		flightDb.deleteById(id);
+	}
+	// ...
 }

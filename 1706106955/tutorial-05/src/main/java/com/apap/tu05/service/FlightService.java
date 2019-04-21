@@ -12,4 +12,9 @@ public interface FlightService {
 	void deleteFlight(String flightNumber);
 	FlightModel getFlightDetailByFlightNumber(String flightNumber);
 	void updateFlight(String flightNumber, FlightModel flight);
+	// tambahan
+	void deleteFlightById(long id);
+	FlightModel findById(long id);
+	FlightModel getFlight(long id);
+	// ...
 }
