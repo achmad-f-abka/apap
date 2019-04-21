@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
 <title>Data Pilot dan Penerbangan Pilot</title>
 <object th:include="fragments/fragment :: css" th:remove="tag"></object>
 <object th:include="fragments/fragment :: js" th:remove="tag"></object>
@@ -10,10 +9,13 @@
 	<div th:replace="fragments/fragment :: viewPilot"></div>
 	<br>&nbsp;&nbsp;&nbsp;
 	<center>
+		<h2 th:if="${found}" class="error" th:style="${'color: #21441e;'}">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data Ditemukan!</h2>
 		<h2 th:if="${notFound}" class="error" th:style="${'color: red;'}">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Data Tidak Ditemukan!</i>
 		</h2>
 	</center>
+	<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
@@ -24,9 +26,9 @@
 						</center>
 					</div>
 					<form th:action="@{/pilot/view}" method="POST">
-						<h3 th:if="${fly_hour} >= 100" class="text-center">Status:
+						<h3 th:if="${pilot.getFlyHour()} >= 100" class="text-center">Status:
 							Pilot Senior</h3>
-						<h3 th:unless="${fly_hour} >= 100" class="text-center">Status:
+						<h3 th:unless="${pilot.getFlyHour()} >= 100" class="text-center">Status:
 							Pilot Junior</h3>
 						<!-- h3 th:if="${fly_hour} >= 100 ? 'Status: Pilot Senior' : 'Status: Pilot Junior'"></h3> -->
 						<div class="card-body">
@@ -35,17 +37,17 @@
 									<td><label class="text-left" for="licenseNumber">License
 											Number</label></td>
 									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
-									<td><label th:text="${license_number}"></label></td>
+									<td><label th:text="${pilot.getLicenseNumber()}"></label></td>
 								</tr>
 								<tr th:style="'font-weight: bold;'">
 									<td><label class="text-left" for="name">Name</label></td>
 									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
-									<td><label th:text="${name}"></label></td>
+									<td><label th:text="${pilot.getName()}"></label></td>
 								</tr>
 								<tr th:style="'font-weight: bold;'">
 									<td><label for="flyHour">Fly Hour</label></td>
 									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
-									<td><label th:text="${fly_hour}"></label></td>
+									<td><label th:text="${pilot.getFlyHour()}"></label></td>
 								</tr>
 							</table>
 							<center>
@@ -53,22 +55,16 @@
 									<thead>
 										<tr>
 											<td>
-												<button type="button" class="btn btn-large btn-primary"
-													style="width: 100px;"
-													th:attr="onClick=|window.location.href='/flight/add/${license_number}'|">Add
-													Flight</button>
-											</td>
-											<td>
 												<form th:action="@{/pilot/updates/${lNumb}}" method="POST">
 													<button type="button" class="btn btn-large btn-danger"
 														style="width: 110px;"
-														th:attr="onClick=|window.location.href='/pilot/delete/${license_number}'|">Delete
+														th:attr="onClick=|window.location.href='/pilot/delete/${pilot.getLicenseNumber()}'|">Delete
 														Pilot</button>
 												</form>
 											</td>
 											<td><button type="button"
 													class="btn btn-large btn-warning" style="width: 115px;"
-													th:attr="onClick=|window.location.href='/pilot/updates/${license_number}'|">Update
+													th:attr="onClick=|window.location.href='/pilot/update/${pilot.getLicenseNumber()}'|">Update
 													Pilot</button></td>
 										</tr>
 									</thead>
@@ -84,39 +80,42 @@
 						<div class="card" style="width: 745px;">
 							<div class="card-header">
 								<b><center>
-										<lable th:text="'Data Penerbangan Pilot ' + ${name} + ':'"></lable>
+										<lable th:text="'Data Penerbangan Pilot ' + ${pilot.getName()} + ':'"></lable>
 									</center></b>
 							</div>
-							<form th:action="@{/pilot/view/}" method="GET">
-							<input type="hidden" th:value="${license_number}" name="licenseNumber" />
+							<form th:action="@{/flight/delete}" th:object="${pilot}" method="POST">
+							<input type="hidden" th:value="${pilot.getLicenseNumber()}" name="licenseNumber" />
 <!-- 							<input type="hidden" name="licenseNumber" th:value="${license_number}" /> -->
 								<div class="card-body">
-									<table>
+									<table border="I">
 										<thead>
 											<tr>
-				<th style="width: 55px; text-align: center; background : #14c7d1; border: 3px solid white;">No.</th>
-				<th style="width: 185px; text-align: center; background: #14c7d1; border: 3px solid white;">Flight Number</th>
-				<th	style="width: 195px; text-align: center; background: #14c7d1; border: 3px solid white;">Origin</th>
-				<th style="width: 195px; text-align: center; background: #14c7d1; border: 3px solid white;">Destination</th>
-				<th style="width: 135px; text-align: center; background: #14c7d1; border: 3px solid white;">Time</th>
-				<th style="width: 125px; text-align: center; background: #14c7d1; border: 3px solid white;">Action</th>
+				<th style="width: 55px; text-align: center; background: #e8ca93; border: 3px solid white;">No.</th>
+				<th style="width: 185px; text-align: center; background: #e8ca93; border: 3px solid white;">Flight Number</th>
+				<th	style="width: 195px; text-align: center; background: #e8ca93; border: 3px solid white;">Origin</th>
+				<th style="width: 195px; text-align: center; background: #e8ca93; border: 3px solid white;">Destination</th>
+				<th style="width: 135px; text-align: center; background: #e8ca93; border: 3px solid white;">Time</th>
+				<th style="width: 125px; text-align: center; background: #e8ca93; border: 3px solid white;">Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="fl, i : ${fList}"
-												th:style="${i.even} ? 'background: #c6f7c3;' : 'background:#dff7de'">
-												<td style="border: 3px solid white;" th:text="${i.count}"></td>
-												<td style="border: 3px solid white;"
+											<tr th:each="fl, i : *{pilotFlight}"
+												th:style="${i.even} ? 'background: #f0e2a8;' : 'background:#f0e2a8'">
+												<input type="hidden" th:value="${fl.id}" name="id" />
+												<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+												th:text="${i.count}"></td>
+												<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
 													th:text="${fl.flightNumber}"></td>
-												<td style="border: 3px solid white;" th:text="${fl.origin}"></td>
-												<td style="border: 3px solid white;"
+												<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+												th:text="${fl.origin}"></td>
+												<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
 													th:text="${fl.destination}"></td>
-												<td style="border: 3px solid white;" th:text="${fl.time}"></td>
+												<td style="font-weight: bold; border: 3px solid white; text-align: center; vertical-align: middle;"
+													th:text="${#dates.format(fl.time, 'dd-MMM-yyyy')}"></td>
 												<td>
 													<center>
-								<button type="button" class="btn btn-large btn-primary"
-									style="width: 105px;"
-									th:attr="onClick=|window.location.href='/flight/view/${fl.flightNumber}'|">Detail</button>
+														<input type="checkbox" th:field="*{pilotFlight}" th:value="${fl.id}" />
+														<label style="font-weight: bold; vertical-align: middle;" th:for="${#ids.prev('pilotFlight')}">Delete</label>
 													</center>
 											</tr>
 										</tbody>
@@ -126,10 +125,21 @@
 										<table>
 											<thead>
 												<tr>
+												<td>
+												<td>
+												<button type="button" class="btn btn-large btn-primary"
+													style="width: 100px;"
+													th:attr="onClick=|window.location.href='/flight/add/${pilot.getLicenseNumber()}'|">Add
+													Flight</button>
+											</td>
+												</td>
 													<td>
 														<button type="button" class="btn btn-large btn-primary"
-															th:attr="onClick=|window.location.href='/flight/view/'|">Lihat Penerbangan lain
-														</button>
+															th:attr="onClick=|window.location.href='/flight/view/'|">See
+															Another Flight List</button>
+													</td>
+													<td>
+													<button type="submit" class="btn btn-large btn-danger">Delete Selected Flight</button>
 													</td>
 												</tr>
 											</thead>

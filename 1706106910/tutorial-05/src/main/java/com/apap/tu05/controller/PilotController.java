@@ -48,17 +48,9 @@ public class PilotController {
 	}
 
 	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
-	private String view(@RequestParam("licenseNumber") String licenseNumber, Model model) {
-		plt = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List<FlightModel> lFlight = flightService.getFlightListByPilot(plt);
-		model.addAttribute("license_number", plt.getLicenseNumber().toString());
-		FlightModel flight = new FlightModel();
+	private String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		flight.setPilot(pilot);
-		model.addAttribute("name", plt.getName().toString());
-		model.addAttribute("fly_hour", plt.getFlyHour());
-		model.addAttribute("found", plt);
-		model.addAttribute("fList", lFlight);
+		model.addAttribute("pilot", pilot);
 		return "view-pilot";
 	}
 
@@ -100,7 +92,7 @@ public class PilotController {
 		model.addAttribute("name", plt.getName().toString());
 		model.addAttribute("fly_hour", plt.getFlyHour());
 		model.addAttribute("found", plt);
-		return "update-pilot";
+		return "update-pilots";
 	}
 
 	@RequestMapping(value = "/pilot/updates/", method = RequestMethod.POST)

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Add</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: addPilot"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<br>
+	<h2 th:style="${'color: blue;'}" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data
+		Berhasil Dihapus!</h2>
+	<br>
+
+</body>
+</html>
