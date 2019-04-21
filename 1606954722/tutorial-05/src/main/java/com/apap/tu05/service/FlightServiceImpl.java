@@ -43,8 +43,9 @@ public class FlightServiceImpl implements FlightService{
 	}
 
 	@Override
-	public void deleteFlight(long id) {
-		flightDb.deleteById(id);
+	public void deleteFlightById(long id) {
+		FlightModel flight = flightDb.findById(id);
+		flightDb.delete(flight);
 		
 	}
 	@Override
@@ -54,6 +55,15 @@ public class FlightServiceImpl implements FlightService{
 		flight.setOrigin(newFlight.getOrigin());
 		flight.setDestination(newFlight.getDestination());
 		flight.setTime(newFlight.getTime());
+	}
+	@Override
+	public FlightModel getFlightDetailByFlightNumber(String flightNumber) {
+		return flightDb.findByFlightNumber(flightNumber);
+	}
+	
+	@Override
+	public void deleteFlight(String flightNumber) {
+		flightDb.delete(this.getFlightDetailByFlightNumber(flightNumber));
 	}
 	
 }

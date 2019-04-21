@@ -59,15 +59,27 @@ public class PilotController {
  * @param licenseNumber
  * @return
  */
-	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
-	private String viewPilot(Model model ,@RequestParam(value= "licenseNumber") String licenseNumber) {
+//	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
+//	private String viewPilot(Model model ,@RequestParam(value= "licenseNumber") String licenseNumber) {
+//		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+//		List<FlightModel> flight = flightService.getFlightListByPilot(pilot);
+//		model.addAttribute("pilot", pilot);
+//		model.addAttribute("allFlight", flight);
+//		model.addAttribute("title", "View Pilot");
+//		return "view-pilot";
+//	}
+	
+	//viewPilot baru
+	@RequestMapping(value="/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List<FlightModel> flight = flightService.getFlightListByPilot(pilot);
-		model.addAttribute("pilot", pilot);
-		model.addAttribute("allFlight", flight);
+		List<FlightModel> flight = pilot.getPilotFlight();
+		model.addAttribute("pilotFlight", flight);
 		model.addAttribute("title", "View Pilot");
+		model.addAttribute("pilot", pilot);
 		return "view-pilot";
 	}
+	
 	@RequestMapping(value="/pilot/delete/{id}", method = RequestMethod.POST)
 	private String deletePilot(@PathVariable (value="id")Long id, Model model) {
 		pilotService.deletePilot(id);

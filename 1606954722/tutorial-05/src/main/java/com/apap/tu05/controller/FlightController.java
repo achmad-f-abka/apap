@@ -45,12 +45,22 @@ public class FlightController {
 		flightService.addFlight(flight);
 		return "add";
 	}
-	@RequestMapping(value = "/flight/delete/{id}", method = RequestMethod.POST)
-	private String deleteFlight(@PathVariable(value="id") Long id, Model model) {
-		flightService.deleteFlight(id);
-		model.addAttribute("title", "Delete Flight");
+//	@RequestMapping(value = "/flight/delete/{id}", method = RequestMethod.POST)
+//	private String deleteFlight(@PathVariable(value="id") Long id, Model model) {
+//		flightService.deleteFlightById(id);
+//		model.addAttribute("title", "Delete Flight");
+//		return"delete";
+//	}
+	
+	//deleteFlight baru
+	@RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
+	private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
+		for(FlightModel flight : pilot.getPilotFlight()) {
+			flightService.deleteFlightById(flight.getId());
+		}
 		return"delete";
 	}
+	
 	@RequestMapping(value= "/flight/viewall", method = RequestMethod.GET)
 	private String viewFlight(Model model) {
 		List<FlightModel> flight = flightService.viewAllFlight();
