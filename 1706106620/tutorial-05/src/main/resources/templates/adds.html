@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Uda Airways</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: updatePilot"></div>
+	<br>&nbsp;&nbsp;&nbsp;
+	<button type="button" class="btn btn-large btn-success"
+		style="width: 9%; font-weight: bold;" th:attr="onClick=|window.location.href='/'|">Home</button>
+	<br>
+	<h2 th:style="${'color: green;'}" class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data
+		Berhasil Diperbaharui!</h2>
+	<br>
+	<div class="container-fluid" style="width: 130%;">
+		<div class="row">
+			<div class="col-xs-4 col-lg-4">
+				<div class="card">
+					<div class="card-header" th:style="'background: #c6f7c3;'">
+						<center>
+							<h2><b>Data Pilot</b></h2>
+						</center>
+					</div>
+					<form th:action="@{/pilot/view}" method="POST">
+						<div class="card-body" th:style="'background: #dff7de;'">
+						<center>
+							<table>
+								<tr th:style="'font-weight: bold; font-size: 19px;'">
+									<td><label class="text-left" for="licenseNumber">License
+											Number</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${lNumb}"></label></td>
+									<td></td>
+								</tr>
+								<tr th:style="'font-weight: bold; font-size: 19px;'">
+									<td><label class="text-left" for="name">Name</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${name}"></label></td>
+									<td></td>
+								</tr>
+								<tr th:style="'font-weight: bold; font-size: 19px;'">
+									<td><label for="flyHour">Fly Hour</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${fHour}"></label></td>
+									<td></td>
+								</tr>
+							</table></center>
+							<br>
+							<center>
+							<table>
+								<thead>
+									<tr>
+										<td>
+											<form th:action="@{/pilot/updates/${lNumb}}" method="POST">
+												<button type="button" class="btn btn-large btn-success"
+													style="width: 105px; font-weight: bold;"
+													th:attr="onClick=|window.location.href='/pilot/updates/${lNumb}'|">Edit
+													This</button>
+											</form>
+										</td>
+										<td style="padding-left: 5px;"><button style="font-weight: bold;" type="button"
+												class="btn btn-large btn-success"
+												th:attr="onClick=|window.location.href='/pilot/add'|">Input
+												Again</button></td>
+										</td>
+									</tr>
+								</thead>
+							</table>
+							<table>
+							<thead>
+							<tr>
+							<td></td>
+							</tr>
+							<tr>
+							<td></td>
+							</tr>
+							<tr>
+							<td></td>
+							</tr>
+							</thead>
+									<tr>
+										<td>
+											<form>
+												<button type="button" class="btn btn-large btn-success"
+													style="width: 227px; font-weight: bold;"
+													th:attr="onClick=|window.location.href='/pilot/view?licenseNumber=${lNumb}'|">Go to Pilot View
+													</button>
+											</form>
+										</td>
+									</tr>
+							</table>
+							</center>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

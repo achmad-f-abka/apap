@@ -1,6 +1,5 @@
 package com.apap.tu05.service;
 
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -34,6 +33,12 @@ public class FlightServiceImpl implements FlightService {
 	public void deleteFlight(PilotModel pilot, String flightNumber) {
 		flightDb.deleteByPilotAndFlightNumber(pilot, flightNumber);
 	}
+	
+	/*@Override
+	public void deleteFlight(PilotModel pilot, String flightNumber) {
+		flightDb.deleteFlightById(pilot, flightNumber);
+	}*/
+	
 
 	@Override
 	public FlightModel getFlight(PilotModel pilot, String flightNumber) {
@@ -44,6 +49,12 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public void updateFlight(FlightModel flight) {
 		flightDb.save(flight);
+		
+	}
+
+	@Override
+	public void deleteFlightById(long id) {
+		flightDb.deleteById(id);
 		
 	}
 	

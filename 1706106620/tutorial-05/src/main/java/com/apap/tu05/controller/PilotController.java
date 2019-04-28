@@ -51,7 +51,7 @@ public class PilotController {
 		return "view-all-pilot.html";	
 	}
 	
-	@RequestMapping(value= "/pilot/view", method = RequestMethod.GET)
+	/*@RequestMapping(value= "/pilot/view", method = RequestMethod.GET)
 	public String viewPilotId(@RequestParam(value = "licenseNumber", required = true) String licenseNumber, Model m) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
 		if (pilot != null) {
@@ -60,9 +60,17 @@ public class PilotController {
 			m.addAttribute("flight", flight);
 			return "view-pilot.html";	
 		} else {
-			return "error-1.html";}
+			return "error-1.html";
 		}
+		
+	}*/
 	
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam(value="licenseNumber") String licenseNumber, Model model) {
+			PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+			model.addAttribute("pilot", pilot);
+			return "view-pilot";
+	}
 	@RequestMapping(value= "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
 	public String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 			try {
@@ -88,3 +96,4 @@ public class PilotController {
 		return "update-info.html";
 	}
 }
+

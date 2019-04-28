@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Update Pilot</title>
-</head>
-<body>
-	<h2>Welcome!</h2>
 
+<head>
+	<title>Update Pilot</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<h3>Update Pilot</h3>
 	<form th:action="@{/pilot/update}" th:objects="${pilot}" method="POST">
 		<input th:value="${pilot.id}" hidden="true" name="id" >

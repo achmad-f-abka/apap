@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Home</title>
-		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<object th:include="fragments/fragment :: title" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
 	<body>
-		<nav class="navbar navcar-expand-lg navbar-dark bg-dark">
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+<!-- 		<nav class="navbar navcar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">APAP</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
@@ -15,7 +16,7 @@
 					</li>
 				</ul>
 			</div>
-		</nav>
+		</nav> -->
 		
 		<div class="container-fluid">
 			<h2>Welcome!</h2>

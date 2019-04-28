@@ -26,28 +26,35 @@
         </div>
         <div>
             <h2>Flight List</h2>
-            <table class="table table-striped table-dark" style="width:800px">
-                <tr class="text-center">
-                    <th>No</th>
-                    <th>Flight Number</th>
-                    <th>Origin</th>
-                    <th>Destination</th>
-                    <th>Time</th>
-                    <th colspan="2">Actions</th>
-                </tr>
-                <!-- Step 2 Looping, Iteration Status -->
-                <th:block th:each="flight, iterationStatus : ${flights}" th:style="${iterationStatus.even} ? 'display:none;'">
-                    <tr align="center">
-                        <td th:text="${iterationStatus.count}"></td>
-                        <td th:text="${flight.flightNumber}"></td>
-                        <td th:text="${flight.origin}"></td>
-                        <td th:text="${flight.destination}"></td>
-                        <td th:text="${flight.time}"></td>
-                        <td><a th:href="@{/flight/update/} + ${flight.id}" class="btn btn-primary btn-sm">Update Flight</a></td>
-                        <td><a th:href="@{/flight/delete/} + ${flight.id}" class="btn btn-danger btn-sm">Delete Flight</a></td>
+             <form th:action="@{/flight/delete}" th:object="${pilot}" method="POST">
+                <table class="table table-striped table-dark" style="width:870px">
+                    <tr class="text-center">
+                        <th>No</th>
+                        <th>Flight Number</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Time</th>
+                        <th colspan="3">Actions</th>
                     </tr>
-                </th:block>
-            </table>
+                    <!-- Step 2 Looping, Iteration Status -->
+                    <th:block th:each="flight, iterationStatus : ${flights}">
+                        <tr align="center">
+                            <td th:text="${iterationStatus.count}"></td>
+                            <td th:text="${flight.flightNumber}"></td>
+                            <td th:text="${flight.origin}"></td>
+                            <td th:text="${flight.destination}"></td>
+                            <td th:text="${flight.time}"></td>
+                            <td><a th:href="@{/flight/update/} + ${flight.id}" class="btn btn-primary btn-sm">Update Flight</a></td>
+                            <td><a th:href="@{/flight/delete/} + ${flight.id}" class="btn btn-danger btn-sm">Delete Flight</a></td>
+                            <td>
+                                <input type="checkbox" th:field="*{pilotFlight}" th:value="${flight.id}"/>
+                                <label th:for="${#ids.prev('pilotFlight')}"></label>
+                            </td>
+                        </tr>
+                    </th:block>
+                </table><br>
+                <button class="btn btn-danger " type="submit">Delete Selected Flight</button><br></br>
+            </form>
         </div>
     </body>
 </main>

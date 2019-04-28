@@ -45,8 +45,6 @@ public class PilotController {
 	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
 	private String viewPilotSubmit(@RequestParam("licenseNumber") String licenseNumber, Model model){
 		PilotModel pickPilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List<FlightModel> listFlight = flightService.getFlightListByPilot(pickPilot);
-		model.addAttribute("flightList", listFlight);
 		model.addAttribute("pickPilot", pickPilot);
 		model.addAttribute("title", "View Pilot");
 		return "view-pilot";
@@ -64,7 +62,7 @@ public class PilotController {
 	private String updatePilot(@PathVariable (value = "licenseNumber") String licenseNumber, Model model){
 		PilotModel pickPilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		model.addAttribute("pickPilot", pickPilot);
-		 model.addAttribute("title", "Update Pilot");
+		model.addAttribute("title", "Update Pilot");
 		return "update-pilot";
 	}
 	
