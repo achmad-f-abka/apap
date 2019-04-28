@@ -16,6 +16,12 @@ import com.apap.tu05.model.PilotModel;
 import com.apap.tu05.service.FlightService;
 import com.apap.tu05.service.PilotService;
 
+/**
+ * 
+ * PilotController
+ *
+ */
+
 @Controller
 
 public class PilotController {
@@ -34,6 +40,7 @@ public class PilotController {
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
 	private String add (Model model) {
 		model.addAttribute("pilot", new PilotModel());
+		model.addAttribute("title", "Add - New Pilot");
 		return "addPilot";
 	}
 	
@@ -43,15 +50,12 @@ public class PilotController {
 		return "add";
 	}
 	
-	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
-	private String viewPilot (Model model , @RequestParam (value = "licenseNumber") String licenseNumber) {
-		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List <FlightModel> listFlight = flightService.getFlightListByPilot(pilot);
-		model.addAttribute("pilot", pilot);
-		model.addAttribute("flightlist", listFlight);
-		return "view-pilot";
-		
-	}
+	 @RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
+	 public String viewPilot(@RequestParam("licenseNumber")String licenseNumber,Model model) {
+		 PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		 model.addAttribute("pilot",pilot);
+		 return "view-pilot";
+	 }
 	
 	@RequestMapping (value="/pilot/delete/{id}", method = RequestMethod.POST)
 	private String deletePilot (@PathVariable (value = "id") Long pilotid, Model model) {
@@ -63,6 +67,7 @@ public class PilotController {
 	private String updatePilot (@PathVariable (value = "id") Long pilotid, Model model) {
 		 PilotModel pilot = pilotService.getPilotById(pilotid).get();
 		 model.addAttribute("pilot", pilot);
+		 model.addAttribute("title", "Update - Pilot");
 		 return "update-pilot";
 	}
 	
@@ -73,4 +78,3 @@ public class PilotController {
 	}	
 
 }
-

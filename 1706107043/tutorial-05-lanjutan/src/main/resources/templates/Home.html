@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Uda Airways</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<div th:replace="fragments/fragment :: home" ></div>
+	<h1 class="text-center">Welcome!</h1><div class="container-fluid" >
+		
+		<div class="row">
+			<div class="text-center col-xs-4 col-lg-4">
+				<div class="card">
+					<div class="card-header" th:style="'background: #c6f7c3;'">
+						<h4><b>Tambah Pilot</b></h4>
+					</div>
+					<div class="card-body" th:style="'background: #dff7de;'">
+						<p class="card-text" th:style="'font-weight: bold; font-size: 19px;'">Fitur Untuk Menambah Pilot</p>
+						<a class="btn btn-large btn-success" th:href="@{/pilot/add}" th:style="'font-weight: bold;'">Tambah</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="text-center col-xs-4 col-lg-4">
+				<div class="card">
+					<div class="card-header" th:style="'background: #c6f7c3;'">
+						<h4><b>Cari Pilot</b></h4>
+					</div>
+					<form th:action="@{/pilot/view}" method="GET">
+						<div class="card-body" th:style="'background: #dff7de;'">
+							<label for="licenseNumber" th:style="'font-weight: bold; font-size: 19px;'">License Number: </label>
+							<input th:style="'font-weight: bold; font-size: 19px;'" type="text" name="licenseNumber" class="form-control" />
+							<p>
+							<p>
+								<button type="submit" class="btn btn-large btn-success" th:style="'font-weight: bold;'">Cari</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

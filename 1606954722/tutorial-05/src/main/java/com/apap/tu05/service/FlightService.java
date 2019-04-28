@@ -14,11 +14,13 @@ import com.apap.tu05.model.PilotModel;
  
 public interface FlightService {
 	void addFlight (FlightModel flight);
-	void deleteFlight(long id);
+	void deleteFlightById(long id);
 	Optional<FlightModel> getFlightDetailById(Long id);
 	List<FlightModel> viewAllFlight();
 	List<FlightModel> getFlightListByPilot (PilotModel pilot);
 	void updateFlight(Long id, FlightModel newFlight);
+	void deleteFlight(String flightNumber);
+	FlightModel getFlightDetailByFlightNumber(String flightNumber);
 	
 	
 }

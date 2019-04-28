@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Uda Airways</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+<link th:href="@{http://fonts.googleapis.com/css?family=CourierPS}"
+	rel='stylesheet' type='text/css' />
+</head>
+<body>
+	<div th:replace="fragments/fragment :: flightDetail"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container" style="padding-left: 305px;">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card" style="width: 530px;">
+					<div class="card-header" th:style="'background: #c6f7c3;'">
+						<center>
+							<h3>
+								<b>Detail Penerbangan</b>
+							</h3>
+						</center>
+					</div>
+					<center>
+					<form th:action="@{/flight/view}" method="POST">
+						<div class="card-body" th:style="'background: #e8ffe9;'">
+							<table>
+								<tr th:style="'font-weight: bold; background: #c6f7c3;'">
+									<td><label class="text-left" for="flightNumber"
+										style="font-family: CourierPS; font-size: 21px;">Flight
+											Number</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${fNumb}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold; background: #dff7de;'">
+									<td><label class="text-left" for="name"
+										style="font-family: CourierPS; font-size: 21px;">Pilot
+											Name</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${name}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold; background: #c6f7c3;'">
+									<td><label for="licenseNumber"
+										style="font-family: CourierPS; font-size: 21px;">Pilot
+											License Number</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${lNumb}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold; background: #dff7de;'">
+									<td><label class="text-left" for="fly_hour"
+										style="font-family: CourierPS; font-size: 21px;">Pilot
+											Fly Hour </label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${fHour}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold; background: #c6f7c3;'">
+									<td><label for="status"
+										style="font-family: CourierPS; font-size: 21px;">Pilot
+											Status</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${status}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold; background: #dff7de;'">
+									<td><label class="text-left" for="origin"
+										style="font-family: CourierPS; font-size: 21px;">Flight
+											Origin</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${ori}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold; background: #c6f7c3;'">
+									<td><label for="destination"
+										style="font-family: CourierPS; font-size: 21px;">Flight
+											Destination</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${dest}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+								<tr th:style="'font-weight: bold; background: #dff7de;'">
+									<td><label class="text-left" for="time"
+										style="font-family: CourierPS; font-size: 21px;">Flight
+											Time</label></td>
+									<td><label>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+									<td><label th:text="${time}"
+										style="font-family: CourierPS; font-size: 21px;"></label></td>
+								</tr>
+							</table>
+							<br>
+							<center>
+								<table>
+									<thead>
+										<tr>
+											<td>
+												<button type="button" class="btn btn-large btn-success"
+													style="width: 100px; font-weight: bold;"
+													th:attr="onClick=|window.location.href='/flight/view/'|">Back</button>
+											</td>
+										</tr>
+									</thead>
+								</table>
+							</center>
+						</div>
+					</form></center>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

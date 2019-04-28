@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeLeaf.org">
 <head>
 <!-- <title>View Pilot</title> -->
-	<object th:include="fragments/fragment :: title" th:remove="tag"></object>
-	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
-	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+<object th:include="fragments/fragment :: title" th:remove="tag"></object>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
@@ -18,8 +18,10 @@
 					<h4 th:text="'Fly Hour: '+${pilot.flyHour}"></h4>
 					<h4 th:if="${pilot.flyHour} >= 100">Status : Pilot Senior</h4>
 					<h4 th:unless="${pilot.flyHour} >= 100">Status : Pilot Junior</h4>
-					<a class="btn btn-primary" th:href="@{'/pilot/delete/'+${pilot.id}}">Delete Pilot</a>
-					<a class="btn btn-primary" th:href="@{'/pilot/update/'+${pilot.id}}">Update Pilot</a>
+					<a class="btn btn-primary"
+						th:href="@{'/pilot/delete/'+${pilot.id}}">Delete Pilot</a> <a
+						class="btn btn-primary" th:href="@{'/pilot/update/'+${pilot.id}}">Update
+						Pilot</a>
 				</div>
 			</div>
 		</div>
@@ -28,20 +30,42 @@
 	<form th:action="@{/flight/add/} + ${pilot.licenseNumber}" method="GET">
 		<button type="submit" class="btn btn-primary">Add Flight</button>
 	</form>
-<table>
-	<tbody>
-		<tr th:each="flight,iterationStatus : ${allFlight}" th:style="${iterationStatus.even} ? 'display:none;'">
-			<td th:text="${iterationStatus.count}"></td>
-			<td th:text="${flight.flightNumber}"></td>
-			<td th:text="${flight.origin}"></td>
-			<td th:text="${flight.destination}"></td>
-			<td th:text="${flight.time.toString()}"></td>
-			<td><a th:href="@{'/flight/update/'+${flight.id}}">see flight detail</a></td>
-		</tr>
-	</tbody>
-</table>
+
+	<form th:action="@{/flight/delete}" th:object="${pilot}" method="POST">
+		<table border="I">
+			<caption>Flight</caption>
+			<thead>
+				<tr>
+					<th style="text-align: center">No.</th>
+					<th style="text-align: center">Flight Number</th>
+					<th style="text-align: center">Origin</th>
+					<th style="text-align: center">Destination</th>
+					<th style="text-align: center">Time</th>
+					<th style="text-align: center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="flight,iterationStatus : *{pilotFlight}">
+					<td th:text="${iterationStatus.count}"></td>
+					<td th:text="${flight.flightNumber}"></td>
+					<td th:text="${flight.origin}"></td>
+					<td th:text="${flight.destination}"></td>
+					<td th:text="${flight.time.toString()}"></td>
+					
+					<!-- <td><a th:href="@{'/flight/update/'+${flight.id}}">see
+							flight detail</a></td> -->
+					<td>
+						<input type="checkbox" th:field="*{pilotFlight}" th:value="${flight.id}"/>
+						<label th:for="${#ids.prev('pilotFlight')}">Hapus</label>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit">Delete Selected Flight</button>
+	</form>
+
 	<!-- <div th:each="flight,iterationStatus : ${allFlight}" th:style="${iterationStatus.even} ? 'display:none;'">
-		<h3 th:text="${iterationStatis.count}"></h3>
+		<h3 th:text="${iterationStatus.count}"></h3>
 		<h3 th:text="'Flight Number : '+ ${flight.flightNumber}">Flight Number</h3>
 		<h3 th:text="'Origin : ' + ${flight.origin}">Origin</h3>
 		<h3 th:text="'Destination : ' + ${flight.destination}">Destination</h3>

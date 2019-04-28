@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tu05.model.PilotModel;
 import com.apap.tu05.service.PilotService;
@@ -35,17 +36,22 @@ public class PilotController {
 		return "add";
 	}
 	
-	@RequestMapping(value = "/pilot/view/{licenseNumber}", method = RequestMethod.GET)
-	private String viewPilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam(value="licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		if(pilot == null) {
-			return "license-notfound";
-		}
 		model.addAttribute("pilot", pilot);
 		model.addAttribute("listFlight", pilot.getPilotFlight());
 		model.addAttribute("title", "View Pilot");
 		return "view-pilot";
 	}
+	// ...
+	
+//	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+//	public String viewPilot(@RequestParam(value="licenseNumber") String licenseNumber, Model model) {
+//			PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+//			model.addAttribute("pilot", pilot);
+//			return "view-pilot";
+//	}
 	
 	@RequestMapping(value = "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
 	private String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {

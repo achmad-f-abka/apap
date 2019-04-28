@@ -8,6 +8,7 @@
 	<body>
 		<nav th:replace="fragments/fragment :: viewpilot"></nav>
 		<br>
+		<center>
 		<h2>Pilot Data</h2>
 		<br>
 		<h3 th:text="'License Number : ' + ${pilot.licenseNumber}"></h3>
@@ -17,10 +18,28 @@
 		<h3 th:unless="${pilot.fly_hour} >=100">Status: Pilot Junior</h3>
 		
 		<br>
-		<a class="btn btn-primary" th:href="@{'/flight/add/' + ${pilot.licenseNumber}}">Add Flight</a>
-		<br><br>
-		<h4>Flight Data</h4>
+		
+			<table>
+				<thead>
+					<tr>
+						<td><a class="btn btn-primary" th:href="@{'/flight/add/' + ${pilot.licenseNumber}}">Add Flight</a>
+		</td>
+											<td><form th:action="@{/pilot/update/} + ${pilot.id}">
+			<button class="btn btn-primary" type="submit">Update Pilot</button>
+		</form>
+		</td>
+											<td><form th:action="@{/pilot/delete/} + ${pilot.id}">
+			<button class="btn btn-primary" type="submit">Delete Pilot</button>
+		</form></td>
+										</tr>
+									</thead>
+								</table>
+							
 		<br>
+		<br>
+		<h2>Flight Data</h2>
+		<br>
+		<form th:action="@{/flight/delete}" th:object="${pilot}" method="POST">
 		<table border="1" style="width:relative;">
 			<tr>
 				<th>Number</th>
@@ -38,14 +57,17 @@
 				<td th:text="${flight.origin}"></td>
 				<td th:text="${flight.destination}"></td>
 				<td th:text="${flight.time}"></td>
-				
-				<td><a th:href="@{'/flight/view/' + ${flight.flightNumber}}"> See Flight Detail </a></td>
+				<td>
+					<input type="checkbox" th:field="*{pilotFlight}" th:value="${flight.id}"/>
+					<label th:for="${#ids.prev('pilotFlight')}">Hapus</label>
+				</td>
 			</tr>
 				</tbody>
-			
-			
 		</table>
-		
+		<br>
+		<button  class="btn btn-primary" type="submit">Delete Selected Flight</button>
+		</form>
+		</center>
 	</body>
 
 </html>

@@ -47,18 +47,29 @@ public class PilotController {
 		return "add";
 	}
 
+//	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
+//	private String view(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+//		plt = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+//		List<FlightModel> lFlight = flightService.getFlightListByPilot(plt);
+//		model.addAttribute("license_number", plt.getLicenseNumber().toString());
+//		FlightModel flight = new FlightModel();
+//		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+//		flight.setPilot(pilot);
+//		model.addAttribute("name", plt.getName().toString());
+//		model.addAttribute("fly_hour", plt.getFlyHour());
+//		model.addAttribute("found", plt);
+//		model.addAttribute("fList", lFlight);
+//		
+//		model.addAttribute("flight", flight);
+//		model.addAttribute("pilot", pilot);
+//		return "view-pilot";
+//	}
+	
 	@RequestMapping(value = "/pilot/view", method = RequestMethod.GET)
-	private String view(@RequestParam("licenseNumber") String licenseNumber, Model model) {
-		plt = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		List<FlightModel> lFlight = flightService.getFlightListByPilot(plt);
-		model.addAttribute("license_number", plt.getLicenseNumber().toString());		
-		FlightModel flight = new FlightModel();
+	private String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		flight.setPilot(pilot);
-		model.addAttribute("name", plt.getName().toString());
-		model.addAttribute("fly_hour", plt.getFlyHour());
-		model.addAttribute("found", plt);
-		model.addAttribute("fList", lFlight);
+		model.addAttribute("pilot", pilot);
+		model.addAttribute("lNumb", licenseNumber);
 		return "view-pilot";
 	}
 
@@ -69,7 +80,7 @@ public class PilotController {
 			return new ResponseEntity(HttpStatus.NOT_FOUND).toString();
 		}
 		pilotService.deletePilot(licenseNumber);
-		return "view-pilot";
+		return "home";
 	}
 
 	@RequestMapping(value = "/pilot/update/", method = RequestMethod.POST)

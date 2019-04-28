@@ -30,10 +30,10 @@ public class FlightServiceImpl implements FlightService {
 		return flightDb.findAll();
 	}
 
-	@Override
-	public void deleteFlight(PilotModel pilot, String flightNumber) {
-		flightDb.deleteByPilotAndFlightNumber(pilot, flightNumber);
-	}
+//	@Override
+//	public void deleteFlight(PilotModel pilot, String flightNumber) {
+//		flightDb.deleteByPilotAndFlightNumber(pilot, flightNumber);
+//	}
 
 	@Override
 	public FlightModel getFlight(PilotModel pilot, String flightNumber) {
@@ -43,10 +43,12 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public void updateFlight(FlightModel flight) {
-		flightDb.save(flight);
-		
+		flightDb.save(flight);	
 	}
 	
-	
+	@Override
+	public void deleteFlightById(long id) {
+		flightDb.deleteFlightById(id);
+	}
 
 }

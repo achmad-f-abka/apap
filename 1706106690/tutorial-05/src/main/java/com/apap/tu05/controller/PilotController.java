@@ -84,4 +84,10 @@ public class PilotController {
 		pilotService.addPilot(pilot);
 		return "update-info.html";
 	}
+	
+	@RequestMapping(value = " /pilot/view", method = RequestMethod.GET)
+	public String viewPilot(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+		PilotModel pilot = pilotService.getPilotDetailByLicenseumber(licenseNumber);
+		return "view-pilot";
+	}
 }

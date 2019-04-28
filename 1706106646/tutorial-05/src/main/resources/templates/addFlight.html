@@ -12,18 +12,30 @@
         <h2>Welcome!</h2>
 
         <h3>Tambah Penerbangan</h3>
-        <form th:action="@{/flight/add}" th:object="${flight}" method="POST">
-            Flight Number: <br>
-            <input type="hidden" th:field="*{pilot}"/>
-            <input type="text" name="flightNumber" /> <br>
-            Origin: <br>
-            <input type="text" name="origin" /> <br>
-            Destination: <br>
-            <input type="text" name="destination" /> <br>
-            Time: <br>
-            <input type="date" name="time" /> <br><br>
-            <button type="submit">Submit</button>
-        </form>
+        <form th:action="@{/flight/add/} + ${pilot.licenseNumber}" th:object="${pilot}" method = "POST">
+		<input type="hidden" th:field="*{licenseNumber}"></input>
+        <table class="table table-striped" style="width:950px">
+			<thead>
+				<tr class="text-center table-active">
+					<th>Flight Number</th>
+					<th>Origin</th>
+					<th>Destination</th>
+					<th>Time</th>
+					<th width="100px"><button class="btn btn-info btn-sm" type="submit" name="addRow">Add Row</button></th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="flight,rowStat : *{pilotFlight}">
+				<td><input class="form-control" type="text" th:field="*{pilotFlight[__${rowStat.index}__].flightNumber}"/></td>
+				<td><input class="form-control" type="text" th:field="*{pilotFlight[__${rowStat.index}__].origin}"/></td>
+				<td><input class="form-control" type="text" th:field="*{pilotFlight[__${rowStat.index}__].destination}"/></td>
+				<td><input class="form-control" type="date" th:field="*{pilotFlight[__${rowStat.index}__].time}"/></td>
+				<td  align="center"><button class="btn btn-danger btn-sm" type="submit" name="removeRow" th:value="${rowStat.index}">x</button></td>
+			</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-primary" type="submit" name="save">Submit</button>
+		</form>
     </body>
 
 </html>
