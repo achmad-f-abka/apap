@@ -32,6 +32,11 @@ public class PilotServiceImpl implements PilotService {
     public void deletePilotByLicenseNumber(String licenseNumber) {
         pilotDb.deleteByLicenseNumber(licenseNumber);
     }
+    
+    @Override
+    public void deletePilot (PilotModel pilot) {
+        pilotDb.delete(pilot);;
+    }
 
     @Override
     public Optional<PilotModel> getPilotDetailById(long id) {
