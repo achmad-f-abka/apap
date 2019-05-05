@@ -83,10 +83,10 @@ public class FlightModel implements Serializable {
         this.destination = destination;
     }
     /**
-     * @param time2 the time to set
+     * @param time the time to set
      */
-    public void setTime(java.util.Date time) {
-        this.time = (@NotNull Date) time;
+    public void setTime(Date time) {
+        this.time = time;
     }
     /**
      * @param pilot the pilot to set
