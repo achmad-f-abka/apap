@@ -33,8 +33,8 @@ public class FlightServiceImpl implements FlightService {
     public Optional<FlightModel> getFlightDetailByFlightNumber(String flightNumber) {
         return flightDb.findByFlightNumber(flightNumber);
     }
-    
-    @Override
+
+	@Override
 	public void deleteFlight(FlightModel flight) {
 		flightDb.delete(flight);
 	}

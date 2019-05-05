@@ -1,8 +1,9 @@
 package com.apap.tu07.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -88,7 +89,7 @@ public class FlightController {
 //        }
 //        return "add";
 //    }
-    
+
     @GetMapping(value = "/view/{flightNumb}")
     private FlightModel flightView(@PathVariable("flightNumb") String flightNumb) {
         FlightModel flight = flightService.getFlightDetailByFlightNumber(flightNumb).get();
@@ -99,8 +100,7 @@ public class FlightController {
     private List<FlightModel> flightViewAll(@ModelAttribute FlightModel flight) {
         return flightService.getAllFlight();
     }
-
-
+    
 //    @RequestMapping(value = "/flight/view", method = RequestMethod.GET)
 //    private @ResponseBody FlightModel view(@RequestParam(value = "flightNumber") String flightNumber, Model model) {
 //        FlightModel archive = flightService.getFlightDetailByFlightNumber(flightNumber).get();
@@ -113,7 +113,7 @@ public class FlightController {
         flightService.deleteFlight(flight);
         return "flight has been deleted";
     }
-
+    
 //    @RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
 //    private String delete(@ModelAttribute PilotModel pilot, Model model) {
 //        for (FlightModel flight : pilot.getListFlight()) {
@@ -121,7 +121,7 @@ public class FlightController {
 //        }
 //        return "delete";
 //    }
-    
+
     @PutMapping(value = "/update/{flightNumb}")
     private String updateFlight(@PathVariable("flightNumb") String flightNumb,
     		@RequestParam("destination") String dest,
@@ -137,7 +137,7 @@ public class FlightController {
         flightService.updateFlight(flightNumb, flight);
         return "flight update success";
     }
-
+    
 //    @RequestMapping(value = "/flight/update", method = RequestMethod.GET)
 //    private String update(@RequestParam(value = "flightNumber") String flightNumber, Model model) {
 //        FlightModel archive = flightService.getFlightDetailByFlightNumber(flightNumber).get();
@@ -151,3 +151,5 @@ public class FlightController {
 //        return flight;
 //    }
 }
+
+

@@ -39,14 +39,12 @@ public class PilotServiceImpl implements PilotService {
     }
 
 	@Override
-	public void deletePilot(PilotModel pilot) {
-		// TODO Auto-generated method stub
-		pilotDb.delete(pilot);
+	public void updatePilot(long pilotId, PilotModel pilot) {
+		
 	}
 
 	@Override
-	public void updatePilot(long id, PilotModel pilot) {
-		// TODO Auto-generated method stub
-		
+	public void deletePilot(PilotModel pilot) {
+		pilotDb.delete(pilot);
 	}
 }
