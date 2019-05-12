@@ -14,6 +14,38 @@
     <div class="container-fluid">
         <h2 th:text=" 'Hello ' +${#httpServletRequest.remoteUser} + ' !'">Login as</h2>
         <div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						Update Password
+					</div>
+					<div class="card-body">
+						<form th:action="@{/user/updatePassword}" method="post">
+							<p th:text="${message}"></p>
+							<input type="hidden" name="username" th:value="${#httpServletRequest.userPrincipal.name}">
+							<div class="row form-group">
+								<label class="col-sm-4"> Password Lama: </label>
+								<input class="col-sm-8 form-control input-sm" type="password" name="oldPassword">
+							</div>
+							<div class="row form-group">
+								<label class="col-sm-4"> Password Baru: </label>
+								<input class="col-sm-8 form-control input-sm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+								title="Must contain at least one number and one uppercase and lowercase letter, 
+								and at least 8 or more characters" type="password" name="newPassword">
+							</div>
+							<div class="row form-group">
+								<label class="col-sm-4"> Konfirmasi Password Baru: </label>
+								<input class="col-sm-8 form-control input-sm" type="password" name="confirmPassword">
+							</div>
+							<div>
+								<button type="submit" class="btn btn-primary">Simpan</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
