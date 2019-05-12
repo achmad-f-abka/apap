@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -17,28 +16,21 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-			http
-				.authorizeRequests()
-				.antMatchers("/css/**").permitAll()
-				.antMatchers("/jss/**").permitAll()
-				.antMatchers("/flight/**").hasAnyAuthority("PILOT")
-				.anyRequest().authenticated()
-				.and()
-				.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.and()
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-				.permitAll();
+		http
+			.authorizeRequests()
+			.antMatchers("/css/**").permitAll()
+			.antMatchers("/js/**").permitAll()
+			.antMatchers("/flight/**").hasAnyAuthority("PILOT")
+			.antMatchers("/pilot/**").hasAnyAuthority("ADMIN")
+			.anyRequest().authenticated()
+			.and()
+			.formLogin()
+			.loginPage("/login")
+			.permitAll()
+			.and()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+			.permitAll();
 	}
-	
-//	@Autowired
-//	public void configureGlobal (AuthenticationManagerBuilder auth) throws Exception{
-//			auth.inMemoryAuthentication()
-//				.passwordEncoder(encoder())
-//				.withUser("cokicoki").password(encoder().encode("enaksekali"))
-//				.roles("USER");
-//	}
 	
 	@Bean
 	public BCryptPasswordEncoder encoder() {
@@ -52,4 +44,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
 	}
+	
+//	@Autowired
+//	public void configureGlobal (AuthenticationManagerBuilder auth) throws Exception{
+//		auth.inMemoryAuthentication()
+//			.passwordEncoder(encoder())
+//			.withUser("cokicoki").password(encoder().encode("enaksekali"))
+//			.roles("USER");
+//	}
+	
+//	@Bean
+//	public BCryptPasswordEncoder encoder() {
+//		return new BCryptPasswordEncoder();
+//	}
+
 }
