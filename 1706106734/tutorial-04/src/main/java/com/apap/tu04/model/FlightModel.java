@@ -1,18 +1,20 @@
-/* Tutorial 04 - Database
- * Nama: Faris Abdurrahman
- * NIM : 1706106734
- */
-
 package com.apap.tu04.model;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -34,7 +36,7 @@ public class FlightModel implements Serializable {
 	
 	@NotNull
 	@Size(max = 50)
-	@Column(name = "destination", nullable = false)
+	@Column (name = "destination", nullable = false)
 	private String destination;
 	
 	@NotNull
@@ -43,7 +45,6 @@ public class FlightModel implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pilot_licenseNumber", referencedColumnName = "license_number", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private PilotModel pilot;
 
