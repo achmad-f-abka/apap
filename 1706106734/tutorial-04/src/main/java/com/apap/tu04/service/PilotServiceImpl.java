@@ -1,30 +1,25 @@
-/* Tutorial 04 - Database
- * Nama: Faris Abdurrahman
- * NIM : 1706106734
- */
 package com.apap.tu04.service;
 
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.apap.tu04.model.FlightModel;
-import com.apap.tu04.repository.FlightDb;
+import com.apap.tu04.model.PilotModel;
+import com.apap.tu04.repository.PilotDb;
 
-/**
- * FlightServiceImpl
- * @author faris.abdurrahman71
- *
- */
 @Service
 @Transactional
-public class PilotServiceImpl implements FlightService {
+public class PilotServiceImpl implements PilotService{
 	@Autowired
-	private FlightDb flightDb;
+	private PilotDb pilotDb;
 	
 	@Override
-	public void addFlight(FlightModel flight) {
-		flightDb.save(flight);
+	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
+		return pilotDb.findByLicenseNumber(licenseNumber);
+	}
+	@Override
+	public void addPilot(PilotModel pilot) {
+		pilotDb.save(pilot);
 	}
 }
