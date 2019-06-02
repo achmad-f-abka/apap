@@ -1,4 +1,4 @@
-![Screenshot](dio.png)
+![Screenshot](http://github.com/achmad-f-abka/apap/tree/master/Tugas-Akhir-Kelompok-2/dio.png)
 
 
 <h2>Kelompok 2</h2>
