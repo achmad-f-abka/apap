@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Reagen</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">	
+    
+    <br>
+        <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update Kebutuhan Reagen
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/kebutuhan/ubah}" th:object="${kebutuhan}" method="POST">
+                            <input type="hidden" name="id" th:value="${kebutuhan.id}" />
+                            ID Reagen <br>
+                            <input type="text" name="reagen" th:value="${kebutuhan.reagen.id}" readonly = "readonly"/>
+                            <br>Jumlah <br>
+                            <input type="text" name="jumlah" th:value="${kebutuhan.jumlah}" readonly = "readonly"/>
+                            <br>Tanggal Update <br>
+                            <input type="text" name="tanggalUpdate" th:value="${kebutuhan.tanggalUpdate}" readonly = "readonly"/>
+                            
+                           <br> Status <br>
+                           
+                           <div class="row form-group">
+                             
+                               <select  name="status">
+                                	<option  th:value=1  >Aktif/belum dibeli</option>
+                                	<option  th:value=0  >Tidak Aktif/sudah dibeli</option>
+                                </select>
+                            </div>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

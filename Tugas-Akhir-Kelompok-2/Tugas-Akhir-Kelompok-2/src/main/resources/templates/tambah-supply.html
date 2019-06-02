@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tambah Perencanaan Reagen</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+    
+    <h2 th:text="'Hello '+${#httpServletRequest.remoteUser}+ ' !' "></h2>
+    <br>
+    
+    <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Tambah Perencanaan Reagen
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/stok/tambah}" th:object="${labSupplies}" method="post">
+ 
+                            
+                            <div class="row form-group">
+								<label class="col-sm-4"> Jenis Barang</label>
+								<input class="col-sm-8 form-control input-sm"  type="text" name="jenis">
+							</div>
+							   
+                            <div class="row form-group">
+								<label class="col-sm-4"> Nama Barang</label>
+								<input class="col-sm-8 form-control input-sm"  type="text" name="nama">
+							</div>
+							
+							   
+                            <div class="row form-group">
+								<label class="col-sm-4"> Jumlah Barang</label>
+								<input class="col-sm-8 form-control input-sm"  type="text" name="jumlah">
+							</div>
+							
+							<div class="row form-group">
+								<label class="col-sm-4"> Deskripsi</label>
+								<input class="col-sm-8 form-control input-sm"  type="text" name="deskripsi">
+							</div>
+                            
+                            <div>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                        <br>
+							<p style="color:red" th:text="${notif}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

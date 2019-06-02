@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Stok Supply Lab</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+    
+    <br>
+    <h2 align="center" >Stok Supply Lab</h2>
+        
+    <div class="card-body">
+		<table border="1" align="center">
+			<thead align="center">
+			<tr>
+			<th>Id</th>
+			<th>Jenis</th>
+			<th>Nama</th>
+			<th>Jumlah</th>
+			<th>Deskripsi</th>
+			<th>Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="supplies : ${listSupplies}">
+			<td align ="center" th:text="${supplies.id}"></td>
+			<td align ="center" th:text="${supplies.jenis}"></td>
+			<td align ="center" th:text="${supplies.nama}"></td>
+			<td align ="center" th:text="${supplies.jumlah}"></td>
+			<td align ="center" th:text="${supplies.deskripsi}"></td>
+		
+			<td><form th:action="@{'/lab/stok/ubah/' + ${supplies.id}}" method=GET>
+			<button type="submit">Ubah Persediaan</button></form>
+			</td>
+			</tr>
+	</tbody>
+		</table>
+		</div>
+		
+   
+   	<h2 align="center" th:text=${notif}></h2>
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

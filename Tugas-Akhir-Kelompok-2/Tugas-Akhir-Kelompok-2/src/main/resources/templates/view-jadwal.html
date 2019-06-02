@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Jadwal Jaga</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+    
+    <br>
+    <h2 align="center" >Jadwal Jaga</h2>
+        
+    <div class="card-body">
+		<table border="1" align="center">
+			<thead align="center">
+			<tr>
+			<th>Tanggal</th>
+			<th>Jam Mulai</th>
+			<th>Jam Selesai</th>
+			<th>Nama Staff</th>
+			<th>Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="jadwal : ${jadwalJaga}">
+			<td align ="center" th:text="${jadwal.tanggal}"></td>
+			<td align ="center" th:text="${jadwal.waktuMulai}"></td>
+			<td align ="center" th:text="${jadwal.waktuSelesai}"></td>
+			<td align ="center" th:text="${jadwal.idStaff.nama}"></td>
+		
+			<td><form th:action="@{'/lab/jadwal-jaga/ubah/' + ${jadwal.id}}" method=GET>
+			<button type="submit">Ubah Jadwal</button></form>
+			</td>
+			</tr>
+	</tbody>
+		</table>
+		</div>
+		
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

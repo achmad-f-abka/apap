@@ -1,6 +1,3 @@
-![Screenshot](https://i.imgflip.com/32ghbn.jpg)
-
-
 <h2>Kelompok 2</h2>
 
 <h3> Al Faruqi Hasnul - 1606954722 </h3>

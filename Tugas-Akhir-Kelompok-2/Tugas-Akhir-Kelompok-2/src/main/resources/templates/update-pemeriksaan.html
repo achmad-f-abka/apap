@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Pemeriksaan</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">	
+    
+    <br>
+        <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update Status Pemeriksaan
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/pemeriksaan/ubah}" th:object="${pemeriksaan}" method="POST">
+                            <input type="hidden" name="id" th:value="${pemeriksaan.id}" />
+                            Nama <br>
+                            <input type="text" name="pasien" th:value="${pemeriksaan.pasien.id}" readonly = "readonly"/>
+                            <br>Tanggal Pengajuan <br>
+                            <input type="text" name="tanggalPengajuan" th:value="${pemeriksaan.tanggalPengajuan}" readonly = "readonly"/>
+                           
+                            <input type="hidden" name="tanggalPemeriksaan" th:value="${pemeriksaan.tanggalPemeriksaan}" />
+                            <input type="hidden" name="jenis" th:value="${pemeriksaan.jenis.id}" />
+                            <input type="hidden" name="jadwal" th:value="${pemeriksaan.jadwal.id}" />
+                       
+                            <br>Status 
+                           
+                           <div class="row form-group" >
+                             
+                               <select   name="status" th:attr="min=${max}" >
+                             	 <option th:each="stats : ${listStatus}" th:value="${stats}" th:text="${stats}" ></option>
+                                </select>
+           
+                            </div>
+                           <p style="color:blue;font-size:14px;" th:text="'*Ket Status = 1 : Menunggu Persetujuan, 2 : Diproses, 3 : Selesai'"> </p>
+                            <label th:if="${pemeriksaan.status}>1">Hasil</label>
+                            <input th:if="${pemeriksaan.status}>1" type="text" name="hasil" th:value="${pemeriksaan.hasil}" /><br>
+                          	
+                           <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>
