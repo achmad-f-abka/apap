@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Akun</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+		<p style="color:red" th:text="${message}"></p>
+	
+	<div class="row">
+			<div class="col-md-6">
+   				<div class="card">
+	        		 <div class="card-header">
+	             	 	Tambah Akun Baru
+	        		 </div>
+	         		<div class="card-body">
+	         			<form th:action="@{'/lab/tambah-user'}" method=GET>
+		         	 		<button type="submit" class="btn btn-primary">Tambah Akun </button>
+		         	 	</form>
+	         	 	</div>
+	         	</div>
+      		</div>
+    	</div>	 
+		<br>
+		
+	<div class="row">
+			<div class="col-md-6">
+   				<div class="card">
+	        		 <div class="card-header">
+	             	 Ubah Password
+	        		 </div>
+	         		<div class="card-body">
+		         	 	<form th:action="@{/lab/update-password}"  method="GET">
+		         	 		<button type="submit" class="btn btn-primary">Ubah Password</button>
+		         	 	</form>
+	         	 	</div>
+	         	</div>
+      		</div>
+    	</div>	 
+		<br>
+
+    </div>
+</body>
+
+</html>

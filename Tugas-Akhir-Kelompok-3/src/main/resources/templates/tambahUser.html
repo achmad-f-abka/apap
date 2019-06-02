@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tambah Akun</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+    <p style="color:red" th:text="${message}"></p>
+	
+    <h3 th:text="'Hello '+${#httpServletRequest.remoteUser}+ ' !' "></h3>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Tambah Akun Baru
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/add-user}" method="POST">
+                            <div class="row form-group">
+                                <label class="col-sm-4">Username</label>
+                                <input class="col-sm-8 form-control input-sm" type="text" name="username">
+                            </div>
+                            <div class="row form-group">
+								<label class="col-sm-4"> Password</label>
+								<input class="col-sm-8 form-control input-sm"  type="password" name="password">
+							</div>
+                            <div class="row form-group">
+                                <label class="col-sm-4">Role</label>
+                                <select name="role">
+                                	<option th:value="0">--Pilih Role--</option>
+                                	
+                                	<option value="admin_lab">ADMIN LABORATORIUM</option>
+                                	<option value="admin_farmasi">ADMIN FARMASI</option>
+                                	<option value="admin_rawat">ADMIN RAWAT JALAN</option>
+                                	<option value="staf_lab">STAF LABORATORIUM</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+ 
+        <br>
+      
+    </div>
+</body>
+
+</html>

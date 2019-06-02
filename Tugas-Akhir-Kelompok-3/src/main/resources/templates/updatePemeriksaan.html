@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Ubah Status Pemeriksaan</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">	
+    
+    <br>
+        <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Ubah Status Pemeriksaan Lab
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/pemeriksaanLab/ubah}" th:object="${pemeriksaanLab}" method="POST">
+                            <input type="hidden" name="id" th:value="${pemeriksaanLab.id}" />
+                            
+                            <label class="col-sd-4">Nama </label>
+                            <input class="col-sd-8 form-control input-sm" type="hidden" name="pasien" th:value="${pemeriksaanLab.pasien.id}" readonly = "readonly"/> <br>
+                            <h6 th:value="${pemeriksaanLab.pasien.id}"></h6>
+                            
+                            <label class="col-sd-4" >Tanggal Pengajuan </label>
+                            <input class="col-sd-8 form-control input-sm" type="hidden" name="tanggalPengajuan" th:value="${pemeriksaanLab.tanggalPengajuan}" readonly = "readonly"/>
+                            <h6 th:value="${pemeriksaanLab.tanggalPengajuan}"></h6>
+                            
+                            <input type="hidden" name="tanggalPemeriksaan" th:value="${pemeriksaanLab.tanggalPemeriksaan}" />
+                            <input type="hidden" name="jenis" th:value="${pemeriksaanLab.jenis.id}" />
+                            <input type="hidden" name="jadwal" th:value="${pemeriksaanLab.jadwal.id}" />
+              
+                          
+                              <label class="col-sd-4">Status</label>
+                               <select   name="status" th:attr="min=${max}" class="col-sd-8 form-control input-sm" >
+                             	 <option th:value="0">--Pilih Status--</option>
+                             	 <option th:each="status : ${listStatus}" th:value="${status}" th:text="${status}" ></option>
+                                </select>
+           
+                           
+                          <p style="color:black; font-size:12px;" th:text="'*Keterangan Status = 1 : Menunggu Persetujuan, 2 : Diproses, 3 : Selesai'"> </p>
+                           
+                            <label class="col-sd-4" th:if="${pemeriksaanLab.status}>1">Hasil</label>
+                            <input  class="col-sd-8 form-control input-sm" th:if="${pemeriksaanLab.status}>1" type="text" name="hasil" th:value="${pemeriksaanLab.hasil}" /><br>
+                          	
+                           <br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <br>
+      
+    </div>
+</body>
+
+</html>
