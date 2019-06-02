@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Ubah Jadwal Jaga Staf</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">	
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update Data Jadwal Jaga Staf
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/jadwal-jaga/ubah}" th:object="${jadwalJaga}" method="POST">
+                            <input class="col-sd-8 form-control input-sm" type="hidden" name="id" th:value="${jadwalJaga.id}" />
+                            
+                            <label class="col-sd-4">Tanggal Jaga</label>
+                            <input class="col-sd-8 form-control input-sm" type="date" name="tanggal" th:value="${jadwalJaga.tanggal}" th:attr="min=${tanggalSekarang}" /> <br>
+                            
+                            <label class="col-sd-4">Jam Mulai </label>
+                            <input  class="col-sd-8 form-control input-sm"type="text" name="wMulai" th:value="${jadwalJaga.waktuMulai}" /><br>
+                             
+                            <label class="col-sd-4">Jam Selesai </label> 
+                            <input class="col-sd-8 form-control input-sm" type="text" name="wSelesai" th:value="${jadwalJaga.waktuSelesai}" />
+                             
+                            <label class="col-sd-4">Nama Staf</label>
+                               <select   name="staf_Id" class="col-sd-8 form-control input-sm" >
+                              	 <option th:value="0">--Pilih Staf--</option>
+                             	 <option th:each="staff:${staffList}"  th:value="${staff.id}" th:text="${staff.nama}" ></option>
+                                </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

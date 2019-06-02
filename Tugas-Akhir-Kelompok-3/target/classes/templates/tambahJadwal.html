@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tambah Jadwal Jaga Staf</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+  
+       <div class="container-fluid" >
+       <br>
+       <div class="row">
+            <div class="col-md-6">
+             <div class="card">
+                <div class="card-header">
+                        Tambah Jadwal Jaga Staf
+                    </div>
+                    <div class="card-body">
+                        <form  th:action="@{/lab/jadwal-jaga/tambah}" th:object="${jadwalJaga}" method="post">
+                           <label class="col-sd-4">Tanggal Jaga</label>
+                           <input class="col-sd-8 form-control input-sm" type="Date" name="tanggal" th:attr="min=${tglSekarang}"/> <br>
+                          
+                          <label class="col-sd-4">Waktu Mulai </label>
+                          <input class="col-sd-8 form-control input-sm" type="text" name="wMulai"/> <br>
+                           
+                           <label class="col-sd-4">Waktu Selesai </label>
+                           <input class="col-sd-8 form-control input-sm" type="text" name="wSelesai"/> <br>
+                           
+                       	  <label class="col-sd-4">Nama Staf </label>  
+                       	  <select class="col-sd-8 form-control input-sm" name="staf_Id">
+                               <option class="col-sd-8 form-control input-sm" th:value=0>--Pilih Staf--</option>
+                               <option class="col-sd-8 form-control input-sm" th:each="staff : ${staffList}" th:value="${staff.id}" th:text="${staff.nama}" ></option>
+                          </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                   </div> 
+                </div>
+            </div>
+   		 </div>
+</body>
+
+</html>
