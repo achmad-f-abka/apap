@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Manajemen Jadwal</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+    
+    <br>
+    <div>
+        <form th:action="@{/lab/jadwal-jaga/tambah}" method="get">
+        	<button type="submit" class="btn btn-primary">Tambah Jadwal</button>
+        	</form>
+        </div>
+        
+        <br>
+        <div>
+        <form th:action="@{/lab/jadwal-jaga}" method="get">
+			<br>
+			<input  type="Date" name="tanggal">
+        	<button type="submit" class="btn btn-primary">Lihat Jadwal</button>
+        	</form>
+        </div>
+        
+         <br>
+         
+          <form th:action="@{/lab/jadwal-jaga/jadwal-periksa}" method="get">
+			<br>
+        	<button type="submit" class="btn btn-primary">Assign Jadwal</button>
+        	</form>
+        </div>
+        
+	<p style="color:red" th:text="${notif}"></p>
+        
+        
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

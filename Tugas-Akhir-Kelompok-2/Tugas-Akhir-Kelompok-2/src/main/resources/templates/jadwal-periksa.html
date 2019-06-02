@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Jadwal Pemeriksaan</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+    
+    <br>
+    <h2 align="center" >Jadwal Pemeriksaan</h2>
+    
+    <p align="center" style="color:red"	th:text="${notif}"></p>
+    <div class="card-body">
+		<table border="1" align="center">
+			<thead>
+			<tr>
+			<th>Nama Pasien</th>
+			<th>Tanggal Permintaan</th>
+			<th>Status</th>
+			<th>Rencana Pemeriksaan</th>
+			<th>Waktu Mulai</th>
+			<th>Waktu Selesai</th>
+			<th>Penanggung Jawab Jaga</th>
+			
+			<th>Action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="pemeriksaan : ${listPemeriksaan}">
+			<td align ="center" th:text="${pemeriksaan.pasien.nama}"></td>
+			<td align ="center" th:text="${pemeriksaan.tanggalPengajuan}"></td>
+			<td align ="center" th:if="${pemeriksaan.status}==1">Menunggu Persetujuan</td>
+			<td align ="center" th:if="${pemeriksaan.status}==2">Diproses</td>
+			<td align ="center" th:if="${pemeriksaan.status}==3">Selesai</td>
+			<td align ="center" th:text="${pemeriksaan.jadwal.tanggal}"></td>
+			<td align ="center" th:text="${pemeriksaan.jadwal.waktuMulai}"></td>
+			<td align ="center" th:text="${pemeriksaan.jadwal.waktuSelesai}"></td>
+			<td align ="center" th:text="${pemeriksaan.jadwal.idStaff.nama}"></td>
+			<td><form th:action="@{'/lab/jadwal-jaga/jadwal-periksa/assign/' + ${pemeriksaan.id}}" method=GET>
+			<button type="submit">Assign Rencana Pemeriksaan</button></form>
+			</td>
+			</tr>
+	</tbody>
+		</table>
+		</div>
+		
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

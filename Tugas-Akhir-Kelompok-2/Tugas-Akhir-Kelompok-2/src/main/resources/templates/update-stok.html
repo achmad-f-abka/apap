@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Stok</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">	
+    
+    <br>
+        <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update Stok Lab
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/stok/ubah}" th:object="${supplies}" method="POST">
+                            <input type="hidden" name="id" th:value="${supplies.id}" />
+                            Jenis <br>
+                            <input type="text" name="jenis" th:value="${supplies.jenis}" readonly = "readonly"/>
+                            <br>Nama <br>
+                            <input type="text" name="nama" th:value="${supplies.nama}" readonly = "readonly"/>
+                             <br>Jumlah <br>
+                            <input type="text" name="jumlah" th:value="${supplies.jumlah}" />
+                             <br>Deskripsi <br>
+                            <input type="text" name="deskripsi" th:value="${supplies.deskripsi}" readonly = "readonly"/>
+
+                           
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

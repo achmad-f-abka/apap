@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Pemeriksaan</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">	
+    
+    <br>
+        <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update Status Pemeriksaan
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/jadwal-jaga/jadwal-periksa/assign}" th:object="${pemeriksaan}" method="POST">
+                            <input type="hidden" name="id" th:value="${pemeriksaan.id}" />
+                            Nama Pasien <br>
+                            <input type="text" name="pasien" th:value="${pemeriksaan.pasien.id}" readonly = "readonly"/>
+                            <br>Tanggal Permintaan <br>
+                            <input type="text" name="tanggalPengajuan" th:value="${pemeriksaan.tanggalPengajuan}" readonly = "readonly"/>  
+                            <input type="hidden" name="tanggalPemeriksaan" th:value="${pemeriksaan.tanggalPemeriksaan}" />
+                            <input type="hidden" name="jenis" th:value="${pemeriksaan.jenis.id}" />
+                            <br>Status <br>
+                            <input type="text" name="status" th:value="${pemeriksaan.status}" readonly = "readonly"/>
+                            <br>Masukkan Jadwal <br>
+                            <select name="idJadwal">
+                            	<option th:each="jadwalJaga : ${listJadwalJaga}" th:value="${jadwalJaga.id}" 
+                            	th:text="${jadwalJaga.tanggal}+' - '+ ${jadwalJaga.waktuMulai}+' - '+ ${jadwalJaga.waktuSelesai}"></option>
+                            </select>
+
+                           <br>
+                          	
+                           <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>

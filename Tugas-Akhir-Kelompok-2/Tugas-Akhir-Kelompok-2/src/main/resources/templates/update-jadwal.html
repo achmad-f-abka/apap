@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Jadwal Jaga</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">	
+    
+    <br>
+        <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update Jadwal Jaga
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/jadwal-jaga/ubah}" th:object="${jadwalJaga}" method="POST">
+                            <input type="hidden" name="id" th:value="${jadwalJaga.id}" />
+                            Tanggal <br>
+                            <input type="date" name="tanggal" th:value="${jadwalJaga.tanggal}" th:attr="min=${tanggalSekarang}" />
+                            <br>Jam Mulai <br>
+                            <input type="text" name="wmulai" th:value="${jadwalJaga.waktuMulai}" />
+                             <br>Jam Selesai <br>
+                            <input type="text" name="wselesai" th:value="${jadwalJaga.waktuSelesai}" />
+                             <br> Status <br>
+                           
+                           <div class="row form-group">
+                             
+                               <select  name="staffId">
+                                	<option th:each="staff:${staffList}"  th:value="${staff.id}" th:text="${staff.nama}" ></option>
+                                	
+                                </select>
+                            </div>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   
+      
+        
+          
+      
+       
+       
+        <br>
+      
+    </div>
+</body>
+
+</html>
