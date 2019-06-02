@@ -9,4 +9,6 @@
 <h3> Sry Dewindi Tampubolon			(1706107030) </h3>
 <h3> Tsalis Restu Puspita Asri		(1706107056) </h3>
 
+<h4> note : database di folder resources </h4>
+
 
