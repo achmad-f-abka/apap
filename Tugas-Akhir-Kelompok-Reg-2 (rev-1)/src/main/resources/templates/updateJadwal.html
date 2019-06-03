@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Jadwal Jaga</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid" style="padding : 20px; width : 80%; float : middle; margin-left : 350px">
+        <h2>Silahkan Ubah Jadwal</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Ubah Jadwal
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/jadwal-jaga/ubah}" th:object="${jadwal}" method="POST">
+                        	<input type="hidden" name="id" th:value="${jadwal.id}" />
+                            Tanggal: <br>
+                            <input type="date" name="tanggal" th:value="${jadwal.tanggal}" class="form-control"/>
+                            <br>
+                            Jam Mulai: <br>
+                            <input type="text" name="waktuMulai" th:value="${jadwal.waktuMulai}" class="form-control"/>
+                            <br>
+                            Jam Selesai: <br>
+                            <input type="text" name="waktuSelesai" th:value="${jadwal.waktuSelesai}" class="form-control"/>
+                            <br>
+<<<<<<< HEAD
+                            Nama Staf : <br>
+                            <select name= staffModel.id class="form-control"/>
+                            	<option selected disabled th:text= "${jadwal.staffModel.name}"></option>
+                            	<option th:each = "staff : ${staffList}" th:value="${staff.id}" th:text="${staff.name}"></option>
+                            </select>
+=======
+                            ID  Staf: <br>
+                            <input type="text" name="staffModel.id" th:value="${jadwal.staffModel.id}" class="form-control"/>
+>>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

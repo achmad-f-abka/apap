@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Add Kebutuhan Reagen</title>
+		
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+		
+	</head>
+	
+	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+	
+		<div th:if="${success}=='true'">
+    			<h1>Data kebutuhan reagen berhasil ditambah!</h1>
+		</div>
+		<div class="container-fluid">
+	        <div class="row">
+	            <div class="col-md-6">
+	                <div class="card">
+	                    <div class="card-header">
+	                        Tambah Kebutuhan Reagen
+	                    </div>
+	                    <div class="card-body">
+	                        <form th:action="@{/lab/kebutuhan/tambah}"  th:object="${kebutuhanReagen}" method="POST">
+		                        Nama Reagen <br>
+		                        <select name="idReagen" class="form-control" id="exampleFormControlSelect1">
+		                        	<option th:value="0" disabled th:text="'Pilih Nama Reagen'"></option>
+		                        	<option th:each="itemReagen : ${listReagen}" th:value="${itemReagen.id}" th:text="${itemReagen.nama}"></option>
+		                        </select>
+		                        Jumlah <br>
+		                        <input type="number" name="jumlah" class="form-control"/>
+		                        <br><br>
+		                        <button type="submit" class="btn btn-primary">Submit</button>
+	                        </form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>   

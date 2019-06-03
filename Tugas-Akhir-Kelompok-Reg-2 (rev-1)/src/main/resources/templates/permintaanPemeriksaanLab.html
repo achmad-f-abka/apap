@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home</title>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+ <nav th:replace="fragments/fragment :: navbar"></nav>
+
+ <div class="container-fluid">
+  <br>
+  <div class="row">
+   <div class="col-md-6">
+    <div class="card">
+     <div class="card-header" th:text="'Permintaan Pemeriksaan Lab'">
+     </div>
+     <div class="card-body">
+      <table border="I">
+       <thead>
+        <tr>
+         <th style="text-align: center">No.</th>
+         <th style="text-align: center">Nama Pasien</th>
+         <th style="text-align: center">Tanggal Permintaan</th>
+         <th style="text-align: center">Status</th>
+         <th style="text-align: center">Hasil</th>
+         <th style="text-align: center">Ubah status</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr th:each="permintaan,iterationStatus : *{listPermintaan}">
+         <td th:text="${iterationStatus.count}"></td>
+         <td th:text="${permintaan.pasien.nama}" />
+         <td th:text="${permintaan.tanggalPengajuan}" />
+         <div th:switch="${permintaan.status}">
+          <td th:case=0 style="background-color: red">Menunggu Persetujuan</td>
+          <td th:case=1 style="background-color:  yellow">Diproses</td>
+          <td th:case=2 style="background-color: green">Selesai</td>
+         </div>
+         <td th:text="${permintaan.hasil}" />
+         <div th:switch="${permintaan.status}">
+          <td th:case=0>
+           <form th:action="@{/lab/pemeriksaan/permintaan/} + ${permintaan.id}" id="form" method="POST">
+            <button type="submit">Proses</button>
+           </form>
+          </td>
+          
+          <td th:case=1>
+           <form th:action="@{/lab/pemeriksaan/permintaan/} + ${permintaan.id}" id="form" method="POST">
+            <input name="hasil", type = "text" />
+            <button type="submit">Hasil</button>
+           </form>
+          </td>
+          
+          <td th:case=2>
+           <!-- <form th:action="@{/lab/pemeriksaan/permintaan/} + ${permintaan.id}" id="form" method="POST">
+            <button type="submit">Ubah Status</button>
+           </form> -->
+          </td>
+         </div>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+  </div>
+  <br>
+    </div>
+</body>
+</html>

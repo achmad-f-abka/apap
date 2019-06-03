@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	    <title>View Kebutuhan Reagen List</title>
+	    
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	
+	<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<br>
+	
+	    <div th:if="${success}=='true'">
+	    <h1>Data kebutuhan reagen berhasil diubah!</h1>
+		</div>
+		
+		<div class="container-fluid">
+			<table class="table table-striped">
+			    <thead>
+				    <tr>
+				        <th scope="col">No</th>
+				        <th scope="col">Id Reagen</th>
+				        <th scope="col">Nama Reagen</th>
+				        <th scope="col">Status Reagen</th>
+				        <th scope="col">Tanggal Perubahan Status</th>
+				        <th scope="col">Action</th>
+				    </tr>
+			    </thead>
+			
+			    <tbody>
+			    <tr th:each="kebutuhanReagen,iterationStatus : ${listKebutuhanReagen}">
+			        <td th:text="*{iterationStatus.count}"></td>
+			        <td th:text="${kebutuhanReagen.idReagen.id}"></td>
+			        <td th:text="${kebutuhanReagen.idReagen.nama}"></td>
+			        <div th:if="${kebutuhanReagen.status==0}">
+			            <td th:text="'Tidak aktif/Telah dibeli'"></td>
+			        </div>
+			        <div th:if="${kebutuhanReagen.status==1}">
+			            <td th:text="'Aktif/Belum dibeli'"></td>
+			        </div>
+			        <td th:text="${kebutuhanReagen.tanggalUpdate}"></td>
+			        <td>
+			            <form th:action="@{'/lab/kebutuhan/ubah/' + ${kebutuhanReagen.id}}">
+			            <button type="submit">Update</button>
+			            </form>
+			        </td>
+			    </tr>
+			    </tbody>
+			</table>
+		</div>
+	</body>
+</html>
