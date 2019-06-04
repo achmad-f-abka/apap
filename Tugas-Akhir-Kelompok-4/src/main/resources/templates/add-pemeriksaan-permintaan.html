@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SILABOR | Create Permintaan Pemeriksaan</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <main role="main" class="px-4 mt-4"></main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Membuat Permintaan Pemeriksaan Lab 
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/pemeriksaan/permintaan/tambah}" th:object="${permintaanPemeriksaan}" method="POST">
+                            Tanggal Pengajuan: <br>
+                            <input type="date" name="tanggal_pengajuan" class="form-control" />
+                            <br>
+                            Pasien: <br>
+                            <input type="number" name="id_pasien" class="form-control" />
+                            <!-- Pasien: <br>
+                                <select th:field="*{pasien}" class="form-control">
+                                    <option th:each="eachPasien : ${pasien}" 
+                                            th:value="${eachPasien.id}"
+                                            th:utext="${eachPasien.name}" />
+                                </select>
+                            <br> -->
+                            <br>
+                            Tanggal Pemeriksaan: <br>
+                            <input type="date" name="tanggal_pemeriksaan" class="form-control" />
+                            <br>
+                            Jenis: <br>
+                            <input type="number" name="id_jenis" class="form-control" />
+                            <br>
+                            Jadwal : <br>
+                            <input type="number" name="id_jadwal" class="form-control" />
+                            <br>
+                            Status: <br>
+                            <input type="number" name="status" class="form-control" />
+                            <br>
+                            Hasil: <br>
+                            <input type="text" name="hasil" class="form-control" />
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+</body>
+
+</html>

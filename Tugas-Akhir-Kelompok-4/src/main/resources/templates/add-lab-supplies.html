@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SILABOR | Create Lab Supplies</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <main role="main" class="px-4 mt-4"></main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Membuat Data Persediaan Lab
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/stok/tambah}" th:object="${labSupplies}" method="POST">
+                            Jenis Barang: <br>
+                            <input type="text" name="kindOf" class="form-control" />
+                            <br>
+                            Nama Barang: <br>
+                            <input type="text" name="name" class="form-control" />
+                            <br>
+                            Jumlah Barang: <br>
+                            <input type="number" name="total" class="form-control" />
+                            <br>
+                            Deskripsi Barang: <br>
+                            <input type="text" name="description" class="form-control" />
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SILABOR | Home</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+</body>
+
+</html>
+<html lang="en">
+	
+<head>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="angular/nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="angular/isotope/isotope-min.js"></script>
+	<script src="angular/owl-carousel/owl.carousel.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/custom.js"></script>
+	<link rel="stylesheet" href="angular/linericon/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="angular/lightbox/simpleLightbox.css">
+	<link rel="stylesheet" href="angular/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="angular/animate-css/animate.css">
+	<link rel="stylesheet" href="angular/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <section class="home_banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content row">
+                    <div class="col-lg-12">
+                            <html xmlns:th="http://www.thymeleaf.org">
+                            <h3 th:text=" 'Hello ' + ${#httpServletRequest.remoteUser} + ', welcome to ~'">Login as</h3><br>
+                            </html>
+						<h1>Sistem Informasi Laboratorium RSCS</h1>
+                        <p>Dengan SILabor, diharapkan dapat mendukung kegiatan administratif dari laboratorium seperti dokter serta staf laboratorium dapat melakukan pertukaran informasi antar unit dengan mudah. Sehingga dapat meningkatkan efisiensi dan efektifitas dari kinerja laboratorium.</p>
+						<a class="main_btn mr-10" href="#">get started</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="procedure_category section_gap">
+		<div class="container">
+			<div class="row justify-content-center section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Kelompok 4 - Ekstensi</h1>
+					<p>
+                        Sesuatu yang besar adalah gabungan dari hal-hal kecil yang dikerjakan bersamaan. Saat Anda percaya bahwa Anda bisa, Anda telah setengah jalan menuju kesana.
+					</p>
+				</div>
+            </div>
+        </div>
+	</section>
+
+</body>
+
+</html>

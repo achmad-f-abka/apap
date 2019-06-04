@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>SILABOR | Add Kebutuhan Reagen</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<main role="main" class="px-4 mt-4"></main>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						Tambah Kebutuhan Reagen
+					</div>
+					<div class="card-body">
+						<form th:action="@{/lab/kebutuhan/tambah}" th:object="${kebutuhanReagen}" method="POST">
+							Nama Reagen: <br>
+							<select th:field="*{labSupplies}" class="form-control">
+								<option th:each="labSupply : ${labSupplies}" 
+										th:value="${labSupply.id}"
+										th:utext="${labSupply.name}" />
+							</select>
+							<br>
+							Jumlah Reagen yang dibutuhkan: <br>
+							<input type="number" name="total" class="form-control" />
+							<br>
+							Update Time: <br>
+							<input type="date" name="updatedTime" class="form-control" />
+							<br>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

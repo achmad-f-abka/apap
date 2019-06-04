@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SILABOR | Aplikasi RSCS</title>
+    
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    </head>
+
+    <head th:fragment="js">
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/angular/isotope/isotope-min.js}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    </head>
+</head>
+
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">SILABOR</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lab/kebutuhan}">Reagen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/staff}">Staff</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/pasien}">Pasien</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lab/jadwal}">Jadwal</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lab
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/lab/stok}" >Persediaan Lab</a>
+                        <a class="dropdown-item" th:href="@{/lab/pemeriksaan/permintaan}">Permintaan Pemeriksaan Lab</a>
+                    </div>
+                </li>
+            </ul>
+            <i class="fas fa-sign-out-alt"></i>
+            <ul class="navbar-nav pull-right">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+</html>

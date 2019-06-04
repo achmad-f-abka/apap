@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <nav th:replace="fragments/fragment :: navbar"></nav>
+        <title>SILABOR | Edit Data Persediaan Lab</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    </head>
+
+    <body>
+        <main role="main" class="px-4 mt-4">
+        <h5>Edit Data Persediaan Lab</h5>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                         Edit Data Persediaan Lab
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/stok/ubah}" th:object="${labSupplies}" method="POST">
+                            Id:
+                            <br>
+                            <input type="number" name="id" th:field="${labSupplies.id}" class="form-control" readonly="readonly"/><br>
+                            Jenis Barang:
+                            <br>
+                            <input type="text" name="kindOf" th:field="${labSupplies.kindOf}" class="form-control" required="true" readonly="readonly"/><br>
+                            Nama:
+                            <br>
+                            <input type="text" name="name" th:field="${labSupplies.name}" class="form-control" required="true" readonly="readonly" /><br>
+                            Jumlah:
+                            <br>
+                            <input type="number" name="total" th:field="${labSupplies.total}" class="form-control" required="true" /><br>
+                            Deskripsi:
+                            <br>
+                            <input type="text" name="description" th:field="${labSupplies.description}" class="form-control" required="true" readonly="readonly" /><br></br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+
+</html>

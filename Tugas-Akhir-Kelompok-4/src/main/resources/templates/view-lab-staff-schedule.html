@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <title>SILABOR | Data Persediaan Lab</title>
+</head>
+
+<body>
+    <div class="container-fluid"><br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Create Staff Schedule
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Fitur untuk menambah data jadwal jaga staf lab.</p>
+                        <a class="btn btn-primary" th:href="@{/lab/jadwal-jaga/tambah}">Tambah</a>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid"><br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Find Staff Schedule by Date
+                    </div>
+                    
+                    <div class="card-body">
+                        <form th:action="@{/lab/jadwal-jaga/}" th:object="${staffSchedule}" method="GET">
+                            <label th:for="scheduleDate">Tanggal Jadwal : </label> <input
+								type="date" th:name="scheduleDate" th:value="${scheduleDate}" class="form-control" />
+							<br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SILABOR | Create Lab Staff Schedule</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+   
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <main role="main" class="px-4 mt-4"></main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Membuat Data Jadwal Staff Lab Jaga
+                    </div>
+                     <div class="card-body">
+                        <form th:action="@{/lab/jadwal-jaga/tambah}" th:object="${staffSchedule}" method="POST">
+                            Tanggal: <br>
+                            <input type="date" name="scheduleDate" id="scheduleDate"  th:attr="min=${#dates.createNow()}" class="form-control" />
+                            <br>
+                            Jam Mulai: <br>
+                            <select name="startTime" id="startTime" class="form-control">
+                                   <option>07:00:00</option>
+                                   <option>12:00:00</option>
+                                   <option>17:00:00</option>
+                                   <option>22:00:00</option>
+                                   <option>23:00:00</option>
+                            </select>
+                            <br>
+                            Jam Selesai: <br>
+                            <select name="endTime" id="endTime" class="form-control">
+                                   <option>12:00:00</option>
+                                   <option>17:00:00</option>
+                                   <option>22:00:00</option>
+                                   <option>23:00:00</option>
+                                   <option>07:00:00</option>
+                            </select> 
+                            <br> 
+                            Nama Staff: <br>
+                                <select th:field="*{staff}" class="form-control">
+                                    <option th:each="eachStaff : ${staff}" 
+                                            th:value="${eachStaff.id}"
+                                            th:utext="${eachStaff.name}" />
+                                </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    
+<script>
+var timepicker = new TimePicker('time', {
+	  lang: 'en',
+	  theme: 'dark'
+	});
+	timepicker.on('change', function(evt) {
+	  var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+	  evt.element.value = value;
+
+	});
+</script>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
+    
+    
+</body>
+
+</html>

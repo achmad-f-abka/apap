@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>SILABOR | Add User</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<main role="main" class="px-4 mt-4"></main>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+			<h3 th:text="${alertmessage}"></h3>
+				<div class="card">
+					<div class="card-header">
+						Tambah User
+					</div>
+					<div class="card-body">
+						<form th:action="@{/user/addUserSubmit}" method="POST">
+							Username: <br>
+							<input type="text" name="username" class="form-control" />
+							<br>
+							Password: <br>
+							<input type="password" name="password" class="form-control" />
+							<br>
+							Role: <br>
+							<select name="role" class="form-control">
+								<option value="Admin Laboratorium">Admin Laboratorium</option>
+								<option value="Staf Laboratorium">Staf Laboratorium</option>
+								<option value="Admin Farmasi">Admin Farmasi</option>
+								<option value="Admin Rawat Jalan">Admin Rawat Jalan</option>
+							</select>
+							<br>
+							
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
