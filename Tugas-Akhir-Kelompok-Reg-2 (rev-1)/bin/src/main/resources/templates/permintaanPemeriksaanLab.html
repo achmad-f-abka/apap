@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home</title>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+	<div class="container-fluid">
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header" th:text="'Permintaan Pemeriksaan Lab'">
+					</div>
+					<div class="card-body">
+						<table border="I">
+							<thead>
+								<tr>
+									<th style="text-align: center">No.</th>
+									<th style="text-align: center">Nama Pasien</th>
+									<th style="text-align: center">Tanggal Permintaan</th>
+									<th style="text-align: center">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="permintaan,iterationStatus : *{listPermintaan}">
+									<td th:text="${iterationStatus.count}"></td>
+									<td th:text="${permintaan.pasien.nama}" />
+									<td th:text="${permintaan.tanggalPengajuan}" />
+									<td th:text="${permintaan.status}" />
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

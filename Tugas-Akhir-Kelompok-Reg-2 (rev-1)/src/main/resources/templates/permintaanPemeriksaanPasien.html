@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home</title>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+	<div class="container-fluid">
+		<br>
+		<div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Tambah Pemeriksaan
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/lab/pemeriksaan/pasien/} + ${pasien.id}" th:object="${jadwalPemeriksaan}" method="POST">
+                            Nama pasien: <br>
+                            <input type="text" name="pasien" th:value= "${pasien.nama}" class="form-control" disabled/>
+                            <br>
+                            Status: <br>
+                            <input type="text" name="status" value="Menunggu Persetujuan" class="form-control" disabled/>
+                            <br>
+                            Tanggal Pengajuan: <br>
+                            <input type="date" name="tanggalPengajuan" th:value="${currentDate}" class="form-control" disabled/>
+                            <br>
+                            Tanggal Permintaan: <br>
+                            <input type="date" name="tanggalPemeriksaan" class="form-control" />
+                            <br>
+                            Hasil: <br>
+                            <input type="text" name="hasil" class="form-control"/>
+                            <br>
+                            Jadwal Jaga: <br> 
+                            <select name="idJadwal" class="form-control">
+								<option th:value="0" disabled th:text="'Pilih Jadwal Jaga'">
+								</option>
+								<option th:each="jadwalJaga : ${listJadwalJaga}"
+										th:value="${jadwalJaga.id}"
+										th:text="${jadwalJaga.tanggal}">
+								</option>
+							</select>
+							<br>
+							Jenis Pemeriksaan: <br> 
+                            <select name="jenis" class="form-control">
+								<option th:value="0" disabled th:text="'Pilih Jenis Pemeriksaan'">
+								</option>
+								<option th:each="jenisPemeriksaan : ${listJenis}"
+										th:value="${jenisPemeriksaan.id}"
+										th:text="${jenisPemeriksaan.nama}">
+								</option>
+							</select>
+							<br>
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

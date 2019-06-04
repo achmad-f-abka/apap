@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	    <title>Update Kebutuhan Reagen</title>
+	    
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	
+	</head>
+	
+	<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	
+	<div class="container-fluid">
+	    <br>
+	    <div class="row">
+	        <div class="col-md-6">
+	            <div class="card">
+	                <div class="card-header" th:text="'Kebutuhan Reagen ' + ${kebutuhanReagen.idReagen.nama}">
+	                </div>
+	                <div class="card-body">
+	                    <p th:text="'Id: ' + ${kebutuhanReagen.id}"></p>
+	                    <p th:text="'Id Reagen: ' + ${kebutuhanReagen.idReagen.id}"></p>
+	                    <div class="row">
+	                        <form th:action="@{/lab/kebutuhan/ubah}" th:object="${kebutuhanReagen}" method="POST" class="col-md-3" >
+	                            <input type="hidden" name=id th:field="*{id}" />
+	                            <input type="hidden" name=idReagen th:field="*{idReagen}" />
+	                            <input type="hidden" name=jumlah th:field="*{jumlah}" />
+	                            <select th:label="'Status Kebutuhan'" name="status" th:field="*{status}" class="form-control" id="exampleFormControlSelect1">
+	                                <option th:value=0
+	                                        th:text="'Tidak aktif/Telah dibeli'">
+	                                </option>
+	                                <option th:value=1
+	                                        th:text="'Aktif/Belum dibeli'">
+	                                </option>
+	                            </select>
+	                            <br>
+	                            <button type="submit" class="btn btn-primary">Submit</button>
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	</body>
+
+</html>

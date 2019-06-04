@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Jadwal</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+			<div th:replace="fragments/fragment :: navbar" ></div>
+		
+			<div class="card" align="center">
+			<center class="col-md-5">
+				<h2 class="card-header">Jadwal Jaga Lab</h2>
+<<<<<<< HEAD
+				<p class= "card-header" th:text="'Tanggal ' + ${jadwal1.tanggal}"> </p>
+		
+				<div th:each = "jadwals : ${jadwal}" class = "card">
+					<div class = "card-body">
+					<p><th th:text="${jadwals.staffModel.name}"></th></p>
+						<table border="I">
+							<thead>
+								<tr style="text-align: center">
+=======
+		
+				<div class = "card">
+					<div class = "card-body">
+					<h4>Staff <th th:text="${staff.name}"></th></h4>
+						<table border="I">
+							<thead>
+								<tr style="text-align: center">
+									
+									<th style="text-align: center">Tanggal </th>
+>>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+									<th style="text-align: center">Jam mulai  </th>
+									<th style="text-align: center">Jam selesai  </th>
+								</tr>
+							</thead>
+							<tbody>	
+								<tr style="text-align: center">
+<<<<<<< HEAD
+									<td style="text-align: center" th:text="${jadwals.waktuMulai}"></td>
+									<td style="text-align: center" th:text="${jadwals.waktuSelesai}"></td>    
+								</tr>
+							</tbody>
+					</table>
+					<button class="btn btn-light"><a th:href="@{/lab/jadwal-jaga/ubah/} + ${jadwals.id}">ubah</a></button>
+=======
+									<td style="text-align: center" th:text="${jadwal.tanggal}"></td>
+									<td style="text-align: center" th:text="${jadwal.waktuMulai}"></td>
+									<td style="text-align: center" th:text="${jadwal.waktuSelesai}"></td>
+								</tr>
+							</tbody>
+					</table>
+>>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+					</div>
+				</div>
+			</center>
+		</div>
+		
+	</body>
+</html>

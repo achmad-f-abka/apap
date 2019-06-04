@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>View Lab Supplies</title>
+		
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	
+	<body>
+		<nav th:replace="fragments/Fragment :: navbar"></nav>
+				
+		<div class="card">
+			<div class="card-header">
+				<h3 th:text="${supply.nama}"></h3>
+			</div>
+			<div class="card-body">
+				<div class="center" style="background-color:#FFFFFF" align="justify">
+					<h3 th:text="'Jenis : ' + ${supply.jenis}" ></h3>
+					<h3 th:text="'Deskripsi : ' + ${supply.deskripsi}" ></h3>
+					<h3 th:text="'Jumlah : ' + ${supply.jumlah}" ></h3>
+					<div>
+						<a th:href="@{'/lab/stok/ubah/' + ${supply.id}}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Update Lab Supplies</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
