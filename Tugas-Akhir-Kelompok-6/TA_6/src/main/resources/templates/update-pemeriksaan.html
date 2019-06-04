@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Permintaan Pemeriksaan</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 th:text="'Update Permintaan Jadwal - ID Jadwal: ' + ${jadwal.id}"></h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/lab/pemeriksaan/ubah}" th:object="${jadwal}" method="POST">
+                        <input type="hidden" name="id" th:value="${jadwal.id}" />
+                        ID Jadwal: <br>
+                        <input type="text" th:value="${jadwal.id}" name="tanggal_pengajuan" class="form-control" disabled/>
+                        <br>
+                        Tanggal Pemeriksaan: <br>
+                        <input type="text" th:value="${jadwal.tanggal_pemeriksaan}" name="tanggal_pengajuan" class="form-control" disabled/>
+                        <br>
+                        Hasil: <br>
+                        <input type="text" th:value="${jadwal.hasil}" name="hasil" class="form-control"/>
+                        <br>
+                        Status: <br>
+                        <select type="text" th:value="${jadwal.status}" name="status" class="form-control">
+                            <option value="Menunggu Persetujuan">Menunggu Persetujuan</option>
+                            <option value="Diproses">Diproses</option>
+                            <option value="Selesai">Selesai</option>
+                        </select>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

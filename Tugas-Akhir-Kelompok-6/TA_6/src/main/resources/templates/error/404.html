@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+		<h2 align = "center">Halaman tidak ditemukan!</h2>
+		<h4 align = "center"><a th:href="@{/}">Kembali ke menu utama</a></h4>
+	</body>
+</html>

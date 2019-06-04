@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>View Jadwal</title>
+	 <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	 <nav th:replace="fragments/fragment :: navbar"></nav>
+	 <div class="container-fluid">
+	 <br>
+	 	<div class="row">
+	 		<div class="col-md-6">
+	 			<div class="card">
+	 				<div class="card-header">Jadwal Jaga 
+	 				</div>
+	 				<div class="card-body">
+	 					<table border="1">
+	 						<thead>
+	 							<tr>
+	 							<th style="text-align: center">No.</th>
+	 							<th style="text-align: center">Tanggal</th>
+	 							<th style="text-align: center">Waktu Mulai</th>
+	 							<th style="text-align: center">Waktu Selesai</th>
+	 							<th style="text-align: center">Staff</th>
+	 							<th style="text-align: center">Action</th>
+	 							</tr>
+	 						</thead>
+	 						<tbody>
+	 							<tr th:each="jdwl,iterationStatus : *{jadwal}">
+	 							<td th:text="${iterationStatus.count}"></td>
+	 							<td th:text="${jdwl.tanggal}"></td>
+	 							<td th:text="${jdwl.waktuMulai}"></td>
+	 							<td th:text="${jdwl.waktuSelesai}"></td>
+	 							<td th:text="${jdwl.staff.nama_staff}"></td>
+	 							<td>
+	 								<form th:action="@{/lab/jadwal-jaga/ubah}" class="col-md-3">
+	 									<input type="hidden" name="id" th:value="${jdwl.id}">
+	 									<button type="submit" class="btn btn-primary">Update</button>
+	 								</form>
+	 								</td>
+	 								</tr>
+	 								
+	 						</tbody>
+	 					</table>
+	 				</div>
+	 			</div>
+	 		</div>
+	 	</div>
+	 </div>
+</body>
+
+</html>

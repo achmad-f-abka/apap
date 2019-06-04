@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Kebutuhan Reagen</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 th:text="'Update Kebutuhan Reagen - ID Reagen : ' + ${reagen.id}"></h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/lab/kebutuhan/ubah}" th:object="${reagen}" method="POST">
+                        <input type="hidden" name="id" th:value="${reagen.id}" />
+
+                        ID Lab Supplies: <br>
+                        <input type="text" th:value="${reagen.lab_supplies.id}" name="id_reagen" class="form-control" disabled/>
+                        <br>
+                        Jumlah: <br>
+                        <input type="text" th:value="${reagen.jumlah}" name="jumlah" class="form-control" disabled/>
+                        <br>
+                        Status: <br>
+                        <select type="number" th:value="${reagen.status}" name="status" class="form-control">
+                            <option value="0">0 - TIDAK AKTIF / SUDAH DIBELI</option>
+                            <option value="1">1 - AKTIF / BELUM DIBELI</option>
+                        </select>
+                        <br>
+                        Terakhir Update: <br>
+                        <input type="text" th:value="${reagen.tanggal_update}" name="tanggal_update" class="form-control" disabled/>
+                        <br><br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

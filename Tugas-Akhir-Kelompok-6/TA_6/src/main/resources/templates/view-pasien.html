@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+		<br>
+		<table border="I">
+			<thead>
+				<tr>
+					<th style="text-align: center">No.</th>
+					<th style="text-align: center">Id</th>
+					<th style="text-align: center">Nama Pasien</th>
+					<th style="text-align: center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pasien,iterationStatus : ${pasien}">
+					<td th:text="${iterationStatus.count}"></td>
+					<td th:text="${pasien.id}"></td>
+					<td th:text="${pasien.nama_pasien}"></td>
+					<td><a
+						th:href="@{permintaan/pasien/} + ${pasien.id}">Request Jadwal</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>

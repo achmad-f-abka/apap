@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <title>Add Jadwal</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+   <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+     <div class="row">
+            <span class="col-md-1"></span>
+            <div class="col-md-10">
+                    <br>
+     <h2 align = "center"><strong>Tambahkan Jadwal Jaga</strong></h2>
+     <div class="row">
+     <span class="col-md-3"></span>
+      <div class="col-md-6">
+      <p style="color : red" th:text=" ${NotValid} " ></p>
+       <div class="card">
+        <div class="card-header">Tambah Jadwal</div>
+        <div class="card-body">
+        
+         <form th:action="@{/lab/jadwal-jaga/tambah}" th:object="${jadwal}" method="POST">
+          Tanggal : <br>
+          <input type="date" th:attr="min=${today}" name="tanggal" class="form-control"/>
+          <br>
+          Jam Mulai : <br>
+          <input type ="Time" name="waktuMulai" class="form-control"/>
+          <br>
+          Jam Selesai : <br>
+          <input type="Time" name="waktuSelesai" class="form-control"/>
+          <br>
+          Nama Staff: 
+          <select th:field="${jadwal.staff}" class="form-control" >
+           <option th:each="staff : ${listStaff}" th:value="${staff.id}" th:text="${staff.nama_staff}"></option> 
+          </select>
+          <br>
+          
+          <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+        </div>
+       </div>
+      </div>
+     </div>
+    
+    
+    </div>
+
+</body>
+
+
+
+</html>

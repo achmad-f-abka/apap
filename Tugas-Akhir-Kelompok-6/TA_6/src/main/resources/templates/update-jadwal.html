@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Update Jadwal</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	 <nav th:replace="fragments/fragment :: navbar"></nav>
+	 <div class="container-fluid">
+	 <br>
+	 	<div class="row">
+	 		<div class="col-md-4">
+	 		 <p style="color : red" th:text=" ${NotValid} " ></p>
+	 			<div class="card">
+	 				<div class="card-header">Update Jadwal Jaga</div>
+	 				<div class="card-body">
+	 					<form th:action="@{/lab/jadwal-jaga/ubah}" th:object="${jadwal}" method="post">
+	 						<input type="hidden" name="id" th:value="${jadwal.id}" />
+	 						<!--  <input type="hidden" th:field="*{staff}"/>-->
+	 						Tanggal : <br>
+	 						<input type="date" th:attr="min=${today}" name="tanggal" th:value="${jadwal.tanggal}" class="form-control"/>
+	 						<br>
+	 						Jam Mulai : <br>
+	 						<input type="text" name="waktuMulai" th:value="${jadwal.waktuMulai}" class="form-control"/>
+	 						<br>
+	 						Jam Selesai : <br>
+	 						<input type="text" name="waktuSelesai" th:value="${jadwal.waktuSelesai}" class="form-control"/>
+	 						<br>
+	 						Nama staff  : <br>
+	 						<div class="form-group blu-margin">
+							    <select th:field="${jadwal.staff}" class="form-control" required="required" id="staff" name="idStaff">
+							    	 <option th:each="staff : ${listStaff}" th:value="${staff.id}" th:text="${staff.nama_staff}" name="idStaff"> 
+							    </select>
+							</div>
+							<!-- select th:field ="${jadwal.staff}" class="form-control">
+	 							<option th:each="staff : ${listStaff}" th:value="${staff.id}" th:text="${staff.nama_staff}"></option>
+	 						</select> -->
+	 						
+	 						<br>
+	 						<br>
+	 						<button type="submit" class="btn btn-primary">Submit</button>
+	 					</form>
+	 				</div>
+	 			</div>
+	 		</div>
+	 	</div>
+	 </div>
+
+</body>
+
+</html>

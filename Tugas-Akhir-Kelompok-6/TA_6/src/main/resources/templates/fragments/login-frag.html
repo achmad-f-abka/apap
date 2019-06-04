@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+    <head th:fragment="metas">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+    </head>
+
+    <head th:fragment="js">
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </head>
+</head>
+
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-success">
+    <a class="navbar-brand" style="text-align-all: center" th:href="@{/}">SISTEM INFORMASI RSCS</a>
+</nav>
+</body>
+
+</html>

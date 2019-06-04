@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Update Stok</title>
+
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+	<div class="container-fluid">
+	
+	<div class="row">
+			<span class="col-md-3"></span>
+			<div class="col-md-12">
+			<br>
+			
+		<h2 align = "center"><strong>Update Stok Lab</strong></h2>
+		<hr>
+		
+				<div class="card">
+					<div class="card-header">Update Stok</div>
+					<div class="card-body">
+						<form th:action="@{/lab/stok/ubah}" th:object="${stok}"
+							method="POST">
+							<input type="hidden" name="id" th:value="${stok.id}" />
+							<!-- <input type="hidden" th:field="*{stok}" /> -->
+							Jenis Barang: <br> <input type="text"
+								th:value="${stok.jenisBarang}" name="jenisBarang"
+								class="form-control" /> <br> Nama Barang: <br> <input
+								type="text" th:value="${stok.namaBarang}" name="namaBarang"
+								class="form-control" /> <br> Jumlah Barang: <br> <input
+								type="number" th:value="${stok.jumlahBarang}"
+								name="jumlahBarang" class="form-control" /> <br> Deskripsi
+							Barang: <br> <input type="text"
+								th:value="${stok.deskripsiBarang}" name="deskripsiBarang"
+								class="form-control" /> <br>
+							<br>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

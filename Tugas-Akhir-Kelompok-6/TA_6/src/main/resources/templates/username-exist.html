@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <h3>Username tersebut sudah terdaftar,</h3>
+    <h3>silakan login atau ganti dengan username yang lain</h3>
+</div>
+<br>
+    <h4><a th:href="@{/}">Kembali ke menu utama</a></h4>
+</body>
+</html>
